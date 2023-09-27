@@ -45,12 +45,14 @@ txBlink="$(tput blink)"
 txReset="$(tput sgr0)"
 
 runcmd() {
-    printf "CMD: ${fgBlue}%b${txReset}\n" "$(echo $@)" 1>&2
+	# https://unix.stackexchange.com/a/65819
+	# https://stackoverflow.com/a/57839821
+	printf "CMD: ${fgBlue}%s${txReset}\n" "$(printf '%s ' $@)" 1>&2
 	$@
-    EXIT_CODE="$?"
-    if [ ! "$EXIT_CODE" = 0 ]; then
-        exit "$EXIT_CODE"
-    fi
+	EXIT_CODE="$?"
+	if [ ! "$EXIT_CODE" = 0 ]; then
+		exit "$EXIT_CODE"
+	fi
 }
 
 
