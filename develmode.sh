@@ -12,4 +12,4 @@ fi
 HOST_PORT="8080"
 GUEST_PORT="$HOST_PORT"
 
-$DOCKER_BIN run --rm -it -v $PWD:/app -p "$HOST_PORT":"$GUEST_PORT" composer:latest php artisan serve --port "$GUEST_PORT"
+$DOCKER_BIN run --rm -it -v "$PWD":/app -p "$HOST_PORT":"$GUEST_PORT" composer:latest php artisan serve --port "$GUEST_PORT"
