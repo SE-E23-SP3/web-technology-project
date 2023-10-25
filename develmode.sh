@@ -73,5 +73,7 @@ HOST_PORT="8080"
 GUEST_PORT="$HOST_PORT"
 
 
-runcmd $DOCKER_BIN run --rm -it --volume "$PWD":/app composer:latest composer install
-runcmd $DOCKER_BIN run --rm -it -v "$PWD":/app -p "$HOST_PORT":"$GUEST_PORT" composer:latest php artisan serve --host 0.0.0.0 --port "$GUEST_PORT"
+set -x
+$DOCKER_BIN run --rm -it --volume "$PWD":/app composer:latest composer install
+$DOCKER_BIN run --rm -it -v "$PWD":/app -p "$HOST_PORT":"$GUEST_PORT" composer:latest php artisan serve --host 0.0.0.0 --port "$GUEST_PORT"
+set +x
