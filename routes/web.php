@@ -15,7 +15,17 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})-> name("Welcome");
+
+Route::get('/login', function (){
+    return view('/users/login');
 });
+
+Route::get('/newAcc', function(){
+    return view('/users/newAcc');
+})-> name("newAcc"); 
+
+
 Route::get('/hello', function () {
     return view('hello');
 });
