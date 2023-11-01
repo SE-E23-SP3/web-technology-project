@@ -25,7 +25,7 @@
                     <label>Email:</label> <br />
                     <input id="email" name="email" type="email"> <br />
                     <label>Password:</label> <br />
-                    <input id="password" name="password" type="password"> <br />
+                    <input id="password" name="password" type="password"> <br /><br />
                     <button type="submit" class="SigninBtn">Sign in</button>
                 </form>
                 <br />

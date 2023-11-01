@@ -18,15 +18,11 @@ Route::get('/', function () {
 })-> name("Welcome");
 
 Route::get('/login', function (){
-    return view('/users/login');
-});
-
-Route::get('/login', function (){
-    return view('/users/login');
+    return view('/account/login');
 });
 
 Route::get('/signup', function(){
-    return view('/users/signup');
+    return view('/account/signup');
 })-> name("signup"); 
 
 
