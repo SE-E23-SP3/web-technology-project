@@ -21,9 +21,13 @@ Route::get('/login', function (){
     return view('/users/login');
 });
 
-Route::get('/newAcc', function(){
-    return view('/users/newAcc');
-})-> name("newAcc"); 
+Route::get('/login', function (){
+    return view('/users/login');
+});
+
+Route::get('/signup', function(){
+    return view('/users/signup');
+})-> name("signup"); 
 
 
 Route::get('/hello', function () {
