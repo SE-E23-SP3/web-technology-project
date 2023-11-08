@@ -1,15 +1,8 @@
 #!/bin/sh
-if [ ! "$(id -u)" -eq 0 ]; then
+if [ ! "$(id -u)" -eq 0 ] && [ "$(uname)" != "Darwin" ]; then
 	#Automatically rerun script with root
 	exec sudo "$0" "$@"
 fi
-
-
-
-
-
-
-
 
 
 #https://www.man7.org/linux/man-pages/man5/terminfo.5.html
@@ -44,19 +37,11 @@ txEndStand="$(tput rmso)"
 txBlink="$(tput blink)"
 txReset="$(tput sgr0)"
 
-runcmd() {
-	# https://unix.stackexchange.com/a/65819
-	# https://stackoverflow.com/a/57839821
-	printf "CMD: ${fgBlue}%s${txReset}\n" "$(printf '%s ' $@)" 1>&2
-	$@
-	EXIT_CODE="$?"
-	if [ ! "$EXIT_CODE" = 0 ]; then
-		exit "$EXIT_CODE"
-	fi
+
+
+stderr() {
+	printf "%s\n" "$@" 1>&2
 }
-
-
-
 
 
 
@@ -69,11 +54,49 @@ if [ ! -e ".env" ]; then
 	cp .env.example .env
 	echo "copying to .env" >&2
 fi
-HOST_PORT="8080"
-GUEST_PORT="$HOST_PORT"
 
+
+
+onSigInt() {
+	$DOCKER_BIN compose down
+	exit 130
+}
+
+
+trap 'onSigInt' 2
+
+PORT=8080
+
+waitOnStart() {
+	$DOCKER_BIN compose exec php timeout 600s sh -c "until curl -sf 'http://localhost:$PORT/health' -o /dev/null; do sleep 1; done"
+	test "$?" -ne 1 || exit 1
+	local MSG="$(cat <<-EOF
+	/**********************************************************/
+	/*                                                        */
+	/*                                                        */
+	/*                 Go to your browser at:                 */
+	/*                 ${txBold}${fgGreen}http://localhost:${PORT}${txReset}                  */
+	/*                  Use ${fgBlue}Ctrl+C${txReset} to exit                    */
+	/*                                                        */
+	/*                                                        */
+	/**********************************************************/
+	EOF
+	)"
+
+	stderr
+	stderr "$MSG"
+	stderr
+}
 
 set -x
-$DOCKER_BIN run --rm -it --volume "$PWD":/app composer:latest composer install
-$DOCKER_BIN run --rm -it -v "$PWD":/app -p "$HOST_PORT":"$GUEST_PORT" composer:latest php artisan serve --host 0.0.0.0 --port "$GUEST_PORT"
+$DOCKER_BIN compose up -d
+test "$?" -ne 1 || exit $?
 set +x
+
+stderr
+stderr "${fgBlue}Crtl-C to stop containers${txReset}"
+stderr
+
+waitOnStart &
+
+$DOCKER_BIN compose logs -f php

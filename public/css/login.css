@@ -1,0 +1,57 @@
+
+*{
+    background-color: var(--Background);
+    color: var(--Text);
+    font-family: sans-serif;
+}
+
+h1{
+    font-size: xx-large;
+}
+
+input{
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+
+}
+
+input:focus{
+    outline: none;
+}
+
+button{
+    color: var(--Text);
+    border: none;
+    text-align: center;
+}
+
+button:hover{
+    cursor: pointer;
+}
+
+.Center-container{
+    position: relative;
+}
+
+.Center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
+.SigninBtn{
+    background-color: var(--Primary);
+    border-radius: 5px;
+    
+
+}
+
+.newAccBtn{
+    background-color: var(--Text_Dim);
+    border-radius: 5px;
+
+}
+
