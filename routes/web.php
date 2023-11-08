@@ -39,3 +39,6 @@ Route::get('/hello', function () {
 Route::get('/health', function () {
     return "ok";
 });
+Route::get('/movieinfo', function () {
+    return view('movies/movieinfo');
+})-> name('Movie Info');
