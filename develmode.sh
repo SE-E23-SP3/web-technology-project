@@ -1,5 +1,5 @@
 #!/bin/sh
-if [ ! "$(id -u)" -eq 0 ]; then
+if [ ! "$(id -u)" -eq 0 ] && [ "$(uname)" != "Darwin" ]; then
 	#Automatically rerun script with root
 	exec sudo "$0" "$@"
 fi
@@ -58,7 +58,7 @@ fi
 
 
 onSigInt() {
-    $DOCKER_BIN compose down
+	$DOCKER_BIN compose down
 	exit 130
 }
 
@@ -68,7 +68,7 @@ trap 'onSigInt' 2
 PORT=8080
 
 waitOnStart() {
-	$DOCKER_BIN compose exec php timeout 60s sh -c "until curl -sf 'http://localhost:$PORT/health' -o /dev/null; do sleep 1; done"
+	$DOCKER_BIN compose exec php timeout 600s sh -c "until curl -sf 'http://localhost:$PORT/health' -o /dev/null; do sleep 1; done"
 	test "$?" -ne 1 || exit 1
 	local MSG="$(cat <<-EOF
 	/**********************************************************/
@@ -90,6 +90,7 @@ waitOnStart() {
 
 set -x
 $DOCKER_BIN compose up -d
+test "$?" -ne 1 || exit $?
 set +x
 
 stderr
