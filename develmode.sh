@@ -68,14 +68,14 @@ trap 'onSigInt' 2
 PORT=8080
 
 waitOnStart() {
-	$DOCKER_BIN compose exec php timeout 600s sh -c "until curl -sf 'http://localhost:$PORT/health' -o /dev/null; do sleep 1; done"
+	$DOCKER_BIN compose exec php timeout 1200s sh -c "until curl -sf 'http://localhost:$PORT/health' -o /dev/null; do sleep 1; done"
 	test "$?" -ne 1 || exit 1
 	local MSG="$(cat <<-EOF
 	/**********************************************************/
 	/*                                                        */
 	/*                                                        */
 	/*                 Go to your browser at:                 */
-	/*                 ${txBold}${fgGreen}http://localhost:${PORT}${txReset}                  */
+	/*                 ${txBold}${fgGreen}http://127.0.0.1:${PORT}${txReset}                  */
 	/*                  Use ${fgBlue}Ctrl+C${txReset} to exit                    */
 	/*                                                        */
 	/*                                                        */
