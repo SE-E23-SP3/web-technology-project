@@ -50,10 +50,6 @@ if [ ! -e "$DOCKER_BIN" ]; then
 	DOCKER_BIN="$(command -v nerdctl)"
 fi
 
-if [ ! -e ".env" ]; then
-	cp .env.example .env
-	echo "copying to .env" >&2
-fi
 
 
 
@@ -88,15 +84,46 @@ waitOnStart() {
 	stderr
 }
 
-set -x
+HELP_MSG="$(cat <<-EOF
+	/**********************************************************/
+	/*                                                        */
+	/*                                                        */
+	/*               If you run into an error                 */
+	/*         Manually run '${txBold}sudo docker compose up${txReset}'          */
+	/*              'sudo' may not be necessay.               */
+	/*                                                        */
+	/*                                                        */
+	/**********************************************************/
+EOF
+)"
+
+stderr "$HELP_MSG"
+
+ERROR_MSG="$(cat <<-EOF
+	/**********************************************************/
+	/*                                                        */
+	/*                                                        */
+	/*                 An error has occurred.                 */
+	/*       Try manually run '${txBold}sudo docker compose up${txReset}'        */
+	/*              'sudo' may not be necessay.               */
+	/*                                                        */
+	/*                                                        */
+	/**********************************************************/
+EOF
+)"
+
+detectExitCode() {
+	if [ "$1" -eq 0 ]; then
+		return 0
+	fi
+	stderr "$ERROR_MSG"
+	exit "$1"
+}
+
 $DOCKER_BIN compose up -d
-test "$?" -ne 1 || exit $?
-set +x
+detectExitCode $?
 
-stderr
-stderr "${fgBlue}Crtl-C to stop containers${txReset}"
-stderr
 
-waitOnStart &
 
 $DOCKER_BIN compose logs -f php
+detectExitCode $?
