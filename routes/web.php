@@ -15,7 +15,27 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+})-> name("Welcome");
+
+Route::get('/login', function (){
+    return view('/account/login');
 });
+
+Route::get('/signup', function(){
+    return view('/account/signup');
+})-> name("signup");
+
+
 Route::get('/hello', function () {
     return view('hello');
+});
+
+
+
+
+
+
+// A heallth check endpoint to verify that the service is up and running
+Route::get('/health', function () {
+    return "ok";
 });
