@@ -65,14 +65,37 @@ onSigInt() {
 
 trap 'onSigInt' 2
 
+PORT=8080
 
+waitOnStart() {
+	$DOCKER_BIN compose exec php timeout 60s sh -c "until curl -sf 'http://localhost:$PORT/health' -o /dev/null; do sleep 1; done"
+	test "$?" -ne 1 || exit 1
+	local MSG="$(cat <<-EOF
+	/**********************************************************/
+	/*                                                        */
+	/*                                                        */
+	/*                 Go to your browser at:                 */
+	/*                 ${txBold}${fgGreen}http://localhost:${PORT}${txReset}                  */
+	/*                  Use ${fgBlue}Ctrl+C${txReset} to exit                    */
+	/*                                                        */
+	/*                                                        */
+	/**********************************************************/
+	EOF
+	)"
+
+	stderr
+	stderr "$MSG"
+	stderr
+}
 
 set -x
 $DOCKER_BIN compose up -d
 set +x
 
 stderr
-stderr "Crtl-C to stop containers"
+stderr "${fgBlue}Crtl-C to stop containers${txReset}"
 stderr
+
+waitOnStart &
 
 $DOCKER_BIN compose logs -f php
