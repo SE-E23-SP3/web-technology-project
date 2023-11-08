@@ -23,9 +23,19 @@ Route::get('/login', function (){
 
 Route::get('/signup', function(){
     return view('/account/signup');
-})-> name("signup"); 
+})-> name("signup");
 
 
 Route::get('/hello', function () {
     return view('hello');
+});
+
+
+
+
+
+
+// A heallth check endpoint to verify that the service is up and running
+Route::get('/health', function () {
+    return "ok";
 });
