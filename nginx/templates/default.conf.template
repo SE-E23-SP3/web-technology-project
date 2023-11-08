@@ -1,0 +1,16 @@
+server {
+	listen ${HTTP_PORT} default_server;
+	return 301 https://$host:${HTTPS_PORT}$request_uri;
+}
+
+server {
+	listen ${HTTPS_PORT} ssl http2 default_server;
+
+	ssl_certificate /etc/nginx/ssl/cert.pem;
+	ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+
+	location / {
+		proxy_set_header   Host $host:${HTTPS_PORT};
+		proxy_pass http://php:8080;
+	}
+}
