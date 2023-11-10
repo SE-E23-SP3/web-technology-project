@@ -28,7 +28,7 @@ fi
 
 
 waitOnStart() {
-	timeout 3m sh -c "until curl -s 'http://127.0.0.1:$PORT' -o /dev/null; do sleep 1; done"
+	timeout 3m sh -c "until curl -s 'http://127.0.0.1:$PORT' -o /dev/null; do sleep 0.5; done"
 	test "$?" -ne 1 || exit 1
 	local MSG="$(cat <<-EOF
 	/**********************************************************/
@@ -45,9 +45,11 @@ waitOnStart() {
 
 	stderr "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
 	echo -e "$MSG" 1>&2
-	stderr "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" "" ""
+	stderr ""
 }
-
+# https://stackoverflow.com/questions/53076946/how-to-fix-doctrine-dbal-driver-pdoexception-error-in-docker-with-laravel-5-a
+apk add --no-cache postgresql-dev
+docker-php-ext-install pgsql pdo_pgsql
 composer install
 waitOnStart &
 php artisan serve --host 0.0.0.0 --port "$PORT"
