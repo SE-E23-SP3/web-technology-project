@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>SMDB</title>
+        <link rel="stylesheet" href="{{asset('css/app.css')}}">
+        <link rel="stylesheet" href="{{asset('css/main.css')}}">
 
 
 
@@ -22,20 +24,32 @@
 
         <!--Font awesome icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://kit.fontawesome.com/c52cf1851a.js" crossorigin="anonymous"></script>
+        <script defer src="https://kit.fontawesome.com/c52cf1851a.js" crossorigin="anonymous"></script>
         
     </head>
 
     <body>
         <div class="container-fluid">
-                <article class="row">
+                <article class="row align-items-center">
+                    <section class="col-2 mx-auto col-md-6 bg-danger">
+                        <article class="row">
+                            <section class="col p-0">
+                                <img src="https://picsum.photos/100/200" alt="..."/>
+                            </section>
+                            <section class="col-4 text-center my-5">
+                                <h3 class="Movie-heading">AAAAA</h3>
+                                <p class="Movie-info">Info</p>
+                            </section>
+                        </article>
+                    </section>
+                <!---
                     <section class="col-1 offset-1">
                         <button class="btn nextBtn">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                     </section>
-                    <section class="col-8 col-md-6 bg-danger">
-
+                    <section class="col-8 col-md-6 p-0">
+                        <img class="" src="https://picsum.photos/800/254" alt="..." />
                     </section>
                     <section class="col-2 bg-success">
                         <h3>Movie name</h3>
@@ -47,12 +61,12 @@
                         <button>Find out more -></button>
                         
                     </section>
-
                     <section class="col-1">
                         <button class=" btn prevBtn">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </section>
+                -->
                 </article>
         </div>
         <div class="container">
@@ -60,18 +74,35 @@
                 <h4>Category Name</h4>
                 <article class="row">
                     <section class="col-2">
-                        <img/>
+                        <img src="https://picsum.photos/100/200" alt="..." />
                         <P>Movie name</P>
                         <button> 
-                            
+                            <i class="fa-solid fa-play"></i>
+                            trailer 
+                        </button>
+                    </section>
+                    <section class="col-2">
+                        <img src="https://picsum.photos/100/200" alt="..." />
+                        <P>Movie name</P>
+                        <button> 
+                            <i class="fa-solid fa-play"></i>
+                            trailer 
+                        </button>
+                    </section>
+                    <section class="col-2">
+                        <img src="https://picsum.photos/100/200" alt="..." />
+                        <P>Movie name</P>
+                        <button> 
                             <i class="fa-solid fa-play"></i>
                             trailer 
                         </button>
                     </section>
                 </article>
             </article>
+
             <article class="row">
                 <h4>Category name</h4>
+
             </article>
 
         </div>
