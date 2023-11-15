@@ -1,5 +1,10 @@
 .navbar-colors{
     background-color: var(--Background_Shade);
     color: var(--Text);
-    text-decoration-color: var(--Text);
+}
+
+a{
+    background-color: var(--Background_Shade);
+    color: var(--Text);
+    text-decoration: none;
 }
