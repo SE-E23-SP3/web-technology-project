@@ -1,0 +1,61 @@
+*{
+    --Text: #fff;
+    --Background: #000;
+    --Background_Shade: #1e1e1e ;
+    --Primary: #8FB3FF;
+    --Accent: #462888;
+    --Secondary: #DDC3EA;
+    --Text_Dim: #c6c6c6;   
+}
+body{
+    background-color: var(--Background);
+    color: var(--Text);
+    overflow-x: hidden;
+}
+.container-fluid{
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.box{
+    background-color: #1e1e1e;
+    border-radius: 5px;
+}
+
+.pic{
+    max-height:320px;
+    width: 100%;
+    border-radius: 5px;
+}
+.info{
+    height: 280px;
+    padding-left: 10px;
+    overflow-y: auto;
+    overflow-wrap:break-word;
+}
+button{
+    background-color: rgb(143, 179, 255);
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+}
+span{
+    padding-left: 5px;
+}
+.buttonPos{
+    text-align: center;
+}
+.rate{
+    color: var(--Accent);
+}
+table{
+    margin-bottom: 5%;
+}
+td{
+    padding-right: 100px;
+}
+.toppad{
+    padding-top: 5px;
+}
