@@ -23,6 +23,7 @@ services:
   nginx:
     image: "docker.io/nginx:mainline" # using bookworm edition so openssl is available by default
     container_name: "nginx-php-proxy"
+    attach: false
     restart: unless-stopped
     read_only: true
     command: ./scripts/entrypoint.sh
