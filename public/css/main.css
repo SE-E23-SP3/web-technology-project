@@ -1,6 +1,19 @@
+*{
+    background-color: var(--Background);
+    color: var(--Text);
+}
+
 .Movie-heading{
-    color: black;
+    color: var(--Text);
 }
 .Movie-info{
     color: var(--Text)
+}
+
+.Next-btn, .Prev-btn{
+    font-size: 1.5rem;
+    color: var(--Text);
+    background-color: var(--Secondary);
+    border: 1rem solid var(--Secondary);
+    border-radius: 15%;
 }
