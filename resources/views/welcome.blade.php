@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="https://kit.fontawesome.com/c52cf1851a.js" crossorigin="anonymous"></script>
 
+    <script defer src="{{asset('js/carousel.js')}}" ></script>
 </head>
 
 <body>
@@ -41,7 +42,6 @@
             <section class="col-4 p-0">
                 <img id="Movie-img" src="https://picsum.photos/400/200" alt="..." />
             </section>
-
             <section class="col-2 text-center my-5">
                 <h3 id="Movie-title" class="Movie-heading">Movie title</h3>
                 <p id="Movie-info" class="Movie-info">Info</p>
@@ -82,6 +82,23 @@
                             trailer
                         </button>
                     </section>
+                    <section class="col-2">
+                        <img src="https://picsum.photos/100/200" alt="..." />
+                        <P>Movie name</P>
+                        <button>
+                            <i class="fa-solid fa-play"></i>
+                            trailer
+                        </button>
+                    </section>
+                    <section class="col-2">
+                        <img src="https://picsum.photos/100/200" alt="..." />
+                        <P>Movie name</P>
+                        <button>
+                            <i class="fa-solid fa-play"></i>
+                            trailer
+                        </button>
+                    </section>
+                    
                 </article>
             </article>
 
