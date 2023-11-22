@@ -7,11 +7,6 @@
     --Secondary: #DDC3EA;
     --Text_Dim: #c6c6c6;   
 }
-body{
-    background-color: var(--Background);
-    color: var(--Text);
-    overflow-x: hidden;
-}
 .container-fluid{
     padding-left: 0%;
     padding-right: 0%;
