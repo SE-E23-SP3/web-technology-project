@@ -32,22 +32,30 @@
 
 <body>
     <div class="container-fluid">
-        <article class="row align-items-center">
-            <section class="col-1 offset-2">
+        <article class="row align-items-center Carousel mt-5+">
+            <section class="col-1 offset-2 Carousel">
                 <a href="#" class="btn">
                     <i class="fas fa-chevron-left Prev-btn"></i>
                 </a>
             </section>
 
-            <section class="col-4 p-0">
+            <section class="col-4 p-0 Carousel">
                 <img id="Movie-img" src="https://picsum.photos/400/200" alt="..." />
             </section>
-            <section class="col-2 text-center my-5">
-                <h3 id="Movie-title" class="Movie-heading">Movie title</h3>
-                <p id="Movie-info" class="Movie-info">Info</p>
+            <section class="col-2 text-center Carousel">
+                <h3 id="Movie-title" class="Movie-heading Carousel">Movie title</h3>
+                <p id="Movie-info" class="Movie-info Carousel">
+                    Lorem Ipsum is simply dummy text of the printing and
+                    typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text 
+                    ever since the 1500s, Lorem Ipsum has been the industry's standard dummy text 
+                    ever since the 1500s, Lorem Ipsum has been the industry's standard dummy text 
+                    ever since the 1500s, Lorem Ipsum has been the industry's standard dummy text 
+                    ever since the 1500s, 
+                </p>
             </section>
 
-            <section class="col-1">
+            <section class="col-1 Carousel">
                 <a href="#" class="btn">
                     <i class="fas fa-chevron-right Next-btn"></i>
                 </a>

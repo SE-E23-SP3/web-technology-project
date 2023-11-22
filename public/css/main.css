@@ -3,6 +3,10 @@
     color: var(--Text);
 }
 
+.Carousel{
+    background-color: var(--Background_Shade);
+}
+
 .Movie-heading{
     color: var(--Text);
 }
