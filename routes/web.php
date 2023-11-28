@@ -30,6 +30,10 @@ Route::get('/hello', function () {
     return view('hello');
 });
 
+Route::get('/user-profile', function () {
+    return view('/user-profile/user-profile');
+});
+
 
 
 
