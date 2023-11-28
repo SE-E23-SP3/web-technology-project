@@ -27,96 +27,132 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="https://kit.fontawesome.com/c52cf1851a.js" crossorigin="anonymous"></script>
 
-    <script defer src="{{asset('js/carousel.js')}}" ></script>
+    <script defer src="{{ asset('js/carousel.js') }}"></script>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <article class="row align-items-center Carousel mt-5+">
-            <section class="col-1 offset-2 Carousel">
-                <a href="#" class="btn">
-                    <i class="fas fa-chevron-left Prev-btn"></i>
+    <main class="container-fluid">
+        <article class="row align-items-center Carousel bg mt-5">
+            <section class="col-1 offset-2 bg">
+                <a href="#" class="btn Prev-btn">
+                    <i class="fas fa-chevron-left i-style"></i>
                 </a>
             </section>
 
-            <section class="col-4 p-0 Carousel">
-                <img id="Movie-img" src="https://picsum.photos/400/200" alt="..." />
+            <section class="col-4 p-0 bg">
+                <img id="Movie-img" src="" alt="..." />
             </section>
-            <section class="col-2 text-center Carousel">
-                <h3 id="Movie-title" class="Movie-heading Carousel">Movie title</h3>
-                <p id="Movie-info" class="Movie-info Carousel">
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry. 
-                    Lorem Ipsum has been the industry's standard dummy text 
-                    ever since the 1500s, Lorem Ipsum has been the industry's standard dummy text 
-                    ever since the 1500s, Lorem Ipsum has been the industry's standard dummy text 
-                    ever since the 1500s, Lorem Ipsum has been the industry's standard dummy text 
-                    ever since the 1500s, 
+            <section class="col-2 text-center bg">
+                <h3 id="Movie-title" class="Movie-heading bg"></h3>
+                <p id="Movie-info" class="Movie-info bg">
                 </p>
             </section>
 
-            <section class="col-1 Carousel">
-                <a href="#" class="btn">
-                    <i class="fas fa-chevron-right Next-btn"></i>
+            <section class="col-1 bg">
+                <a href="#" class="btn Next-btn">
+                    <i class="fas fa-chevron-right i-style"></i>
                 </a>
             </section>
         </article>
-        
+
         <div class="container">
-            <article class="row">
+            <article class="row mt-2 ">
                 <h4>Category Name</h4>
-                <article class="row">
-                    <section class="col-2">
-                        <img src="https://picsum.photos/100/200" alt="..." />
-                        <P>Movie name</P>
-                        <button>
-                            <i class="fa-solid fa-play"></i>
+                <article class="row p-0">
+                    <section class="col-2 bg p-0 ">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
                             trailer
                         </button>
                     </section>
-                    <section class="col-2">
-                        <img src="https://picsum.photos/100/200" alt="..." />
-                        <P>Movie name</P>
-                        <button>
-                            <i class="fa-solid fa-play"></i>
+                    <section class="col-2 bg p-0 mx-2">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
                             trailer
                         </button>
                     </section>
-                    <section class="col-2">
-                        <img src="https://picsum.photos/100/200" alt="..." />
-                        <P>Movie name</P>
-                        <button>
-                            <i class="fa-solid fa-play"></i>
+                    <section class="col-2 bg p-0">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
                             trailer
                         </button>
                     </section>
-                    <section class="col-2">
-                        <img src="https://picsum.photos/100/200" alt="..." />
-                        <P>Movie name</P>
-                        <button>
-                            <i class="fa-solid fa-play"></i>
+                    <section class="col-2 bg p-0 mx-2">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
                             trailer
                         </button>
                     </section>
-                    <section class="col-2">
-                        <img src="https://picsum.photos/100/200" alt="..." />
-                        <P>Movie name</P>
-                        <button>
-                            <i class="fa-solid fa-play"></i>
+                    <section class="col-2 bg p-0">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
                             trailer
                         </button>
                     </section>
-                    
+
+
+                </article>
+            </article>
+            <article class="row my-2">
+                <h4>Category Name</h4>
+                <article class="row p-0">
+                    <section class="col-2 bg p-0 ">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
+                            trailer
+                        </button>
+                    </section>
+                    <section class="col-2 bg p-0 mx-2">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
+                            trailer
+                        </button>
+                    </section>
+                    <section class="col-2 bg p-0">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
+                            trailer
+                        </button>
+                    </section>
+                    <section class="col-2 bg p-0 mx-2">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
+                            trailer
+                        </button>
+                    </section>
+                    <section class="col-2 bg p-0">
+                        <img src="https://picsum.photos/200/200" alt="..." class="m-2" />
+                        <h6 class="bg mx-2">Movie name</h6>
+                        <button class="mb-2 mx-2 trailer">
+                            <i class="fa-solid fa-play bg2"></i>
+                            trailer
+                        </button>
+                    </section>
+
+
                 </article>
             </article>
 
-            <article class="row">
-                <h4>Category name</h4>
-
-            </article>
-
         </div>
-    </div>
+    </main>
 
 </body>
 

@@ -3,8 +3,12 @@
     color: var(--Text);
 }
 
-.Carousel{
+.bg{
     background-color: var(--Background_Shade);
+}
+
+.Carousel{
+    height: 40vh;
 }
 
 .Movie-heading{
@@ -14,10 +18,30 @@
     color: var(--Text)
 }
 
-.Next-btn, .Prev-btn{
-    font-size: 1.5rem;
+.i-style{
     color: var(--Text);
     background-color: var(--Secondary);
     border: 1rem solid var(--Secondary);
     border-radius: 15%;
+}
+
+
+
+.trailer{
+    text-align: center;
+    font-size: 1rem;
+    color: var(--Text);
+    background-color: var(--Primary);
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+}
+
+.bg2{
+    background-color: var(--Primary);
+}
+
+img{
+    width: auto;
+    height: auto;
 }
