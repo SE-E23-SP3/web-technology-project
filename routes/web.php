@@ -30,6 +30,9 @@ Route::get('/hello', function () {
     return view('hello');
 });
 
+Route::get('/watchlist', function () {
+    return view('/user-profile-page/your-watchlist');
+})-> name("watchlist");
 
 
 
