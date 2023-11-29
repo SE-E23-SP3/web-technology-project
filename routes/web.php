@@ -33,6 +33,10 @@ Route::get('/hello', function () {
 Route::get('/watchlist', function () {
     return view('/user-profile-page/your-watchlist');
 })-> name("watchlist");
+Route::get('/user-profile', function () {
+    return view('/user-profile/user-profile');
+});
+
 
 
 
