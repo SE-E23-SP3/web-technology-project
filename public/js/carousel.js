@@ -1,37 +1,37 @@
 (function() {
-    const movieImage = document.querySelector("#Movie-img");
-    const movieTitle = document.querySelector("#Movie-title");
-    const movieInfo = document.querySelector("#Movie-info");
+    const carouselImage = document.querySelector("#Carousel-img");
+    const carouselTitle = document.querySelector("#Carousel-title");
+    const carouselInfo = document.querySelector("#Carousel-info");
     const buttons = document.querySelectorAll(".btn");
 
     let index = 0;
 
-    const movies = [];
+    const items = [];
 
-    function Movie(img, title, text){
+    function CarouselItem(img, title, text){
         this.img = img;
         this.title = title;
         this.text = text;
 
     }
 
-    function createMovie(img, title, text){
+    function CreateItem(img, title, text){
         let fullImage = `../img/procedures/${img}.jpg`
-        let movie = new Movie(fullImage, title, text);
-        movies.push(movie);
+        let item = new CarouselItem(fullImage, title, text);
+        items.push(item);
 
     }
 
-    createMovie("1", "Oppenheimer", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
-    createMovie("2", "Barbie", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
-    createMovie("3", "Anders", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
-    createMovie("2", "Nikolaj", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
+    CreateItem("1", "Oppenheimer", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
+    CreateItem("2", "Barbie", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
+    CreateItem("3", "Anders", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
+    CreateItem("2", "Nikolaj", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
 
 
-    if(movies.length > 0){
-        movieImage.src = movies[0].img;
-        movieTitle.textContent = movies[0].title;
-        movieInfo.textContent = movies[0].text;
+    if(items.length > 0){
+        carouselImage.src = items[0].img;
+        carouselTitle.textContent = items[0].title;
+        carouselInfo.textContent = items[0].text;
     }
 
     buttons.forEach(function(button) {
@@ -41,31 +41,49 @@
             if(event.target.parentElement.classList.contains("Prev-btn")){
 
                 if (index === 0 ){
-                    index = movies.length;
+                    index = items.length;
                 }
                 index--; //Same as writing index = index - 1;
 
-                movieImage.src = movies[index].img;
-                movieTitle.textContent = movies[index].title;
-                movieInfo.textContent = movies[index].text;
+                carouselImage.src = items[index].img;
+                carouselTitle.textContent = items[index].title;
+                carouselInfo.textContent = items[index].text;
             }
             //We say if a tag with the class Next-btn we go forward
             if(event.target.parentElement.classList.contains("Next-btn")){
                 index++; //Same as writing index = index + 1;
 
-                if (index === movies.length){
+                if (index === items.length){
                     index = 0;
                 }
 
-                movieImage.src = movies[index].img;
-                movieTitle.textContent = movies[index].title;
-                movieInfo.textContent = movies[index].text;
+                carouselImage.src = items[index].img;
+                carouselTitle.textContent = items[index].title;
+                carouselInfo.textContent = items[index].text;
             }
+            
+            var movie_info = document.getElementsByClassName("Movie-info")
+
+            // Iterate through each paragraph
+            for (var i = 0; i < movie_info.length; i++) {
+                var movieinfo = movie_info[i];
+                
+                // Get the text content of the paragraph
+                var text = movieinfo.textContent;
+            
+                // Check if the text is longer than 15 characters
+                if (text.length > 200) {
+                    // Truncate the text to the first 15 characters
+                    var shortText = text.substring(0, 200) + "...";
+            
+                    // Set the truncated text back to the paragraph
+                    movieinfo.textContent = shortText;
+                }
+            }
+
         });
     })
 
-
-    
     var movie_info = document.getElementsByClassName("Movie-info")
 
     // Iterate through each paragraph
@@ -76,12 +94,15 @@
         var text = movieinfo.textContent;
     
         // Check if the text is longer than 15 characters
-        if (text.length > 300) {
+        if (text.length > 200) {
             // Truncate the text to the first 15 characters
-            var shortText = text.substring(0, 250) + "...";
+            var shortText = text.substring(0, 200) + "...";
     
             // Set the truncated text back to the paragraph
             movieinfo.textContent = shortText;
         }
     }
+
 })();
+
+
