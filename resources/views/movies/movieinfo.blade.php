@@ -1,24 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>SMDB</title>
-
-
-    <script defer src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
-    <style>
-        body{
-            background-color: var(--Background);
-            color: var(--Text);
-            overflow-x: hidden;
-        }
-    </style>
-</head>-->
-
 <x-layouts.base title="movieinfo">
     <x-slot:head>
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -79,11 +58,17 @@
                     </article>
                     <article class="row">
                         <section class="col-auto">
-                            <img src="https://cdn-icons-png.flaticon.com/512/9784/9784192.png"
-                            style="width: 30px;">
-                        </section>
-                        <section class="col-auto">
-                            <h5 class="rate">Rate</h5>
+                            <button class="rateButton">
+                                <article class="row">
+                                    <section class="col-auto">
+                                        <img src="https://cdn-icons-png.flaticon.com/512/9784/9784192.png"
+                                        style="width: 30px;">
+                                    </section>
+                                    <section class="col-auto">
+                                        <h5 class="rate">Rate</h5>
+                                    </section>
+                                </article>
+                            </button>
                         </section>
                     </article>
                 </section>

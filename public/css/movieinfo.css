@@ -44,6 +44,13 @@ span{
 }
 .rate{
     color: var(--Accent);
+    padding-top: 10px;
+}
+.rateButton{
+    background-color: #000;
+    color: var(--Accent);
+    padding: 0px;
+    font-size: x-large;
 }
 table{
     margin-bottom: 5%;
