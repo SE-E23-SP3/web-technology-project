@@ -11,10 +11,10 @@
                     <a class="" href="{{route('Welcome')}}">Home</a>
                 </li>
                 <li class="">
-                    <a class="" href="#">Movies</a>
+                    <a class="" href="">watchlist</a>
                 </li>
-                <li class="">
-                    <a class="" href="#">Series</a>
+                <li>
+                    <a class="" href="{{route('login')}}">Login</a>
                 </li>
             </ul>
             <form class="d-flex">
