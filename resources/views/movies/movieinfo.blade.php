@@ -58,7 +58,7 @@
                     </article>
                     <article class="row">
                         <section class="col-auto">
-                            <button class="rateButton">
+                            <button class="rateButton" data-bs-toggle="modal" data-bs-target="#ratingModal">
                                 <article class="row">
                                     <section class="col-auto">
                                         <img src="https://cdn-icons-png.flaticon.com/512/9784/9784192.png"
@@ -148,5 +148,57 @@
                 </section>
             </article>
         </div>
+
+        <!-- Modal -->
+<div class="modal fade" id="ratingModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="ratingModalLabel">Rating</h1>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form>
+        <div class="modal-body">
+                <fieldset>
+                    <div>
+                        <input type="radio" id="1star" name="rating" value="1star" />
+                        <label for="1star">1</label>
+
+                        <input type="radio" id="2star" name="rating" value="2star" />
+                        <label for="2star">2</label>
+
+                        <input type="radio" id="3star" name="rating" value="3star" />
+                        <label for="3star">3</label>
+                        
+                        <input type="radio" id="4star" name="rating" value="4star" />
+                        <label for="4star">4</label>
+
+                        <input type="radio" id="5star" name="rating" value="5star" />
+                        <label for="5star">5</label>
+
+                        <input type="radio" id="6star" name="rating" value="6star" />
+                        <label for="6star">6</label>
+
+                        <input type="radio" id="7star" name="rating" value="7star" />
+                        <label for="7star">7</label>
+                        
+                        <input type="radio" id="8star" name="rating" value="8star" />
+                        <label for="8star">8</label>
+
+                        <input type="radio" id="9star" name="rating" value="9star" />
+                        <label for="9star">9</label>
+
+                        <input type="radio" id="10star" name="rating" value="10star" />
+                        <label for="10star">10</label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="modal-footer">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
     </body>
 </x-layouts.base>

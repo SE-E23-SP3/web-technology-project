@@ -61,3 +61,12 @@ td{
 .toppad{
     padding-top: 5px;
 }
+.modal-header{
+    background-color: #1e1e1e;
+}
+.modal-body{
+    background-color: #1e1e1e;
+}
+.modal-footer{
+    background-color: #1e1e1e;
+}
