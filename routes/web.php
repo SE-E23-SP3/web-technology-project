@@ -31,13 +31,17 @@ Route::get('/hello', function () {
 });
 
 Route::get('/watchlist', function () {
-    return view('/user-profile/user-profile');
+    return view('/user-profile-page/your-watchlist');
 })-> name("watchlist");
 
 
-Route::get('/user-profil', function () {
+Route::get('/user-profile', function () {
     return view('/user-profile/user-profile');
 }) -> name('user-profile');
+
+Route::get('/top-rated', function () {
+    return view('/top-rated');
+}) -> name('top-rated');
 
 
 // A heallth check endpoint to verify that the service is up and running
