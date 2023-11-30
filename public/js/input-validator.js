@@ -16,10 +16,10 @@ class InputValidator {
 			},
 			"name": {
 				"pattern": /^[^\\<>?!=%#"^&$@\/\n\t]{2,50}$/,
-					"min": 2,
-					"max": 50,
-					"invalidCharMessage": "The following characters are invalid: \\ < > ? ! = % # \" ^ & $ @ /"
-				},
+				"min": 2,
+				"max": 50,
+				"invalidCharMessage": "The following characters are invalid: \\ < > ? ! = % # \" ^ & $ @ /"
+			},
 			"phone": {
 				"pattern": /^(\+45)? ?(\d{2} ?){4}$/,
 				"min": 8,
@@ -40,18 +40,36 @@ class InputValidator {
 			},
 			"address": {
 				"pattern": /^[^\\<>?!=%#"^&$@\/\n\t]{2,100}$/,
-					"min": 2,
-					"max": 100,
-					"invalidCharMessage": "The following characters are invalid: \\ < > ? ! = % # \" ^ & $ @ /"
-				}
+				"min": 2,
+				"max": 100,
+				"invalidCharMessage": "The following characters are invalid: \\ < > ? ! = % # \" ^ & $ @ /"
+			}
 		};
 	}
 
+	static validateFields(...fields) {
+		return fields.every((field) => field.check());
+	}
 
-	OK_BORDER_CLASS = "ok-border";
-	ERROR_BORDER_CLASS = "error-border";
-	INSERTED_ERROR_CLASS = "insert-error";
-	ERROR_MESSAGE_CLASS = "error-message";
+
+	static get OK_BORDER_CLASS() {
+		return "ok-border";
+	}
+
+	static get ERROR_BORDER_CLASS() {
+		return "error-border";
+	}
+
+	static get INSERTED_ERROR_CLASS() {
+		return "insert-error";
+	}
+
+	static get ERROR_MESSAGE_CLASS() {
+		return "error-message";
+	}
+
+
+	useOKBorder = true;
 
 	constructor(type, field, extraValidator = undefined) {
 		//https://mothereff.in/html-entities
@@ -92,9 +110,9 @@ class InputValidator {
 					self.removeEventListener('blur', blurHandler)
 					clearTimeout(timeout);
 					reject("wait");
-				}, {"once":true})
-			}).catch(function(err) {
-				//console.log(err);
+					}, {"once":true})
+				}).catch(function(err) {
+					//console.log(err);
 			});
 		});
 
@@ -132,26 +150,27 @@ class InputValidator {
 	}
 
 	clearError() {
-		this.classList.remove(this.ERROR_BORDER_CLASS, this.OK_BORDER_CLASS);
+		this.classList.remove(InputValidator.ERROR_BORDER_CLASS, InputValidator.OK_BORDER_CLASS);
 
-		let errorFields = this.field.parentElement.getElementsByClassName(this.INSERTED_ERROR_CLASS);
+		let errorFields = this.field.parentElement.getElementsByClassName(InputValidator.INSERTED_ERROR_CLASS);
 		while (errorFields.length > 0) {
 			errorFields[0].remove();
 		}
 	}
 
 	errorBorder() {
-		this.classList.add(this.ERROR_BORDER_CLASS);
+		this.classList.add(InputValidator.ERROR_BORDER_CLASS);
 	}
 
 	okBorder() {
-		this.classList.add(this.OK_BORDER_CLASS);
+		if (!this.useOKBorder) return;
+		this.classList.add(InputValidator.OK_BORDER_CLASS);
 	}
 
 	insertError(message) {
 		const errorField = document.createElement("p");
 		const classList = errorField.classList;
-		classList.add(this.ERROR_MESSAGE_CLASS, this.INSERTED_ERROR_CLASS);
+		classList.add(InputValidator.ERROR_MESSAGE_CLASS, InputValidator.INSERTED_ERROR_CLASS);
 		errorField.innerText = message;
 		this.field.insertAdjacentElement("afterend", errorField);
 		return errorField;

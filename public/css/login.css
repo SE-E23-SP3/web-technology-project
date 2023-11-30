@@ -9,13 +9,13 @@ h1{
     font-size: xx-large;
 }
 
-input{
+input {
     border-radius: 5px;
     background-color: white;
     color: black;
 }
 
-input:focus{
+input:focus {
     outline: none;
 }
 
@@ -44,14 +44,11 @@ button:hover{
 .SigninBtn{
     background-color: var(--Primary);
     border-radius: 5px;
-
-
 }
 
 .newAccBtn{
     background-color: var(--Text_Dim);
     border-radius: 5px;
-
 }
 
 .error-border {
@@ -69,4 +66,12 @@ button:hover{
 .error-border, .ok-border {
     border-style: solid;
     border-width: 3px;
+}
+
+
+
+
+input:disabled {
+    color: gray;
+    border-color: rgb(93, 93, 93) !important;
 }
