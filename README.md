@@ -11,10 +11,14 @@ To execute simply use
 sudo docker compose up
 ```
 
+The webserver will then be available at:  
+[http://127.0.0.1:8080](http://127.0.0.1:8080)
+
+
 
 ## To Execute php commands in docker compose
 > [!IMPORTANT] 
-> Make sure the server is up and running, either in a separate terminal/tab or running i the background.
+> Make sure the server is up and running, either in a separate terminal/tab or running in the background.
 
 ```sh
 sudo docker compose exec -it php bash

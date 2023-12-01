@@ -1,7 +1,7 @@
 #!/bin/sh
 
 
-ESeq="\x1b["
+ESeq="\033["
 RCol="$ESeq"'0m'    # Text Reset
 
 # Regular               Bold                    Underline               High Intensity          BoldHigh Intens         Background              High Intensity Backgrounds
@@ -21,8 +21,10 @@ stderr() {
 }
 
 if [ ! -e ".env" ]; then
+	stderr "copying to .env"
 	cp -p .env.example .env
-	echo "copying to .env" >&2
+	stderr "Generating application key"
+	php artisan key:generate
 fi
 
 
