@@ -23,7 +23,7 @@ class Movie extends Model
         return $this->hasMany(Trailer::class);
     }
     public function ratings() {
-        return $this->belongsToMany(User::class, 'movie_rating')->withPivot('Rating')->as('movie_rating');
+        return $this->belongsToMany(User::class, 'movie_rating')->withPivot('rating')->as('movie_rating');
     }
     public function crewTypes() {
         return $this->belongToMany(CrewType::class, 'person_movie_crew')->withPivot('person_id')->as('movie_crew');

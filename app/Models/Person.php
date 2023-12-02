@@ -20,7 +20,7 @@ class Person extends Model
     public function moviesAsRoles() {
         return $this->belongToMany(Movie::class, 'movie_cast')->withPivot('role')->as('movie_cast');
     }
-    public function MoviesAsCrew() {
+    public function moviesAsCrew() {
         return $this->belongToMany(Movie::class, 'person_movie_crew')->withPivot('crew_role_id')->as('movie_crew');
     }
 

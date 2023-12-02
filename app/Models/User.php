@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class User extends Model
 {
     use HasFactory;
-    
+
     protected $fillable = [
         'username',
         'password',
@@ -16,6 +16,6 @@ class User extends Model
     ];
 
     public function ratings() {
-        return $this->belongsToMany(Movie::class, 'movie_rating')->withPivot('Rating')->as('movie_rating');
+        return $this->belongsToMany(Movie::class, 'movie_rating')->withPivot('rating')->as('movie_rating');
     }
 }
