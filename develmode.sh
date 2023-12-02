@@ -120,6 +120,24 @@ detectExitCode() {
 	exit "$1"
 }
 
+
+
+
+
+if [ ! -e ".env" ]; then
+	stderr "copying to .env"
+	cp -p .env.example .env
+
+	stderr "Generating DB_PASSWORD"
+	sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=$(cat /dev/random | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32)|g" .env
+	stderr "Generating application key"
+	sed -i "s|^APP_KEY=.*|APP_KEY=base64:$(cat /dev/random | head -c 32 | base64)|g" .env
+	stderr
+fi
+
+
+
+
 $DOCKER_BIN compose up -d
 detectExitCode $?
 
