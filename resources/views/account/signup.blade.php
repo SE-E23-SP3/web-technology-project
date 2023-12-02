@@ -1,9 +1,13 @@
+@php
+use App\Core\PasswordTools;
+@endphp
 <x-layouts.base title="Signup">
     <x-slot:head>
         <link rel="stylesheet" href="{{asset('css/login.css')}}">
-        <script src="{{ asset('js/crypto.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('js/input-validator.js') }}" type="text/javascript"></script>
+        <script defer src="{{ asset('js/crypto.js') }}" type="text/javascript"></script>
+        <script defer src="{{ asset('js/input-validator.js') }}" type="text/javascript"></script>
         <script defer src="{{ asset('js/signup.js') }}" type="text/javascript"></script>
+        <meta name="client-hash-site-constant" content="{{ PasswordTools::getClientSiteConstant() }}">
     </x-slot:head>
 
     <div class="container-center">

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SignupController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +22,21 @@ Route::get('/login', function (){
     return view('/account/login');
 });
 
-Route::get('/signup', function(){
-    return view('/account/signup');
-})-> name("signup");
+
+
+Route::controller(SignupController::class)
+->prefix('signup')
+->group(function(){
+    Route::get('/', 'view')->name("signup");
+
+    Route::post('submit', 'submit');
+
+    Route::get('hello', 'hello');
+});
+
+
+
+
 
 
 Route::get('/hello', function () {
