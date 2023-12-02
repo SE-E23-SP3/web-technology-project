@@ -14,6 +14,17 @@ class Person extends Model
         'last_name'
     ];
 
+    public function addMovieRole(Movie $movie, string $role) {
+        if ($movie instanceof Movie && is_string($role)) {
+            $this->moviesAsRoles()->attach($movie->id, ['role' => $role]);
+        }
+    }
+    public function addMovieCrew(Movie $movie, CrewType $crewType) {
+        if ($movie instanceof Movie && $crewType instanceof CrewType) {
+            $this->moviesAsCrew()->attach($movie->id, ['crew_role_id' => $crewType->id]);
+        }
+    }
+
     public function crewTypes() {
         return $this->belongToMany(CrewType::class, 'person_movie_crew')->withPivot('movie_id')->as('movie_crew');
     }

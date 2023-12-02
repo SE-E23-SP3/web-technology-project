@@ -16,6 +16,33 @@ class Movie extends Model
         'poster_url'
     ];
 
+    public function addGenre(Genre $genre) {
+        if ($genre instanceof Genre) {
+            $this->genres()->attach($genre->id);
+        }
+    }
+    public function addTrailer(Trailer $trailer) {
+        if ($trailer instanceof Trailer) {
+            $this->trailers()->save($trailer);
+            $this->refresh();
+        }
+    }
+    public function addRating(User $user, int $rating) {
+        if ($user instanceof User && is_int($rating)) {
+            $this->ratings()->attach($user->id, ['rating' => $rating]);
+        }
+    }
+    public function addCrew(Person $person, CrewType $crewType) {
+        if ($person instanceof Person && $crewType instanceof CrewType) {
+            $this->crew()->attach($person->id, ['crew_type_id' => $crewType->id]);
+        }
+    }
+    public function addRole(Person $person, string $role) {
+        if ($person instanceof Person && is_string($role)) {
+            $this->roles()->attach($person->id, ['role' => $role]);
+        }
+    }
+
     public function genres() {
         return $this->belongsToMany(Genre::class);
     }
