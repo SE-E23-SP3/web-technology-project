@@ -25,7 +25,7 @@ if [ ! -e ".env" ]; then
 	cp -p .env.example .env
 
 	stderr "Generating DB_PASSWORD"
-	sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/random | head -c 32)|g" .env
+	sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=$(cat /dev/random | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32)|g" .env
 	stderr "Generating application key"
 	php artisan key:generate
 	stderr
