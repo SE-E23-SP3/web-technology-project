@@ -53,9 +53,6 @@ waitOnStart() {
 	echo -e "$MSG" 1>&2
 	stderr ""
 }
-# https://stackoverflow.com/questions/53076946/how-to-fix-doctrine-dbal-driver-pdoexception-error-in-docker-with-laravel-5-a
-apk add --no-cache postgresql-dev
-docker-php-ext-install pgsql pdo_pgsql
 composer install
 
 php artisan migrate
