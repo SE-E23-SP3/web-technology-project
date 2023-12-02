@@ -57,5 +57,7 @@ waitOnStart() {
 apk add --no-cache postgresql-dev
 docker-php-ext-install pgsql pdo_pgsql
 composer install
+
+php artisan migrate
 waitOnStart &
 php artisan serve --host 0.0.0.0 --port "$PORT"
