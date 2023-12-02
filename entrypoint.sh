@@ -25,7 +25,7 @@ if [ ! -e ".env" ]; then
 	cp -p .env.example .env
 
 	stderr "Generating DB_PASSWORD"
-	sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=$(LC_ALL=C tr -dc 'A-Za-z0-9' </dev/random | head -c 32)|g" .env
+	sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=$(cat /dev/random | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32)|g" .env
 	stderr "Generating application key"
 	php artisan key:generate
 	stderr
@@ -34,7 +34,7 @@ fi
 
 
 waitOnStart() {
-	timeout 3m sh -c "until curl -s 'http://127.0.0.1:$PORT' -o /dev/null; do sleep 1; done"
+	timeout 5m sh -c "until curl -s 'http://127.0.0.1:$PORT' -o /dev/null; do sleep 0.5; done"
 	test "$?" -ne 1 || exit 1
 	local MSG="$(cat <<-EOF
 	/**********************************************************/
@@ -53,7 +53,8 @@ waitOnStart() {
 	echo -e "$MSG" 1>&2
 	stderr ""
 }
-
 composer install
+
+php artisan migrate
 waitOnStart &
 php artisan serve --host 0.0.0.0 --port "$PORT"

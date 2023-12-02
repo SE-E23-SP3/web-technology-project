@@ -1,7 +1,8 @@
 version: "3.8"
 services:
   php:
-    image: "docker.io/composer:latest"
+    image: "composer-psql"
+    build: "./composer-psql"
     container_name: "php-laravel"
     restart: unless-stopped
     environment:
@@ -20,6 +21,24 @@ services:
       retries: 3
       start_period: 40s
       start_interval: 5s
+    depends_on:
+      postgres:
+        condition: service_started
+        restart: false
+  postgres:
+    image: "docker.io/postgres:16-alpine"
+    container_name: "postgres-db"
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - type: volume
+        source: db-data
+        target: "/var/lib/postgresql/data"
+    networks:
+      - backend
   nginx:
     image: "docker.io/nginx:mainline" # using bookworm edition so openssl is available by default
     container_name: "nginx-php-proxy"
@@ -75,5 +94,6 @@ services:
     working_dir: "/etc/nginx/"
 volumes:
   nginx-cache:
+  db-data:
 networks:
   backend:
