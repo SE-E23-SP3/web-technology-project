@@ -20,6 +20,12 @@ class InputValidator {
 				"max": 50,
 				"invalidCharMessage": "The following characters are invalid: \\ < > ? ! = % # \" ^ & $ @ /"
 			},
+			"username": {
+				"pattern": /^[A-Za-z0-9_-]{4,20}$/,
+				"min": 4,
+				"max": 20,
+				"invalidCharMessage": "Only the following characters are allowed: A-Z 0-9 _ -"
+			},
 			"phone": {
 				"pattern": /^(\+45)? ?(\d{2} ?){4}$/,
 				"min": 8,
