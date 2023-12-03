@@ -5,13 +5,15 @@ use JsonSerializable;
 
 
 enum InputType implements JsonSerializable {
+    case Null;
     case Empty;
     case ClientHashedPassword;
     case Email;
     case Username;
     case Other;
 
-    public static function interpretType(String $input): self {
+    public static function interpretType(?String $input): self {
+        if ($input === NULL) return self::Null;
         if ($input === "") return self::Empty;
         if (self::isValidClientHashedPasswordFormat($input)) return self::ClientHashedPassword;
         if (self::isValidEmailFormat($input)) return self::Email;
