@@ -53,7 +53,7 @@ async function prepareSignup(fieldsObject) {
 
 
 
-let formRestorer = new FormDataRestore("signup", {
+let formRestorer = new FormDataRestorer("signup", {
 	username: usernameField,
 	email: emailField
 });

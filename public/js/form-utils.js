@@ -1,5 +1,5 @@
 "use strict";
-class FormDataRestore {
+class FormDataRestorer {
 	key;
 	formObject;
 	storage;
@@ -10,10 +10,10 @@ class FormDataRestore {
 		this.storage = storage;
 	}
 
-	restore() {
+	restore(wipe = true) {
 		const formData = this.storage.getItem(this.key);
 		if (formData === null) return false;
-		this.storage.removeItem(this.key);
+		if (wipe) this.storage.removeItem(this.key);
 
 		const formJson = JSON.parse(formData);
 
