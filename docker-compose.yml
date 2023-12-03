@@ -1,7 +1,8 @@
 version: "3.8"
 services:
   php:
-    image: "docker.io/composer:latest"
+    image: "composer-psql"
+    build: "./composer-psql"
     container_name: "php-laravel"
     restart: unless-stopped
     environment:
@@ -20,6 +21,24 @@ services:
       retries: 3
       start_period: 40s
       start_interval: 5s
+    depends_on:
+      postgres:
+        condition: service_started
+        restart: false
+  postgres:
+    image: "docker.io/postgres:16-alpine"
+    container_name: "postgres-db"
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_DATABASE}
+    volumes:
+      - type: volume
+        source: db-data
+        target: "/var/lib/postgresql/data"
+    networks:
+      - backend
   nginx:
     image: "docker.io/nginx:mainline" # using bookworm edition so openssl is available by default
     container_name: "nginx-php-proxy"
@@ -53,29 +72,28 @@ services:
         source: "nginx/templates"
         target: "/etc/nginx/templates"
         read_only: true
-      - type: bind
-        source: "nginx/conf.d"
+      - type: tmpfs
         target: "/etc/nginx/conf.d"
-        read_only: false
-          # must be writable. For nginx template engine to populate configs from template folder. 
-          # https://hub.docker.com/_/nginx
+        tmpfs:
+            size: "12k"
       - type: bind
         source: "nginx/scripts"
         target: "/etc/nginx/scripts"
         read_only: true
-      - type: volume
-        source: nginx-ssl
+      - type: tmpfs
         target: "/etc/nginx/ssl"
+        tmpfs:
+            size: "8k"
       - type: volume
         source: nginx-cache
         target: "/var/cache/nginx"
-      - type: volume
-        source: nginx-pid
+      - type: tmpfs
         target: "/var/run"
+        tmpfs:
+            size: "12k"
     working_dir: "/etc/nginx/"
 volumes:
   nginx-cache:
-  nginx-pid:
-  nginx-ssl:
+  db-data:
 networks:
   backend:
