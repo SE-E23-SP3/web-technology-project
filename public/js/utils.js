@@ -1,3 +1,4 @@
+"use strict";
 function getMetaValueByName(name) {
 	const metaElements = Array.from(document.getElementsByTagName('meta'));
 	const matchedMeta =  metaElements.find((item) => {

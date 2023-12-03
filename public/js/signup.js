@@ -38,7 +38,6 @@ const allFields = {
 
 
 
-const signUpForm = document.getElementById("signUp");
 
 
 
@@ -51,6 +50,14 @@ async function prepareSignup(fieldsObject) {
 	}
 }
 
+
+
+
+let formRestorer = new FormDataRestore("signup", {
+	username: usernameField,
+	email: emailField
+});
+formRestorer.restore();
 
 
 
@@ -72,8 +79,10 @@ signUp.addEventListener("submit", event => {
 			allFields.disable(false);
 			submitButton.disabled = false;
 
+			formRestorer.save()
 
 			alert("An error has occurred, try to refresh the page");
+
 			location.reload();
 	});
 });

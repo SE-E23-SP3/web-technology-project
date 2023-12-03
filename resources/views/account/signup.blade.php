@@ -6,6 +6,7 @@ use App\Core\PasswordTools;
         <link rel="stylesheet" href="{{asset('css/login.css')}}">
         <script defer src="{{ asset('js/crypto.js') }}" type="text/javascript"></script>
         <script defer src="{{ asset('js/input-validator.js') }}" type="text/javascript"></script>
+        <script defer src="{{ asset('js/form-utils.js') }}" type="text/javascript"></script>
         <script defer src="{{ asset('js/signup.js') }}" type="text/javascript"></script>
         <meta name="client-hash-site-constant" content="{{ PasswordTools::getClientSiteConstant() }}">
     </x-slot:head>
