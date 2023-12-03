@@ -67,13 +67,13 @@ signUp.addEventListener("submit", event => {
 	allFields.disable(true);
 	submitButton.disabled = true;
 	prepareSignup(allFields).then(submitSignup).then(jsonResponse => {
-			console.log(jsonResponse.url);
-			window.location.href = jsonResponse.url;
+			window.location.href = getRedirectUrlFromParam(jsonResponse.url);
 		}).catch(error => {
 			allFields.disable(false);
 			submitButton.disabled = false;
 
 
-
+			alert("An error has occurred, try to refresh the page");
+			location.reload();
 	});
 });

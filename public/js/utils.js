@@ -63,3 +63,13 @@ async function makeJSONPostRequest(url, jsonBody, customHeaders) {
 	// console.log(await response.text());
 	return await response.json();
 }
+
+
+
+
+function getRedirectUrlFromParam(defaultUrl = undefined, url = location, key = "redirect") {
+	const param = new URLSearchParams(url.search);
+	if (param.has(key)) return param.get(key);
+	if (defaultUrl === undefined) return url.href;
+	return defaultUrl;
+}
