@@ -11,7 +11,7 @@ class InputValidator {
 			"password": {
 				"pattern": /^.{8,}$/,
 				"min": 12,
-				"max": undefined,
+				"max": null,
 				"invalidCharMessage": ""
 			},
 			"name": {
@@ -29,7 +29,7 @@ class InputValidator {
 			"phone": {
 				"pattern": /^(\+45)? ?(\d{2} ?){4}$/,
 				"min": 8,
-				"max": undefined,
+				"max": null,
 				"invalidCharMessage": "Invalid phone number"
 			},
 			"zipCode": {
@@ -41,7 +41,7 @@ class InputValidator {
 			"email": {
 				"pattern": /^\b[A-Za-z0-9._%+-]{1,90}@[A-Za-z0-9.-]{1,90}\.[A-Za-z]{2,20}\b ?$/,
 				"min": 1,
-				"max": undefined,
+				"max": null,
 				"invalidCharMessage": "Invalid email"
 			},
 			"address": {
@@ -77,7 +77,7 @@ class InputValidator {
 
 	useOKBorder = true;
 
-	constructor(type, field, extraValidator = undefined) {
+	constructor(type, field, extraValidator = null) {
 		//https://mothereff.in/html-entities
 		this.pattern = new RegExp(type["pattern"]);
 		this.field = field;
@@ -87,7 +87,7 @@ class InputValidator {
 
 		let self = this; //save this object into a another variable, so it can be accessed to in the following functions.
 
-		if (extraValidator == undefined) {
+		if (extraValidator === null) {
 			this.extraValidator = function() {
 				return true;
 			};
@@ -185,9 +185,9 @@ class InputValidator {
 
 
 	getVerbalFeedbackOnField() {
-		if (this.length == 0 && this.min != undefined) return "This field is required!";
-		if (this.length <= this.min && this.min != undefined) return "This input must be at least " + this.min + " characters long";
-		if (this.length >= this.max && this.max != undefined) return "This input cannot be longer than " + this.max + " characters";
+		if (this.length == 0 && this.min != null) return "This field is required!";
+		if (this.length <= this.min && this.min != null) return "This input must be at least " + this.min + " characters long";
+		if (this.length >= this.max && this.max != null) return "This input cannot be longer than " + this.max + " characters";
 		return this.invalidCharMessage;
 	}
 

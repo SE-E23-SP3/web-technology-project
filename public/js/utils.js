@@ -15,7 +15,7 @@ class ErrorWithJson extends Error {
 	#json;
 	get json() { return this.#json; }
 
-	constructor(message = "", json = undefined, ...args) {
+	constructor(message = "", json = null, ...args) {
 		super(message, ...args);
 		this.#json = json;
 	}
@@ -67,9 +67,9 @@ async function makeJSONPostRequest(url, jsonBody, customHeaders) {
 
 
 
-function getRedirectUrlFromParam(defaultUrl = undefined, url = location, key = "redirect") {
+function getRedirectUrlFromParam(defaultUrl = null, url = location, key = "redirect") {
 	const param = new URLSearchParams(url.search);
 	if (param.has(key)) return param.get(key);
-	if (defaultUrl === undefined) return url.href;
+	if (defaultUrl === null) return url.href;
 	return defaultUrl;
 }
