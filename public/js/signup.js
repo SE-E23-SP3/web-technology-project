@@ -1,3 +1,5 @@
+"use strict";
+
 const usernameField = new InputValidator(InputValidator.patterns.username, document.getElementById("usernameField"));
 usernameField.useOKBorder = false;
 const emailField = new InputValidator(InputValidator.patterns.email, document.getElementById("emailField"));
@@ -12,7 +14,6 @@ const passwordRepeatField = new InputValidator(InputValidator.patterns.password,
 });
 
 
-const CSRF = getMetaValueByName('csrf-token');
 
 const submitButton = document.getElementById("submitButton");
 
@@ -40,19 +41,9 @@ const allFields = {
 const signUpForm = document.getElementById("signUp");
 
 
-async function isValidUsername(username) {
-	return new Promise((resolve, reject) => {
-		setTimeout(() => {
-			resolve(true);
-			}, 40);
-	});
-}
 
 async function prepareSignup(fieldsObject) {
-	let isValidUserPromise = isValidUsername(fieldsObject.usernameField.value);
 	let hashedPasswordPromise = hashPasswordWithEmail(fieldsObject.passwordField.value, fieldsObject.emailField.value, 600000);
-	await Promise.all([isValidUserPromise, hashedPasswordPromise]);
-	if (!(await isValidUserPromise)) throw new Error("Not valid user");
 	return {
 		username: fieldsObject.usernameField.value,
 		hashedPassword: await hashedPasswordPromise,
@@ -65,24 +56,7 @@ async function prepareSignup(fieldsObject) {
 
 async function submitSignup(credentials) {
 	const url = "/signup/submit";
-	// console.log(`curl -H "X-CSRF-TOKEN: ${CSRF}" -H "Content-Type: application/json" --insecure --request "POST" --data '${JSON.stringify(credentials)}' 'https://192.168.105.3:8443/signup/submit'`);
-	const response = await fetch(url, {
-		method: "POST",
-		credentials: "same-origin",
-		headers: {
-			"Content-Type": "application/json",
-			"X-CSRF-TOKEN": CSRF,
-			"Accept": "application/json"
-		},
-		body: JSON.stringify(credentials)
-	});
-
-	if (!response.ok) throw new Error(response.statusText);
-
-	// console.log(await response.text());
-	const jsonResponse = await response.json();
-	console.log(jsonResponse);
-	return jsonResponse;
+	return await makeJSONPostRequest(url, credentials);
 }
 
 
@@ -96,8 +70,10 @@ signUp.addEventListener("submit", event => {
 			console.log(jsonResponse.url);
 			window.location.href = jsonResponse.url;
 		}).catch(error => {
-			console.error(error.message);
 			allFields.disable(false);
 			submitButton.disabled = false;
+
+
+
 	});
 });
