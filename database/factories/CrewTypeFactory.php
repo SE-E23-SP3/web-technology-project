@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CrewType>
  */
-class UserFactory extends Factory
+class CrewTypeFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'username' => fake()->userName(),
-            'email' => fake()->unique()->safeEmail(),
-            'password' => fake()->unique()->sha256(),
+            'type' => fake()->unique()->jobTitle()
         ];
     }
 }
