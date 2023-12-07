@@ -18,6 +18,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamps();// creates created_at & updated_at TIMESTAMP
         });
+
+        Schema::create('user_profiles', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained();// foreign key
+            $table->string('name');
+            $table->string('restriction_rating');
+            // $table->string('restriction_genre'); (not implemented)
+            $table->timestamps();
+        });
     }
 
     /**
