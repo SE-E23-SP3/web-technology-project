@@ -21,21 +21,24 @@ class UserFactory extends Factory
             'username' => fake()->userName(),
             'email' => fake()->unique()->safeEmail(),
             'password' => fake()->unique()->sha256(),
-            'parent_id' => null,
+            
         ];
     }
 
     /*Child user*/
     @return \Database\Factories\UserFactory
-
     public function childUser(): UserFactory
-{
-    return $this->state(function (array $attributes) {
-        return [
-            'parent_id' => User::factory()->create()->id,
+    {
+        return $this->state(function (array $attributes) {
+            //Commented $ratings out since it is not implemented in the database
+            //$ratings = ['G', 'PG', 'PG-13'];
+            $genres = ['Animation', 'Comedy', 'Fantasy'];
+    
+            return [
+            'parent_id' => $mainUser->id,
             'name' => $this->faker->userName(),
-            'restrction_rating' => $this->faker->randomElement(['G', 'PG', 'PG-13', 'R', 'NC-17']),
-            'restriction_genre' => $this->faker->randomElement(['Horror', 'Porn', 'Animation', 'Comedy', 'Fantasy', 'Romance', 'Science Fiction', 'Thriller']),
-        ];
-    });
+            'restriction_genre' => $genres[array_rand($genres)],
+            ];
+        });
+    }
 }
