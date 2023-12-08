@@ -15,24 +15,28 @@
 
     }
 
-    function CreateItem(img, title, text){
-        let fullImage = `../img/procedures/${img}.jpg`
-        let item = new CarouselItem(fullImage, title, text);
-        items.push(item);
-
-    }
-
-    CreateItem("1", "Oppenheimer", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
-    CreateItem("2", "Barbie", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
-    CreateItem("3", "Anders", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
-    CreateItem("2", "Nikolaj", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text")
 
 
-    if(items.length > 0){
-        carouselImage.src = items[0].img;
-        carouselTitle.textContent = items[0].title;
-        carouselInfo.textContent = items[0].text;
-    }
+fetch('/api/movies')
+    .then(response => response.json())
+    .then(movies => {
+        console.log(movies);
+
+        function CreateItem(img, title, text){
+            let item = new CarouselItem(img, title, text);
+            items.push(item);
+        }
+
+        movies.forEach(movie => {
+            console.log(movie.poster_url);
+            CreateItem(movie.poster_url, movie.title, movie.description)
+        });
+        if(items.length > 0){
+            carouselImage.src = items[0].img;
+            carouselTitle.textContent = items[0].title;
+            carouselInfo.textContent = items[0].text;
+        }
+    })
 
     buttons.forEach(function(button) {
         //Adds an event to a button by its class
@@ -44,7 +48,7 @@
                     index = items.length;
                 }
                 index--; //Same as writing index = index - 1;
-
+                
                 carouselImage.src = items[index].img;
                 carouselTitle.textContent = items[index].title;
                 carouselInfo.textContent = items[index].text;
@@ -102,7 +106,6 @@
             movieinfo.textContent = shortText;
         }
     }
-
 })();
 
 
