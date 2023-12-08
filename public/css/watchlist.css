@@ -12,7 +12,28 @@ header {
     color: var(--Primary);
     text-align: center;
     padding: 1em;
+    position: relative;
 }
+
+.account {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0.5em;
+}
+
+.account img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.account span {
+    font-size: 14px;
+}
+
+
 
 .movie-container {
     max-width: 800px;

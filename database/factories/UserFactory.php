@@ -26,7 +26,7 @@ class UserFactory extends Factory
     }
 
     /*Child user*/
-    @return \Database\Factories\UserFactory
+    
     public function childUser(): UserFactory
     {
         return $this->state(function (array $attributes) {
