@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CarouselController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+
+
+Route::get('/', function (){
     return view('welcome');
-})-> name("Welcome");
+})->name('welcome');
+
+Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
 
 Route::get('/login', function (){
     return view('/account/login');

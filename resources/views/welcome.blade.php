@@ -19,14 +19,16 @@
                 </a>
             </section>
             <section class="col-4 p-0 bg">
-                <img id="Carousel-img" src="" alt="..." />
+                <img id="Carousel-img" class="posterimg" src="" alt="" />
             </section>
             <section class="col-2 text-center bg">
-                <h3 id="Carousel-title" class="Movie-heading bg"></h3>
+                <h3 id="Carousel-title" class="Movie-heading bg">
+                    
+                </h3>
                 <p id="Carousel-info" class="Movie-info bg">
+                    
                 </p>
             </section>
-
             <section class="col-1 bg">
                 <a href="#" class="btn Next-btn">
                     <i class="fas fa-chevron-right i-style"></i>

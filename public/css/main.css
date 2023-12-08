@@ -41,7 +41,7 @@
     background-color: var(--Primary);
 }
 
-img{
-    width: auto;
-    height: auto;
+.posterimg{
+    width: 300px;
+    height: 200px;
 }
