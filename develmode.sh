@@ -125,13 +125,17 @@ detectExitCode() {
 
 
 if [ ! -e ".env" ]; then
+	ENV_EXAMPLE_FILE=".env.example"
+	ENV_FILE=".env"
 	stderr "copying to .env"
-	cp -p .env.example .env
-
 	stderr "Generating DB_PASSWORD"
-	sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=$(cat /dev/random | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32)|g" .env
 	stderr "Generating application key"
-	sed -i "s|^APP_KEY=.*|APP_KEY=base64:$(cat /dev/random | head -c 32 | base64)|g" .env
+
+	DB_PASSWORD="$(cat /dev/random | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32)" APP_KEY="base64:$(cat /dev/random | head -c 32 | base64)" \
+		awk 'BEGIN{FS="=";OFS="="}{if ($1 in ENVIRON){print $1,ENVIRON[$1]}else{print}}' "$ENV_EXAMPLE_FILE" > "$ENV_FILE"
+
+	chown --reference="$ENV_EXAMPLE_FILE" "$ENV_FILE"
+	chmod 600 "$ENV_FILE"
 	stderr
 fi
 
