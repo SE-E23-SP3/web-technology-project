@@ -25,6 +25,6 @@
             <input class="inputField" id="passwordRepeatField" type="password" name="passwordRepeat" autocomplete="new-password" required />
         </div>
 
-        <input id="submitButton" type="submit" class="SigninBtn" value="Create new Account"/>
+        <button id="submitButton" type="submit" class="SigninBtn">Create new Account</button>
     </form>
 </x-layouts.login-base>

@@ -23,6 +23,8 @@ button{
     color: var(--Text);
     border: none;
     text-align: center;
+    border-radius: 5px;
+    background-color: var(--Primary);
 }
 
 button:hover{
@@ -42,8 +44,8 @@ button:hover{
 }
 
 .SigninBtn{
-    background-color: var(--Primary);
     border-radius: 5px;
+    background-color: var(--Primary);
 }
 
 .newAccBtn{
@@ -69,6 +71,13 @@ button:hover{
 }
 
 
+.hidden {
+    display: none;
+}
+
+.error-container {
+    text-align: center;
+}
 
 
 input:disabled {

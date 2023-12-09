@@ -67,10 +67,10 @@ async function handleSubmissionError(error) {
 	if (error.json == undefined) throw error;
 
 	switch (error.json.message) {
-		case "User: used":
+		case "User: taken":
 			usernameField.insertError("Already taken!");
 			break;
-		case "Email: used":
+		case "Email: taken":
 			emailField.insertError("Already taken!");
 			break;
 		default:
@@ -96,9 +96,6 @@ signUp.addEventListener("submit", event => {
 		}).catch(handleSubmissionError).catch(error => {
 			console.error(error.json);
 			formRestorer.save()
-
-			alert("An error has occurred, try to refresh the page or try again later.");
-
-			location.reload();
+			errorContainerUtil.displayError();
 	});
 }, true);
