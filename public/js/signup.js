@@ -60,6 +60,23 @@ let formRestorer = new FormDataRestorer("signup", {
 formRestorer.restore();
 
 
+async function handleSubmissionError(error) {
+	allFields.disable(false);
+	submitButton.disabled = false;
+
+	if (error.json == undefined) throw error;
+
+	switch (error.json.message) {
+		case "User: used":
+			usernameField.insertError("Already taken!");
+			break;
+		case "Email: used":
+			emailField.insertError("Already taken!");
+			break;
+		default:
+			throw error;
+	}
+}
 
 async function submitSignup(credentials) {
 	const url = "/signup/submit";
@@ -73,16 +90,15 @@ signUp.addEventListener("submit", event => {
 
 	allFields.disable(true);
 	submitButton.disabled = true;
+
 	prepareSignup(allFields).then(submitSignup).then(jsonResponse => {
 			window.location.href = getRedirectUrlFromParam(jsonResponse.url);
-		}).catch(error => {
-			allFields.disable(false);
-			submitButton.disabled = false;
-
+		}).catch(handleSubmissionError).catch(error => {
+			console.error(error.json);
 			formRestorer.save()
 
-			alert("An error has occurred, try to refresh the page");
+			alert("An error has occurred, try to refresh the page or try again later.");
 
 			location.reload();
 	});
-});
+}, true);

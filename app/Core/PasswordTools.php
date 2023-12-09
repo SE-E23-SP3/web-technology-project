@@ -2,7 +2,7 @@
 namespace App\Core;
 
 class PasswordTools {
-    public static function getClientSiteConstant() {
+    public static function getClientSiteConstant(): String {
         return env("APP_CLIENT_HASH_SITE_CONSTANT");
     }
 
