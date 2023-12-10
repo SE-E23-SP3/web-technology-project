@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SignupController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,20 +18,28 @@ Route::get('/', function () {
     return view('welcome');
 })-> name("Welcome");
 
-Route::get('/login', function (){
-    return view('/account/login');
-});
 
 
 
-Route::controller(SignupController::class)
-->prefix('signup')
+Route::controller(AuthController::class)
 ->group(function(){
-    Route::get('/', 'view')->name("signup");
+    Route::prefix("signup")
+    ->group(function(){
+        Route::get('/', 'viewSignup')->name("signup");
 
-    Route::post('submit', 'submit');
+        Route::post('submit', 'submitSignup');
 
-    Route::get('hello', 'hello');
+        Route::get('hello', 'hello');
+    });
+
+    Route::prefix("login")
+    ->group(function(){
+        Route::get('/', 'viewLogin')->name("login");
+
+        Route::post('submit', 'submitLogin');
+
+        Route::get('hello', 'hello');
+    });
 });
 
 

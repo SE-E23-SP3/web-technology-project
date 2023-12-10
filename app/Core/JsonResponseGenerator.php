@@ -9,7 +9,7 @@ use Illuminate\Http\Response;
 class JsonResponseGenerator {
     public static function generic(?String $message = NULL, int $httpCode = Response::HTTP_OK): JsonResponse {
         if ($message === NULL) {
-            $message = Response::$statusTexts[Response::HTTP_BAD_REQUEST];
+            $message = Response::$statusTexts[$httpCode];
         }
         return new JsonResponse([
             "message" => $message
@@ -18,5 +18,14 @@ class JsonResponseGenerator {
 
     public static function badRequest(?String $message = NULL): JsonResponse {
         return self::generic($message, Response::HTTP_BAD_REQUEST);
+    }
+
+    public static function unauthorized(?String $message = NULL): JsonResponse {
+        return self::generic($message, Response::HTTP_UNAUTHORIZED);
+    }
+
+
+    public static function notFound(?String $message = NULL): JsonResponse {
+        return self::generic($message, Response::HTTP_NOT_FOUND);
     }
 }

@@ -17,16 +17,52 @@ use App\Core\JsonResponseGenerator;
 
 use App\Models\User;
 
-class SignupController extends Controller {
-    private const SUCCESS_URL = '/signup/hello';
+class AuthController extends Controller {
+    private const SUCCESS_URL = '/';
 
 
-    public function view(): View {
+    public function submitLogin(Request $request): JsonResponse {
+        $password = $request->input('hashedPassword', "");
+        $email = $request->input('email', "");
+        if (!(InputType::isValidClientHashedPasswordFormat($password) && InputType::isValidEmailFormat($email))) {
+            return JsonResponseGenerator::badRequest();
+        }
+
+        $user = User::where('email', $email)->first();
+        if ($user == NULL) {
+            Hash::make($password); // calculate hash, as to avoid tmining analysis
+            return JsonResponseGenerator::unauthorized();
+        }
+
+        if (!Hash::check($password, $user->password)) {
+            return JsonResponseGenerator::unauthorized();
+        }
+
+
+        Auth::login($user, $remember = true);
+
+
+        $body = [
+            'url' => URL::to(self::SUCCESS_URL),
+            'message' => "ok"
+        ];
+
+        return response()->json($body)->setStatusCode(Response::HTTP_ACCEPTED);
+    }
+
+    public function viewLogin(): View {
+        return view('/account/login');
+    }
+
+
+
+
+    public function viewSignup(): View {
         return view('/account/signup');
     }
 
 
-    public function submit(Request $request): JsonResponse {
+    public function submitSignup(Request $request): JsonResponse {
         $username = $request->input('username', "");
         $password = $request->input('hashedPassword', "");
         $email = $request->input('email', "");
@@ -64,6 +100,8 @@ class SignupController extends Controller {
 
 
     public function hello(Request $request): JsonResponse {
+        return abort(Response::HTTP_NOT_FOUND); // comment out for debug
+
         $user = Auth::user();
         $body = [
             "user" => $user,

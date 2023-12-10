@@ -84,6 +84,8 @@ async function submitSignup(credentials) {
 }
 
 
+const signUp = document.getElementById("signUp");
+
 signUp.addEventListener("submit", event => {
 	event.preventDefault();
 	if (!allFields.check()) return false;
