@@ -8,10 +8,14 @@ use Illuminate\Http\JsonResponse;
 
 use Illuminate\View\View;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 use App\Core\PasswordTools;
 use App\Core\InputType;
 use App\Core\JsonResponseGenerator;
+
+use App\Models\User;
 
 class SignupController extends Controller {
     private const SUCCESS_URL = '/signup/hello';
@@ -31,31 +35,38 @@ class SignupController extends Controller {
             return JsonResponseGenerator::badRequest();
         }
 
+        if (User::where("username", $username)->count() != 0) {
+            return JsonResponseGenerator::badRequest("User: taken");
+        }
+        if (User::where("email", $email)->count() != 0) {
+            return JsonResponseGenerator::badRequest("Email: taken");
+        }
 
-        $request->session()->put('email', $email);
-        $request->session()->put('password', $password);
-        $request->session()->put('username', $username);
+
+        $user = new User([
+            'email' => $email,
+            'username' => $username,
+            'password' => Hash::make($password)
+        ]);
+
+        $user->save();
+
+        Auth::login($user, $remember = true);
+
 
         $body = [
             'url' => URL::to(self::SUCCESS_URL),
-            'message' => "hi"
+            'message' => "ok"
         ];
 
-        return response()->json($body)->setStatusCode(Response::HTTP_OK);
+        return response()->json($body)->setStatusCode(Response::HTTP_CREATED);
     }
 
 
     public function hello(Request $request): JsonResponse {
-        $password = $request->session()->get('password', '');
-        $email = $request->session()->get('email', '');
-        $username = $request->session()->get('username');
+        $user = Auth::user();
         $body = [
-            'url' => URL::to(self::SUCCESS_URL),
-            "email" => sprintf('%s', $email),
-            "hashedPassword" => sprintf('%s', $password),
-            "hashedPasswordPHP" => sprintf('%s', PasswordTools::makeClientHash("test@example.com", "test-password")),
-            "clientHashedPasswordFormatOk" => InputType::isValidClientHashedPasswordFormat($password),
-            "type" => InputType::interpretType($email),
+            "user" => $user,
             "status" => "ok"
         ];
         $body["test"] = "Hello world";
