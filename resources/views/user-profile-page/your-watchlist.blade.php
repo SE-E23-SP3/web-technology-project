@@ -31,25 +31,27 @@
 
             <!-- Movie list -->
             <ul>
-    @if (empty($movies))
-        @foreach ($movies as $movie)
-            <li>
-                <div class="movie">
-                    <img src="{{ $movie->poster_url }}" alt="Movie Poster">
-                    <div class="movie-details">
-                        <div class="movie-rank">Rank: {{ $movie->rank }}</div>
-                        <div class="movie-name">
-                            <a href="{{ $movie->url }}">{{ $movie->title }}</a>
-                        </div>
-                        <div class="info-separator"></div>
-                        <!-- Add more movie details here -->
-                    </div>
-                </div>
-            </li>
-        @endforeach
-    @else
-        <li>No movies available</li>
-    @endif
+                @isset($movies)
+                    @empty (!$movies)
+                        @foreach ($movies as $movie)
+                            <li>
+                                <div class="movie">
+                                    <img src="{{ $movie->poster_url }}" alt="Movie Poster">
+                                    <div class="movie-details">
+                                        <div class="movie-rank">Rank: {{ $movie->rank }}</div>
+                                        <div class="movie-name">
+                                            <a href="{{ $movie->url }}">{{ $movie->title }}</a>
+                                        </div>
+                                        <div class="info-separator"></div>
+                                        <!-- Add more movie details here -->
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                     @else
+                        <li>No movies available</li>
+                    @endempty
+                @endisset
 </ul>
             
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GenreController;
 
 
 /*
@@ -31,12 +32,6 @@ Route::get('/hello', function () {
     return view('hello');
 });
 
-//Route til watchlist
-Route::get('/watchlist', function () {
-    return view('/user-profile-page/your-watchlist');
-})-> name("watchlist");
-
-
 Route::get('/user-profile', function () {
     return view('/user-profile/user-profile');
 }) -> name('user-profile');
@@ -48,7 +43,7 @@ Route::get('/top-rated', function () {
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
 
 //Only individuel underneath here:
-Route::get('/your-watchlist', [GenreController::class, 'yourWatchlist'])->name('your-watchlist');
+Route::get('/watchlist', [GenreController::class, 'yourWatchlist'])->name('watchlist');
 
 
 

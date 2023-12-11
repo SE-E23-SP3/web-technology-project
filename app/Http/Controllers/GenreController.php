@@ -10,7 +10,7 @@ class GenreController extends Controller
     public function yourWatchlist()
     {
         $movies = Movie::all();
-        return view('user-profile-page.your-watchlist', compact('movies'));
+        return view('user-profile-page.your-watchlist', ['movies' => $movies]);
     }
 }
 ?>
