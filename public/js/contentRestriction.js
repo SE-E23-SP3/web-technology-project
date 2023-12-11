@@ -1,9 +1,15 @@
 // Retrieve the list of movies or content
+(function(){
+  const moviesImg = document.querySelector('.movies-img');
+  const moviesTitle = document.querySelector('.movies-title'); 
+  const moviesGenre = document.querySelector('.movies-genre');
+})();
+
 const movies = [
   { title: 'Movie 1', genre: 'Animation', ageRating: 'PG' },
   { title: 'Movie 2', genre: 'Horror', ageRating: 'R' },
   { title: 'Movie 3', genre: 'Comedy', ageRating: 'PG-13' },
-  // ... other movies
+  
 ];
 
 // Function to handle genre/tag restrictions and age rating settings
@@ -29,3 +35,4 @@ function renderMovies(movies) {
   // Update the UI to display the filtered movies
   console.log(movies);
 }
+

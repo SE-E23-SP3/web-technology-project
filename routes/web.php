@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,6 +31,7 @@ Route::get('/hello', function () {
     return view('hello');
 });
 
+//Route til watchlist
 Route::get('/watchlist', function () {
     return view('/user-profile-page/your-watchlist');
 })-> name("watchlist");
@@ -42,6 +44,15 @@ Route::get('/user-profile', function () {
 Route::get('/top-rated', function () {
     return view('/top-rated');
 }) -> name('top-rated');
+
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+//Only individuel underneath here:
+Route::get('/your-watchlist', [GenreController::class, 'yourWatchlist'])->name('your-watchlist');
+
+
+
+
 
 
 // A heallth check endpoint to verify that the service is up and running

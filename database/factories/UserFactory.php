@@ -1,8 +1,8 @@
 <?php
 
 namespace Database\Factories;
-
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -25,19 +25,19 @@ class UserFactory extends Factory
         ];
     }
 
-    /*Child user*/
     
+
+    /*Child user*/
+
     public function childUser(): UserFactory
     {
         return $this->state(function (array $attributes) {
-            //Commented $ratings out since it is not implemented in the database
-            //$ratings = ['G', 'PG', 'PG-13'];
             $genres = ['Animation', 'Comedy', 'Fantasy'];
-    
+
             return [
-            'parent_id' => $mainUser->id,
-            'name' => $this->faker->userName(),
-            'restriction_genre' => $genres[array_rand($genres)],
+                'parent_id' => User::factory(),
+                'name' => $this->faker->userName(),
+                'restriction_genre' => $genres[array_rand($genres)],
             ];
         });
     }

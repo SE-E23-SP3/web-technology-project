@@ -2,13 +2,19 @@
     <x-slot:head>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/watchlist.css') }}">
-        <script defer src="{{asset('js/watchlist.js')}}"> </script>
-    </x-slot:head>
-    <body>
+        <script defer src="{{ asset('js/watchlist.js') }}"></script>
+            
+        <!-- js for testing -->
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+    </x-slot:head>
+
+    <body>
         <header>
             <h1>Your Watchlist</h1>
         </header>
+
+        
 
         <div class="movie-container">
 
@@ -24,8 +30,34 @@
             </div>
 
             <!-- Movie list -->
+            <ul>
+    @if (empty($movies))
+        @foreach ($movies as $movie)
+            <li>
+                <div class="movie">
+                    <img src="{{ $movie->poster_url }}" alt="Movie Poster">
+                    <div class="movie-details">
+                        <div class="movie-rank">Rank: {{ $movie->rank }}</div>
+                        <div class="movie-name">
+                            <a href="{{ $movie->url }}">{{ $movie->title }}</a>
+                        </div>
+                        <div class="info-separator"></div>
+                        <!-- Add more movie details here -->
+                    </div>
+                </div>
+            </li>
+        @endforeach
+    @else
+        <li>No movies available</li>
+    @endif
+</ul>
+            
+
+
+
             <div class="movie">
-                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_356_534/public/2023-10/napoleonplakat.webp?h=7881f276&itok=lqXjeOP6" alt="Movie Poster">
+                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_356_534/public/2023-10/napoleonplakat.webp?h=7881f276&itok=lqXjeOP6"
+                    alt="Movie Poster">
                 <div class="movie-details">
                     <div class="movie-rank">Rank: 2</div>
                     <div class="movie-name"><a href="https://example.com/napoleon">Napoleon</a></div>
@@ -37,7 +69,7 @@
                         <span> | </span>
                         <span>R</span>
                         <span> | </span>
-                        <span>History</span>
+                        <span>Genre: History</span>
                     </div>
                     <div class="actor-list">
                         <span>Joaquin Phoenix</span>
@@ -52,14 +84,17 @@
                         <span></span>
                     </div>
                     <div class="description-text">
-                        An epic that details the checkered rise and fall of French Emperor Napoleon Bonaparte and his relentless journey to power through the prism of his addictive, volatile relationship with his wife, Josephine.
+                        An epic that details the checkered rise and fall of French Emperor Napoleon Bonaparte and his
+                        relentless journey to power through the prism of his addictive, volatile relationship with his
+                        wife, Josephine.
                     </div>
 
                 </div>
             </div>
 
             <div class="movie">
-                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_356_534/public/2023-11/barbieplakatny.webp?h=7881f276&itok=fPxVcoa0" alt="Movie Poster">
+                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_356_534/public/2023-11/barbieplakatny.webp?h=7881f276&itok=fPxVcoa0"
+                    alt="Movie Poster">
                 <div class="movie-details">
                     <div class="movie-rank">Rank: 3</div>
                     <div class="movie-name"><a href="https://example.com/barbie">Barbie</a></div>
@@ -71,7 +106,7 @@
                         <span> | </span>
                         <span>G</span>
                         <span> | </span>
-                        <span>Comedy</span>
+                        <span>Genre: Comedy</span>
                     </div>
                     <div class="actor-list">
                         <span>Ryan Gosling (Literally me)</span>
@@ -93,10 +128,12 @@
             </div>
 
             <div class="movie">
-                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_242_363/public/2023-09/fivenightsatfreddys_poster.webp?h=7881f276&itok=E02j-Nxp" alt="Movie Poster">
+                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_242_363/public/2023-09/fivenightsatfreddys_poster.webp?h=7881f276&itok=E02j-Nxp"
+                    alt="Movie Poster">
                 <div class="movie-details">
                     <div class="movie-rank">Rank: 1</div>
-                    <div class="movie-name"><a href="https://example.com/five-guys-in-freddys">Five Guys In Freddys</a></div>
+                    <div class="movie-name"><a href="https://example.com/five-guys-in-freddys">Five Guys In Freddys</a>
+                    </div>
                     <div class="info-separator"></div>
                     <div class="movie-info">
                         <span>2023</span>
@@ -105,7 +142,7 @@
                         <span> | </span>
                         <span>PG</span>
                         <span> | </span>
-                        <span>Horror</span>
+                        <span>Genre: Horror</span>
                     </div>
                     <div class="actor-list">
                         <span>Tom Holland</span>
@@ -139,7 +176,7 @@
                         <span> | </span>
                         <span>R</span>
                         <span> | </span>
-                        <span>Drama/Sci-fi</span>
+                        <span>Genre: Drama/Sci-fi</span>
                     </div>
                     <div class="actor-list">
                         <span>John Hurt</span>
@@ -148,18 +185,20 @@
                         <span> | </span>
                         <span>Suzanna Hamilton</span>
                         <span> | </span>
-                    
+
                         <span></span>
                     </div>
                     <div class="description-text">
-                        In a totalitarian future society, a man, whose daily work is re-writing history, tries to rebel by falling in love.
+                        In a totalitarian future society, a man, whose daily work is re-writing history, tries to rebel
+                        by falling in love.
                     </div>
 
                 </div>
             </div>
 
             <div class="movie">
-                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_242_363/public/movie-posters/oppenheimer_-_dansk_plakat.webp?h=7881f276&itok=s9bIHMag" alt="Another Movie Poster">
+                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_242_363/public/movie-posters/oppenheimer_-_dansk_plakat.webp?h=7881f276&itok=s9bIHMag"
+                    alt="Another Movie Poster">
                 <div class="movie-details">
                     <div class="movie-rank">Rank: 4</div>
                     <div class="movie-name"><a href="https://example.com/oppenheimer">OppenHeimer</a></div>
@@ -171,7 +210,7 @@
                         <span> | </span>
                         <span>R</span>
                         <span> | </span>
-                        <span>History</span>
+                        <span>Genre: History</span>
                     </div>
                     <div class="actor-list">
                         <span>Cillian Murphy</span>
@@ -185,15 +224,53 @@
                         <span>Robert Downey Jr.</span>
                     </div>
                     <div class="description-text">
-                        A dramatization of the life story of J. Robert Oppenheimer, the physicist who had a large hand in the development of the atomic bomb, thus helping end World War 2. We see his life from university days all the way to post-WW2, where his fame saw him embroiled in political machinations.
+                        A dramatization of the life story of J. Robert Oppenheimer, the physicist who had a large hand
+                        in the development of the atomic bomb, thus helping end World War 2. We see his life from
+                        university days all the way to post-WW2, where his fame saw him embroiled in political
+                        machinations.
                     </div>
+                </div>
+            </div>
+
+            <div class="movie">
+                <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_356_534/public/2023-08/pawpatrol_superfilmen.webp?h=7881f276&itok=q9tCSvYI"
+                    alt="Movie Poster">
+                <div class="movie-details">
+                    <div class="movie-rank">Rank: 6</div>
+                    <div class="movie-name"><a href="https://example.com/Paw_patrol_2">Paw Patrol 2 - Super Movie</a></div>
+                    <div class="info-separator"></div>
+                    <div class="movie-info">
+                        <span>2023</span>
+                        <span> | </span>
+                        <span>1h 27m</span>
+                        <span> | </span>
+                        <span>G</span>
+                        <span> | </span>
+                        <span>Genre: Animation</span>
+                    </div>
+                    <div class="actor-list">
+                        <span>Pelle Falk Krusbæk</span>
+                        <span> | </span>
+                        <span>Iris Mealor Olsen</span>
+                        <span> | </span>
+                        <span>Conrad Bengtsson</span>
+                        <span> | </span>
+                        <span>Thit AAberg</span>
+                        <span> | </span>
+                        <span>Oscar Dietz</span>
+                        <span></span>
+                    </div>
+                    <div class="description-text">
+                        Its time to patrol with paws.
+                    </div>
+
                 </div>
             </div>
 
             <!-- Add more movies as needed -->
         </div>
 
-       
+
 
     </body>
 
