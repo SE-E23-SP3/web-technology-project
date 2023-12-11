@@ -24,7 +24,7 @@ Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
 
 Route::get('/login', function (){
     return view('/account/login');
-});
+}) -> name("login");
 
 Route::get('/signup', function(){
     return view('/account/signup');
