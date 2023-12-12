@@ -14,7 +14,5 @@
         <button id="submitButton" type="submit" class="SigninBtn">Sign in</button>
     </form>
     <br/>
-    <form method="GET" action="{{route('signup')}}">
-        <button type="submit" class="newAccBtn" >New Account</button>
-    </form>
+    <a id="signupBtn" href="{{route('signup')}}"><button class="newAccBtn" >New Account</button></a>
 </x-layouts.login-base>

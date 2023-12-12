@@ -70,3 +70,8 @@ login.addEventListener("submit", event => {
 			console.error(error.json ?? error);
 	});
 }, true);
+
+
+let signupUrl = new URL(location.href); // copy url
+signupUrl.pathname = "/signup";
+document.getElementById("signupBtn").href = signupUrl.href;
