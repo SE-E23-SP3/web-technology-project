@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 
 use Illuminate\View\View;
@@ -20,6 +21,13 @@ use App\Models\User;
 class AuthController extends Controller {
     private const SUCCESS_URL = '/';
 
+    private static function generateSucessResponse(Request $request): JsonResponse {
+        // https://laraveldaily.com/post/auth-after-registration-redirect-to-previous-intended-page
+        return new JsonResponse([
+            'url' => $request->session()->pull('url.intended', URL::to(self::SUCCESS_URL)),
+            'message' => "ok"
+        ], Response::HTTP_ACCEPTED);
+    }
 
     public function submitLogin(Request $request): JsonResponse {
         $password = $request->input('hashedPassword', "");
@@ -42,12 +50,7 @@ class AuthController extends Controller {
         Auth::login($user, $remember = true);
 
 
-        $body = [
-            'url' => URL::to(self::SUCCESS_URL),
-            'message' => "ok"
-        ];
-
-        return response()->json($body)->setStatusCode(Response::HTTP_ACCEPTED);
+        return self::generateSucessResponse($request);
     }
 
     public function viewLogin(): View {
@@ -90,12 +93,7 @@ class AuthController extends Controller {
         Auth::login($user, $remember = true);
 
 
-        $body = [
-            'url' => URL::to(self::SUCCESS_URL),
-            'message' => "ok"
-        ];
-
-        return response()->json($body)->setStatusCode(Response::HTTP_CREATED);
+        return self::generateSucessResponse($request);
     }
 
 
@@ -109,5 +107,12 @@ class AuthController extends Controller {
         ];
         $body["test"] = "Hello world";
         return response()->json($body);
+    }
+
+    public function logout(Request $request): RedirectResponse {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }

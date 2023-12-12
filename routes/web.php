@@ -16,7 +16,7 @@ use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
-})-> name("Welcome");
+})->name("Welcome");
 
 
 
@@ -40,6 +40,8 @@ Route::controller(AuthController::class)
 
         Route::get('hello', 'hello');
     });
+
+    Route::any('logout', 'logout')->name('logout');
 });
 
 
@@ -50,6 +52,9 @@ Route::controller(AuthController::class)
 Route::get('/hello', function () {
     return view('hello');
 });
+Route::get('/secure', function() {
+    return view('hello');
+})->middleware('auth');
 
 
 

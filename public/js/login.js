@@ -67,5 +67,6 @@ login.addEventListener("submit", event => {
 			window.location.href = getRedirectUrlFromParam(jsonResponse.url);
 		}).catch(handleSubmissionError).catch(error => {
 			errorContainerUtil.displayError();
+			console.error(error.json ?? error);
 	});
 }, true);

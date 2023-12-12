@@ -68,9 +68,20 @@ async function makeJSONPostRequest(url, jsonBody, customHeaders) {
 
 
 
-function getRedirectUrlFromParam(defaultUrl = null, url = location, key = "redirect") {
+function getRedirectUrlFromParam(defaultUrl = null, url = location, key = "redirect", forceHTTPS = true) {
 	const param = new URLSearchParams(url.search);
-	if (param.has(key)) return param.get(key);
-	if (defaultUrl === null) return url.href;
-	return defaultUrl;
+	let returnUrl;
+	if (param.has(key)) {
+		returnUrl = new URL(param.get(key));
+	} else if (defaultUrl === null) {
+		returnUrl = url;
+	} else {
+		returnUrl = new URL(defaultUrl);
+	}
+
+	if (forceHTTPS) {
+		returnUrl.protocol = "https:";
+	}
+
+	return returnUrl.href;
 }
