@@ -18,13 +18,13 @@
             <article class="row">
                 <section class="col-3 offset-1">
                     <article class="row">
-                        <h1>Movie Name</h1>
+                        <h1>{{$movie->title}}</h1>
                         <article class="row">
                             <section class="col-auto">
                                 <p>TV Series</p>
                             </section>
                             <section class="col-auto">
-                                <p>YEAR</p>
+                                <p>{{$movie->release_date}}</p>
                             </section>
                             <section class="col-auto">
                                 <p>02h 43m</p>
@@ -78,8 +78,9 @@
         <div class="container-fluid">
             <article class="row">
                 <section class="col-2 offset-1">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNjU3N2QxNzYtMjk1NC00MTc4LTk1NTQtMmUxNTljM2I0NDA5XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg"
-                    class="pic">
+                    @isset($movie->poster_url)
+                        <img src="{{$movie->poster_url}}" class="pic">  
+                    @endisset
                 </section>
                 <section class="col-5">
                     <img src="https://m.media-amazon.com/images/M/MV5BNGY0ZjA3MzAtYjIwOS00NTk5LThmMzEtNjI0MmU4MzQ1NmRiXkEyXkFqcGdeQWFybm8@._V1_QL75_UY281_CR0,0,500,281_.jpg"
@@ -106,8 +107,13 @@
             <article class="row">
                 <section class="col-7 offset-1">
                     <section class="col box info">
+                        <!--foreach($movie->genres as $genre)
+                        <p>{$genre->genre_name}</p>
+                        endforeach-->
+
+                        <!--Seems there is no inbetween table-->
                     <p>MISSING TAGS</p>
-                    <p>SummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummarySummary</p>
+                    <p>{{$movie->description}}</p>
                     <hr>
                 </section>
             </section>

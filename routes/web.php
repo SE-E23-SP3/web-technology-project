@@ -42,3 +42,5 @@ Route::get('/health', function () {
 Route::get('/movieinfo', function () {
     return view('movies/movieinfo');
 })-> name('Movie Info');
+Route::get('/movieinfo/{id}', [App\Http\Controllers\Movieinfo::class, 'movieInfo']);
+?>
