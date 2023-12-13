@@ -46,6 +46,22 @@ p{
     font-size: 15px;
 }
 
+.edit-profile-btn{
+    background-color: var(--Accent);
+    border: none;
+    border-radius: 20px;
+    float: right;
+    color: var(--Text);
+    padding: 8px;
+}
+
+.edit-profile-btn:hover{
+    background-color: #3e2378;
+}
+
+.edit-profile-btn:active{
+    opacity: 50%;
+}
 
 .rated-movies-section,
 .watchlist-movies-section{
@@ -101,11 +117,11 @@ p{
     text-align: center;
 }
 .movie-name{
-    font-size: 10px;  
+    font-size: 11px;  
     font-weight: 500;
 }
 .movie-rating{
-    font-size: 8px;
+    font-size: 10px;
 }
 .star{
     height: 8px;
