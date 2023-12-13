@@ -5,7 +5,7 @@ const submitButton = document.getElementById("submitButton");
 
 const emailField = new InputValidator(InputValidator.patterns.email, document.getElementById("emailField"));
 emailField.useOKBorder = false;
-const passwordField = new InputValidator(InputValidator.patterns.password, document.getElementById("passwordField"));
+const passwordField = new InputValidator(InputValidator.patterns.generic, document.getElementById("passwordField"));
 passwordField.useOKBorder = false;
 
 

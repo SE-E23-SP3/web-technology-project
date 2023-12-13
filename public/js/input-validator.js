@@ -49,6 +49,12 @@ class InputValidator {
 				"min": 2,
 				"max": 100,
 				"invalidCharMessage": "The following characters are invalid: \\ < > ? ! = % # \" ^ & $ @ /"
+			},
+			"generic": {
+				"pattern": /.*/,
+				"min": null,
+				"max": null,
+				"invalidCharMessage": ""
 			}
 		};
 	}
