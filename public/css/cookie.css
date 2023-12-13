@@ -1,4 +1,43 @@
-.cookie-container {
+.cookie-backgrounds {
     position: absolute;
-    background-color: rgba(0,0,0,0.3);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cookie-contain {
+    background-color: var(--Background);
+    padding: 30px;
+    border: 1px solid var(--Accent);
+    border-radius: 16px;
+}
+
+.cookie-contain h1, .cookie-contain p, .cookie-contain button {
+    background-color: transparent;
+    border: none;
+}
+
+
+.cookie-contain button{
+    border-radius: 5px;
+    padding: 5px 20px;
+}
+.cookie-contain button:hover{
+    background-color: var(--Accent);
+    filter: saturate(50%);
+}
+
+#customize-cookies-button {
+    
+}
+#essential-cookies-button {
+    border: 1px solid var(--Accent);
+    padding: 4px 20px;
+}
+#all-cookies-button {
+    background-color: var(--Accent);
 }
