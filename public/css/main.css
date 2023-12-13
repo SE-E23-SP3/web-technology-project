@@ -7,26 +7,6 @@
     background-color: var(--Background_Shade);
 }
 
-.Carousel{
-    height: 40vh;
-}
-
-.Movie-heading{
-    color: var(--Text);
-}
-.Movie-info{
-    color: var(--Text)
-}
-
-.i-style{
-    color: var(--Text);
-    background-color: var(--Secondary);
-    border: 1rem solid var(--Secondary);
-    border-radius: 15%;
-}
-
-
-
 .trailer{
     text-align: center;
     font-size: 1rem;
@@ -39,11 +19,6 @@
 
 .bg2{
     background-color: var(--Primary);
-}
-
-.posterimg{
-    width: 300px;
-    height: 200px;
 }
 
 .categoryImg{
