@@ -134,7 +134,7 @@ if [ ! -e ".env" ]; then
 	DB_PASSWORD="$(cat /dev/random | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32)" APP_KEY="base64:$(cat /dev/random | head -c 32 | base64)" \
 		awk 'BEGIN{FS="=";OFS="="}{if ($1 in ENVIRON){print $1,ENVIRON[$1]}else{print}}' "$ENV_EXAMPLE_FILE" > "$ENV_FILE"
 
-	chown --reference="$ENV_EXAMPLE_FILE" "$ENV_FILE"
+	chown --reference="$ENV_EXAMPLE_FILE" "$ENV_FILE" | true # may fail on MacOS, that is okay
 	chmod 600 "$ENV_FILE"
 	stderr
 fi
