@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +16,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("Welcome");
 
 
 
@@ -43,9 +42,9 @@ Route::controller(AuthController::class)
 
     Route::any('logout', 'logout')->name('logout');
 });
+Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
 
-
-
+Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
 
 
 
