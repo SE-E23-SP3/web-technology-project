@@ -11,8 +11,8 @@
     </x-slot:head>
 
     <body>
-        <main class="container-fluid">
 
+        <main class="container-fluid">
             <div class="container">
                 <article class="row my-2">
                     @isset($categories)
@@ -40,9 +40,9 @@
                         <article class="row p-0">
                             @for ($i = 5; $i < min(10, count($categories)); $i++)
                                 <section class="col-2 bg p-0 mx-2 mb-5">
-                                    <img src="{{$categories[$i]->poster_url }}" alt="{{ $categories[$i]->title }}"
+                                    <img src="{{ $categories[$i]->poster_url }}" alt="{{ $categories[$i]->title }}"
                                         class="m-2 categoryImg" />
-                                    <h6 class="bg mx-2">{{$categories[$i]->title}}</h6>
+                                    <h6 class="bg mx-2">{{ $categories[$i]->title }}</h6>
                                     <button class="mb-2 mx-2 trailer">
                                         <i class="fa-solid fa-play bg2"></i>
                                         trailer
