@@ -9,18 +9,33 @@ To execute simply use
 ```sh
 ./develmode.sh
 ```
-This script automatically creates `.env` file with relevant values.  
-Migrations are automatically run on startup.
+_**The script only works on Linux and MacOS**_
 
-**The script only works on Linux and MacOS**
+This script does the following:
+- Generates `.env` file with random `DB_PASSWORD` and `APP_KEY`
+- Starts services with docker compose
+- Auto runs migrations
+
 
 The webserver will then be available at:  
 [http://127.0.0.1:8080](http://127.0.0.1:8080)
 
 > [!NOTE]
 > If you encounter a problem with the database connection,  
-> try reseting the database. [See Reset Database below](#Reset-Database)
+> try resetting the database. [See Reset Database below](#Reset-Database)
 
+
+<br/><br/><br/><br/><br/>
+
+## Do a seeding, using random data
+```sh
+sudo docker compose exec -it php php artisan db:seed
+```
+> Yes two times 'php'  
+> the first refers to the container, and the second refers to the php command.
+
+
+<br/><br/><br/><br/><br/>
 
 ## To Execute php commands in docker compose
 > [!IMPORTANT] 
@@ -48,4 +63,4 @@ To completely reset database you can run
 sudo docker compose down -v
 ```
 > [!WARNING]
-> This will remove all data. Cannot be unddone!
+> This will remove all data. Cannot be undone!
