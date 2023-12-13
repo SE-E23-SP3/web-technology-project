@@ -1,0 +1,106 @@
+h1{
+    background-color: var(--Background_Shade);
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 10px;
+}
+
+h2{
+    background-color: var(--Accent);
+    font-size: 30px;
+    text-align: center;
+}
+
+input{
+    margin-bottom: 10px;
+}
+
+label,
+.username-section,
+.password-inputfields{
+    background-color: var(--Accent);
+    font-size: 18px;
+}
+
+h1,
+label{
+
+    display: block;
+}
+
+
+.content{
+    background-color: var(--Background_Shade);
+    color: white;
+    width: 700px;
+    padding-bottom: 20px;
+}
+
+.change-username,
+.change-password{
+    background-color: var(--Accent);
+    width: 100%;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+
+    border-radius: 5px;
+}
+
+.username-section{
+    border:none;
+    outline: none;
+    display: inline-block;
+}
+
+.username{
+    display: inline-block;
+    margin-right: auto;
+}
+
+.change-btns{
+    background-color: var(--Star_Color);
+
+    height: 50px;
+    width: 100px;
+
+    margin-top: 10px;
+
+    border-radius: 30px;
+    float: right;
+
+    border: none;
+    outline: none;
+}
+
+.change-password{
+    margin-top: 20px;
+    padding-bottom: 80px;
+}
+
+.password-inputfields{
+    background-color: var(--Accent);
+}
+
+
+.delete-btn{
+    background-color: #A60B0B;
+    
+    height: 50px;
+    width: 100px;
+
+    margin-top: 30px;
+    margin-left: 10px;
+
+    border-radius: 30px;
+}
+
+.change-btns:hover{
+    background-color: var(--Star_Color_Hover);
+}
+
+.delete-btn:hover{
+    background-color: #8a0a0a;
+}

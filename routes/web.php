@@ -55,6 +55,11 @@ Route::get('/secure', function() {
     return view('hello');
 })->middleware('auth');
 
+Route::get('/user-edit', function() {
+    return view('account/user-edit');
+})->name('user-edit');
+
+
 
 
 
