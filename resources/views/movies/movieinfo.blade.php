@@ -1,8 +1,8 @@
 <x-layouts.base title="movieinfo">
     <x-slot:head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <link rel="stylesheet" href="{{asset('css/movieinfo.css')}}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         
         <style>
             body{
@@ -18,13 +18,17 @@
             <article class="row">
                 <section class="col-3 offset-1">
                     <article class="row">
+                        @isset($movie->title)
                         <h1>{{$movie->title}}</h1>
+                        @endisset
                         <article class="row">
                             <section class="col-auto">
-                                <p>TV Series</p>
+                                <p>Movie</p>
                             </section>
                             <section class="col-auto">
+                                @isset($movie->release_date)
                                 <p>{{$movie->release_date}}</p>
+                                @endisset
                             </section>
                             <section class="col-auto">
                                 <p>02h 43m</p>
@@ -113,18 +117,20 @@
 
                         <!--Seems there is no inbetween table-->
                     <p>MISSING TAGS</p>
+                    @isset($movie->description)
                     <p>{{$movie->description}}</p>
+                    @endisset
                     <hr>
                 </section>
             </section>
                 <section class="col-3 box info">
                         <article class="row">
                             <section class="col-4">
-                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="pic" style="width: 36px;">
+                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="icon" style="width: 36px;">
                                     <span>16</span></p>
                             </section>
                             <section class="col-4 offset-3">
-                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="pic" style="width: 36px;">
+                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="icon" style="width: 36px;">
                                     <span>1556</span></p>
                             </section>
                         </article>
@@ -163,7 +169,7 @@
         <h1 class="modal-title fs-5" id="ratingModalLabel">Rating</h1>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form>
+      <form method="GET" id="rateForm">
         <div class="modal-body">
                 <fieldset>
                     <div>
@@ -200,7 +206,7 @@
                 </fieldset>
             </div>
             <div class="modal-footer">
-                <button type="submit">Submit</button>
+                <button type="submit" form="rateForm" value="Rate"></button>
             </div>
         </form>
     </div>

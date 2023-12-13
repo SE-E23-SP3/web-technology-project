@@ -18,7 +18,7 @@
 }
 
 .pic{
-    max-height:320px;
+    height:320px;
     width: 100%;
     border-radius: 5px;
 }
@@ -69,4 +69,9 @@ td{
 }
 .modal-footer{
     background-color: #1e1e1e;
+}
+.icon{
+    max-height:320px;
+    width: 100%;
+    border-radius: 5px;
 }

@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
-use App\Models\Trailer;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;   
 use Illuminate\Foundation\Validation\ValidatesRequests;
