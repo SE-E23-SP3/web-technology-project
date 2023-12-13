@@ -25,17 +25,4 @@ class UserFactory extends Factory
         ];
     }
 
-    /*Child user*/
-    @return \Database\Factories\UserFactory
-
-    public function childUser(): UserFactory
-{
-    return $this->state(function (array $attributes) {
-        return [
-            'parent_id' => User::factory()->create()->id,
-            'name' => $this->faker->userName(),
-            'restrction_rating' => $this->faker->randomElement(['G', 'PG', 'PG-13', 'R', 'NC-17']),
-            'restriction_genre' => $this->faker->randomElement(['Horror', 'Porn', 'Animation', 'Comedy', 'Fantasy', 'Romance', 'Science Fiction', 'Thriller']),
-        ];
-    });
 }
