@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\GenreController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -17,20 +17,45 @@ use App\Http\Controllers\GenreController;
 
 Route::get('/', function () {
     return view('welcome');
-})-> name("Welcome");
+})->name("Welcome");
 
-Route::get('/login', function (){
-    return view('/account/login');
-}) -> name("login");
 
-Route::get('/signup', function(){
-    return view('/account/signup');
-})-> name("signup");
+
+
+Route::controller(AuthController::class)
+->group(function(){
+    Route::prefix("signup")
+    ->group(function(){
+        Route::get('/', 'viewSignup')->name("signup");
+
+        Route::post('submit', 'submitSignup');
+
+        Route::get('hello', 'hello');
+    });
+
+    Route::prefix("login")
+    ->group(function(){
+        Route::get('/', 'viewLogin')->name("login");
+
+        Route::post('submit', 'submitLogin');
+
+        Route::get('hello', 'hello');
+    });
+
+    Route::any('logout', 'logout')->name('logout');
+});
+
+
+
+
 
 
 Route::get('/hello', function () {
     return view('hello');
 });
+Route::get('/secure', function() {
+    return view('hello');
+})->middleware('auth');
 
 Route::get('/user-profile', function () {
     return view('/user-profile/user-profile');
