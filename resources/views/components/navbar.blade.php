@@ -16,6 +16,9 @@
                 <li>
                     <a class="" href="{{route('login')}}">Login</a>
                 </li>
+                <li>
+                    <a class="" href="{{route('signup')}}">Signup</a>
+                </li>
             </ul>
             <form class="d-flex">
                 @csrf
