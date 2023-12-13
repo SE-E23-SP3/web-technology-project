@@ -1,6 +1,6 @@
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg navbar-colors">
-        <a class="navbar-brand a-style" href="{{route('Welcome')}}">SMDB</a>
+        <a class="navbar-brand a-style" href="{{route('welcome')}}">SMDB</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse navbar-colors" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="">
-                    <a class="" href="{{route('Welcome')}}">Home</a>
+                    <a class="" href="{{route('welcome')}}">Home</a>
                 </li>
                 <li class="">
                     <a class="" href="">watchlist</a>
