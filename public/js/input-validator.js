@@ -9,7 +9,7 @@ class InputValidator {
 		//create constant static property for InputValidator
 		return {
 			"password": {
-				"pattern": /^.{8,}$/,
+				"pattern": /^.{12,}$/,
 				"min": 12,
 				"max": null,
 				"invalidCharMessage": ""
