@@ -30,6 +30,10 @@
             </div>
 
             <!-- Movie list -->
+            <!-- The DB wont work with mac, so made some mock data underneath -->
+            <!-- I've tried running the same branch on a friends computer, where the data from the db would load, but it wont on mac-->
+            <!-- The mock data is also used for testing the sorting -->
+            
             <ul>
                 @isset($movies)
                     @empty (!$movies)
@@ -48,7 +52,7 @@
                                 </div>
                             </li>
                         @endforeach
-                     @else
+                    @else
                         <li>No movies available</li>
                     @endempty
                 @endisset
@@ -56,7 +60,7 @@
             
 
 
-
+            <!-- Mock data -->
             <div class="movie">
                 <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_356_534/public/2023-10/napoleonplakat.webp?h=7881f276&itok=lqXjeOP6"
                     alt="Movie Poster">
@@ -111,7 +115,7 @@
                         <span>Genre: Comedy</span>
                     </div>
                     <div class="actor-list">
-                        <span>Ryan Gosling (Literally me)</span>
+                        <span>Ryan Gosling</span>
                         <span> | </span>
                         <span>Margot Robbie</span>
                         <span> | </span>
@@ -134,7 +138,7 @@
                     alt="Movie Poster">
                 <div class="movie-details">
                     <div class="movie-rank">Rank: 1</div>
-                    <div class="movie-name"><a href="https://example.com/five-guys-in-freddys">Five Guys In Freddys</a>
+                    <div class="movie-name"><a href="https://example.com/five-guys-in-freddys">Five Nights At Freddys</a>
                     </div>
                     <div class="info-separator"></div>
                     <div class="movie-info">
@@ -147,19 +151,19 @@
                         <span>Genre: Horror</span>
                     </div>
                     <div class="actor-list">
-                        <span>Tom Holland</span>
+                        <span>Mary Stuat Masterson</span>
                         <span> | </span>
-                        <span>Freddy FuzzBear</span>
+                        <span>Josh Hutcherson</span>
                         <span> | </span>
-                        <span>Chicka</span>
+                        <span>Piper Rubio</span>
                         <span> | </span>
-                        <span>Pewdiepie</span>
+                        <span>Matthew Lillard</span>
                         <span> | </span>
-                        <span> Patrick </span>
+                        <span> Elizabeth Lail </span>
                         <span></span>
                     </div>
                     <div class="description-text">
-                        o cholera czy to freddy fazbear euh euh euh euh
+                    A troubled security guard begins working at Freddy Fazbear's Pizza. During his first night on the job, he realizes that the night shift won't be so easy to get through. Pretty soon he will unveil what actually happened at Freddy's.
                     </div>
 
                 </div>
