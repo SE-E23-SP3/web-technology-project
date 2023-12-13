@@ -11,6 +11,26 @@
     </x-slot:head>
 
     <body>
+        <article class="row align-items-center Carousel bg mt-5">
+            <section class="col-1 offset-2 bg">
+                <a href="#" class="btn Prev-btn">
+                    <i class="fas fa-chevron-left i-style"></i>
+                </a>
+            </section>
+            <section class="col-4 p-0 bg">
+                <img id="Carousel-img" class="posterimg" src="" alt="" />
+            </section>
+            <section class="col-2 text-center bg">
+                <h3 id="Carousel-title" class="Movie-heading bg"></h3>
+                <p id="Carousel-info" class="Movie-info bg"></p>
+            </section>
+            <section class="col-1 bg">
+                <a href="#" class="btn Next-btn">
+                    <i class="fas fa-chevron-right i-style"></i>
+                </a>
+            </section>
+        </article>
+        
         <main class="container-fluid">
             <article class="row align-items-center Carousel bg mt-5">
                 <section class="col-1 offset-2 bg">
