@@ -8,20 +8,16 @@
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.5);
 }
-
 .cookie-contain {
     background-color: var(--Background);
     padding: 30px;
     border: 1px solid var(--Accent);
     border-radius: 16px;
 }
-
 .cookie-contain h1, .cookie-contain p, .cookie-contain button {
     background-color: transparent;
     border: none;
 }
-
-
 .cookie-contain button{
     border-radius: 5px;
     padding: 5px 20px;
@@ -30,7 +26,6 @@
     background-color: var(--Accent);
     filter: saturate(50%);
 }
-
 #customize-cookies-button {
     
 }
