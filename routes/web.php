@@ -48,9 +48,6 @@ Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
 
 
 
-
-
-
 Route::get('/hello', function () {
     return view('hello');
 });
