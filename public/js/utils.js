@@ -27,7 +27,7 @@ class ErrorWithJson extends Error {
 const CSRF_TOKEN = getMetaValueByName('csrf-token');
 
 
-async function makeJSONPostRequest(url, jsonBody, customHeaders) {
+async function genericJSONRequest(url, type = "POST", jsonBody = {}, customHeaders = {}) {
 	const defaultHeaders = {
 			"Content-Type": "application/json",
 			"X-CSRF-TOKEN": CSRF_TOKEN,
@@ -37,7 +37,7 @@ async function makeJSONPostRequest(url, jsonBody, customHeaders) {
 	const headers = {...defaultHeaders, ...customHeaders};
 
 	const fetchOptions = {
-		method: "POST",
+		method: type,
 		credentials: "same-origin",
 		headers: headers,
 		body: JSON.stringify(jsonBody)
@@ -63,6 +63,10 @@ async function makeJSONPostRequest(url, jsonBody, customHeaders) {
 
 	// console.log(await response.text());
 	return await response.json();
+}
+
+async function makeJSONPostRequest(url, jsonBody, customHeaders = {}) {
+	return genericJSONRequest(url, "POST", jsonBody, customHeaders);
 }
 
 
