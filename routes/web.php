@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
+
+use App\Http\Controllers\UserProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -59,10 +61,8 @@ Route::get('/watchlist', function () {
     return view('/user-profile-page/your-watchlist');
 })-> name("watchlist");
 
-
-Route::get('/user-profile', function () {
-    return view('/user-profile/user-profile');
-}) -> name('user-profile');
+Route::get('/user-profile', [UserProfileController::class, 'getUserRatedMovies'])
+    ->name('user-profile');
 
 Route::get('/top-rated', function () {
     return view('/top-rated');
