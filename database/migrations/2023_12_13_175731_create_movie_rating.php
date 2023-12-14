@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trailers', function (Blueprint $table) {
-            $table->id();// id is automatically incremented and acts as a primary key
+        Schema::create('movie_rating', function (Blueprint $table) {
+            $table->id();
             $table->foreignId('movie_id');
-            $table->string('video_url');
-            $table->timestamps();// creates created_at & updated_at TIMESTAMP
+            $table->foreignId('user_id');
+            $table->integer('rating');
+            $table->timestamps();
         });
     }
 
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trailers');
+        Schema::dropIfExists('movie_rating');
     }
 };

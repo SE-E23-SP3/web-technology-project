@@ -9,6 +9,10 @@ class Trailer extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'video_url'
+    ];
+
     public function movies() {
         return $this->belongsTo(Movie::class);
     }
