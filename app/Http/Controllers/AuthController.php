@@ -29,9 +29,17 @@ class AuthController extends Controller {
         ], Response::HTTP_ACCEPTED);
     }
 
+    public static function normalizeEmail(String $email): String {
+        return strtolower(trim($email));
+    }
+
+    public static function normalizeUsername(String $username): String {
+        return trim($username);
+    }
+
     public function submitLogin(Request $request): JsonResponse {
         $password = $request->input('hashedPassword', "");
-        $email = $request->input('email', "");
+        $email = self::normalizeEmail($request->input('email', ""));
         if (!(InputType::isValidClientHashedPasswordFormat($password) && InputType::isValidEmailFormat($email))) {
             return JsonResponseGenerator::badRequest();
         }
@@ -66,9 +74,9 @@ class AuthController extends Controller {
 
 
     public function submitSignup(Request $request): JsonResponse {
-        $username = $request->input('username', "");
+        $username = self::normalizeUsername($request->input('username', ""));
         $password = $request->input('hashedPassword', "");
-        $email = $request->input('email', "");
+        $email = self::normalizeEmail($request->input('email', ""));
 
         if (!(InputType::isValidClientHashedPasswordFormat($password) && InputType::isValidEmailFormat($email) && InputType::isValidUsernameFormat($username))) {
             return JsonResponseGenerator::badRequest();
