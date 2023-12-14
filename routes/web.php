@@ -40,9 +40,9 @@ Route::get('/health', function () {
     return "ok";
 });
 
-Route::get('/movieinfo/default', function () {
+Route::get('/movie/default', function () {
     return view('movies/movieinfo');
 })->name('Movie Info');
 
-Route::get('/movieinfo/{id}', [App\Http\Controllers\MovieInfo::class, 'movieInfo']);
+Route::get('/movie/{id}', [App\Http\Controllers\MovieInfo::class, 'movieInfo']);
 ?>
