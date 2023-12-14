@@ -13,6 +13,15 @@
 			</section>
 			<button class="change-btn-usr" id="saveUsrBtn">Save Username</button>
 		</article>
+		<article class="change-email">
+                <h2>Change Email</h2>
+                <section class="email-section">
+                    <label for="emailField" >Email:</label>
+                    <input class="inputField" value="{{Auth::user()->email}}" id="emailField" type="email" name="email" autocomplete="email" title="Choose a new email"  autofocus required />
+                </section>
+                <button class="change-btn-email" id="saveUsrBtn">Save E-mail</button>
+            </article>
+
 		<article class="change-password">
 			<h2>Change Password</h2>
 				<section class="password-inputfields">

@@ -44,7 +44,8 @@ label{
 }
 
 .change-username,
-.change-password{
+.change-password,
+.change-email{
     background-color: var(--Accent);
     width: 100%;
 
@@ -54,9 +55,12 @@ label{
     padding-bottom: 30px;
 
     border-radius: 5px;
+
+    margin-bottom: 20px;
 }
 
-.username-section{
+.username-section,
+.email-section{
     border:none;
     outline: none;
     display: inline-block;
@@ -68,7 +72,8 @@ label{
 }
 
 .change-btn-usr,
-.change-btn-pwd{
+.change-btn-pwd,
+.change-btn-email{
     background-color: var(--Star_Color);
 
     height: 45px;
@@ -84,12 +89,12 @@ label{
     font-weight: 400;
 }
 
-.change-btn-usr{
+.change-btn-usr,
+.change-btn-email{
     margin-top: 10px;
 }
 
-.change-password{
-    margin-top: 20px;
+.change-password{   
     padding-bottom: 60px;
 }
 
@@ -138,7 +143,8 @@ label{
 }
 
 .change-btn-usr:hover,
-.change-btn-pwd:hover{
+.change-btn-pwd:hover,
+.change-btn-email:hover{
     background-color: var(--Star_Color_Hover);
 }
 
@@ -151,9 +157,6 @@ label{
     background-color: #7998db;
 }
 
-.change-btn-usr:active,
-.change-btn-pwd:active,
-.delete-btn:active,
-.log-out-btn:active{
+button:active{
     opacity: 50%;
 }
