@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MovieinfoController;
+use App\Http\Controllers\addToWatchlistController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,5 +71,7 @@ Route::get('/movie/default', function () {
     return view('movies/movieinfo');
 })->name('Movie Info');
 
-Route::get('/movie/{id}', [App\Http\Controllers\MovieInfo::class, 'movieInfo']);
-?>
+Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']);
+
+Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');
+

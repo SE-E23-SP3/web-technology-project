@@ -94,30 +94,27 @@
                 <section class="col-10 offset-1">
                     <section class="col box info">
                     <article class="row">
-                        <!--foreach($movie->genres as $genre)
-                        <p>{$genre->genre_name}</p>
-                        endforeach-->
+                        @foreach($movie->genres as $genre)
                         <section class="genre">
-                            <p class="genreP">Adventure</p>
+                            <p class="genreP">{{$genre->genre_name}}</p>
                         </section>
-                        <section class="genre">
-                            <p class="genreP">Adventure</p>
-                        </section>
-                        <section class="genre">
-                            <p class="genreP">Adventure</p>
-                        </section>
-                        <section class="genre">
-                            <p class="genreP">Adventure</p>
-                        </section>
+                        @endforeach
                     </article>
                     <hr>    
                     @isset($movie->description)
                     <p>{{$movie->description}}</p>
                     @endisset
                     <hr>
+                    
                     <div class="buttonPos">
-                        <button type="button">Add to watchlist</button>
+                        <form action="{{ route('watchlist.add', $movie->id) }}" method="POST">
+                            @csrf
+                            <button type="submit">Add to watchlist</button>
+                        </form>
                     </div>
+                    @error('error')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 </section>
             </section>
             </article>
@@ -132,30 +129,12 @@
                     <section class="col box info">
                         <h3>Cast</h3>
                         <article class="row flex">
+                            @foreach($movie->roles as $person)
                             <section class="col-2 actor">
-                                <p>Bob Iversen Bobsen</p>
-                                <p>Role: SKr    </p>
+                                <p>{{$person->first_name}} {{$person->last_name}}</p>
+                                <p>Role: {{$person->movie_cast->role}}</p>
                             </section>
-                            <section class="col-2 actor">
-                                <p>1</p>
-                            </section>
-                            <section class="col-2 actor">
-                                <p>1</p>
-                            </section>
-                            <section class="col-2 actor">
-                                <p>1</p>
-                            </section> <section class="col-2 actor">
-                                <p>1</p>
-                            </section>
-                            <section class="col-2 actor">
-                                <p>1</p>
-                            </section>
-                            <section class="col-2 actor">
-                                <p>1</p>
-                            </section>
-                            <section class="col-2 actor">
-                                <p>1</p>
-                            </section>
+                        @endforeach
                         </article>
                     <hr>
                         <h3>Crew</h3>
