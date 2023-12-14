@@ -1,8 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 /*
@@ -42,9 +43,15 @@ Route::controller(AuthController::class)
 
     Route::any('logout', 'logout')->name('logout');
 });
-Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
 
-Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
+
+Route::controller(AccountController::class)
+->prefix('account')
+->middleware('auth')
+->group(function() {
+    Route::get('/', 'viewAccount')->name('account');
+
+});
 
 
 
@@ -55,9 +62,17 @@ Route::get('/secure', function() {
     return view('hello');
 })->middleware('auth');
 
-Route::get('/user-edit', function() {
-    return view('account/user-edit');
-})->name('user-edit');
+
+
+
+
+
+Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
+
+Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
+
+
+
 
 
 
