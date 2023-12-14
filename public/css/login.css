@@ -9,14 +9,13 @@ h1{
     font-size: xx-large;
 }
 
-input{
+input {
     border-radius: 5px;
     background-color: white;
     color: black;
-
 }
 
-input:focus{
+input:focus {
     outline: none;
 }
 
@@ -24,6 +23,8 @@ button{
     color: var(--Text);
     border: none;
     text-align: center;
+    border-radius: 5px;
+    background-color: var(--Primary);
 }
 
 button:hover{
@@ -43,15 +44,43 @@ button:hover{
 }
 
 .SigninBtn{
-    background-color: var(--Primary);
     border-radius: 5px;
-    
-
+    background-color: var(--Primary);
 }
 
 .newAccBtn{
     background-color: var(--Text_Dim);
     border-radius: 5px;
-
 }
 
+.error-border {
+    border-color: red !important;
+}
+
+.ok-border {
+    border-color: rgb(0 234 41) !important;
+}
+
+.error-message {
+    color: red;
+}
+
+.error-border, .ok-border {
+    border-style: solid;
+    border-width: 3px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.error-container {
+    text-align: center;
+}
+
+
+input:disabled {
+    color: gray;
+    border-color: rgb(93, 93, 93) !important;
+}
