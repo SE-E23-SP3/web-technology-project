@@ -30,7 +30,7 @@ class UserProfileController extends Controller
 
         $ratedMovies = $user->ratings;
 
-        return view('user.rated-movies', [
+        return view('user-profile.user-profile', [
             'ratedMovies' => $ratedMovies,
             'username' => $username,
             'memberSince' => $memberSince,

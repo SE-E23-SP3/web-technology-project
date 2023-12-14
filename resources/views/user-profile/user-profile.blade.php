@@ -1,4 +1,4 @@
-<x-layouts.base>
+<x-layouts.base title="Profile">
   <x-slot:head>
     <link rel="stylesheet" href="{{asset('css/user-profile.css')}}">
     <!--Font awesome icons -->
@@ -8,8 +8,8 @@
   </x-slot:head>
   
     <div class="background">
-      <div class="content">
-      <section class="user-info">
+      	<div class="content">
+      	<section class="user-info">
     		<img class="profile-picture" src="bpp.jpg" />
 				<article class="profile-name-and-date">
 					<p class="username">{{ $username }}</p>
@@ -20,10 +20,10 @@
 						</a>
 				</section>
         <section class="rated-movies-section">
-          <p class="movies-header">Rated Movies</p>
-          <p class="movies-second-head">Recent ratings</p>
-          <div class="movies-list">
-          @foreach($ratedMovies as $movie)
+          	<p class="movies-header">Rated Movies</p>
+         	<p class="movies-second-head">Recent ratings</p>
+         	<div class="movies-list">
+         	@foreach($ratedMovies as $movie)
                     <article class="movie">
                         <a href="{{ route('movie.details', ['id' => $movie->id]) }}">
                             <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
@@ -36,8 +36,8 @@
                     </article>
                 @endforeach
           </div>
-          <div class="see-more">
-            <a href="https://localhost:8443/watchlist">see ratings...</a>
+          <div>
+            <a  class="see-more" href="https://localhost:8443/watchlist">see ratings...</a>
           </div>
         </section>
 
@@ -45,17 +45,21 @@
           <p class="movies-header">Watchlisted Movies</p>
           <p class="movies-second-head">Recently added</p>
           <div class="movies-list">
-          @foreach($ratedMovies as $movie)
-                    <article class="movie">
-                        <a href="{{ route('movie.details', ['id' => $movie->id]) }}">
-                            <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
-                        </a>
-                        <p class="movie-name">{{ $movie->title }}</p>
-                    </article>
-                @endforeach
+		  @foreach($ratedMovies as $index => $movie)
+    		@if($index < 10)
+        		<article class="movie">
+           			<a href="{{ route('movie.details', ['id' => $movie->id]) }}">
+                	<img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
+           			</a>
+            		<p class="movie-name">{{ $movie->title }}</p>
+        		</article>
+   			 @else
+        	@break
+   		 @endif
+		@endforeach
           </div>
-          <div class="see-more">
-            <a href="https://localhost:8443/wathclist">see watchlist...</a>
+          <div>
+            <a class="see-more" href="https://localhost:8443/wathclist">see watchlist...</a>
           </div>
         </section>
       </div>

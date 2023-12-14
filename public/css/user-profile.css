@@ -2,18 +2,21 @@ p{
     margin: 0;
 }
 
+
 .background{
-    background-color: black;
+    background-color: var(--Background);
 }
 
 .content{
-    background-color: #1E1E1E!important;
+    background-color: var(--Background_Shade);
     color: white;
     width: auto;
-    margin-left: 8%;
-    margin-right: 8%;
+    margin-left: 20%;
+    margin-right: 20%;
     padding-top: 20px;
     padding-bottom: 20px;
+
+    box-sizing: border-box;
 }
 
 .user-info{
@@ -69,7 +72,7 @@ p{
     background-color: #D9D9D9;
     overflow-x: auto;
     white-space: nowrap;
-    width: 80vw;
+    width: auto;
 
     border-radius: 20px;
 
@@ -130,8 +133,9 @@ p{
 }
 
 .see-more{
+    background-color: #D9D9D9;
     float:right;
     margin-right: 20px;
     font-size: 15px;
-    color: #8FB3FF;
+    color: var(--Primary);
 }

@@ -19,6 +19,9 @@
                 <li>
                     <a class="" href="{{route('signup')}}">Signup</a>
                 </li>
+                <li>
+                    <a class="" href="{{route('user-profile')}}">Profile</a>
+                </li>
             </ul>
             <form class="d-flex">
                 @csrf
