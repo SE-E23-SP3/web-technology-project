@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Enums\MPARating;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Movie>
@@ -19,8 +20,10 @@ class MovieFactory extends Factory
         return [
             'title' => fake()->unique()->sentence(2),
             'description' => fake()->paragraph(true),
+            'duration' => fake()->words(1, true),
             'release_date' => fake()->Date(),
-            'poster_url' => fake()->unique()->imageUrl(640, 480, 'animals', true)
+            'poster_url' => fake()->unique()->imageUrl(640, 480, 'animals', true),
+            'mpa_rating' => MPARating::values()[random_int(0,4)]
         ];
     }
 }
