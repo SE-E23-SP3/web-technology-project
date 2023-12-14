@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Middleware\NoAuthenticated;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,7 @@ use App\Http\Controllers\CategoryController;
 
 
 Route::controller(AuthController::class)
+->middleware(NoAuthenticated::class)
 ->group(function(){
     Route::prefix("signup")
     ->group(function(){
@@ -41,7 +43,7 @@ Route::controller(AuthController::class)
         Route::get('hello', 'hello');
     });
 
-    Route::any('logout', 'logout')->name('logout');
+    Route::any('logout', 'logout')->withoutMiddleware(NoAuthenticated::class)->name('logout');
 });
 
 
