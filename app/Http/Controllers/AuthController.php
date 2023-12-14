@@ -11,6 +11,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use App\Core\PasswordTools;
 use App\Core\InputType;
@@ -89,16 +90,19 @@ class AuthController extends Controller {
             return JsonResponseGenerator::badRequest("Email: taken");
         }
 
+        $hashedPassword = Hash::make($password);
 
-        $user = new User([
-            'email' => $email,
-            'username' => $username,
-            'password' => Hash::make($password)
-        ]);
+        DB::transaction(function() use ($email, $username, $hashedPassword){
+            $user = new User([
+                'email' => $email,
+                'username' => $username,
+                'password' => $hashedPassword
+            ]);
 
-        $user->save();
+            $user->save();
 
-        Auth::login($user, $remember = true);
+            Auth::login($user, $remember = true);
+        });
 
 
         return self::generateSucessResponse($request);
