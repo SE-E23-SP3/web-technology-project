@@ -69,6 +69,13 @@ async function makeJSONPostRequest(url, jsonBody, customHeaders = {}) {
 	return genericJSONRequest(url, "POST", jsonBody, customHeaders);
 }
 
+async function makeJSONDeleteRequest(url, jsonBody, customHeaders = {}) {
+	return genericJSONRequest(url, "DELETE", jsonBody, customHeaders);
+}
+
+async function makeJSONPutRequest(url, jsonBody, customHeaders = {}) {
+	return genericJSONRequest(url, "PUT", jsonBody, customHeaders);
+}
 
 
 
