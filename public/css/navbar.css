@@ -15,9 +15,14 @@ a:hover{
 
 .navbar-colors{
     background-color: var(--Background_Shade);
-    
+
 }
 
 .nav-form{
     background-color: var(--Background_Shade);
+}
+
+
+.active-site {
+    color: var(--Primary);
 }
