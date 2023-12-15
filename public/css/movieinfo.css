@@ -22,6 +22,11 @@
     width: 100%;
     border-radius: 5px;
 }
+.trailer{
+    height: 450px;
+    width: 100%;
+    border-radius: 5px;
+}
 .info{
     min-height: 280px;
     padding-left: 10px;
@@ -109,5 +114,9 @@ p{
 }
 .genreP{
     font-size: 10px;
+    margin: 0px;
+}
+.ratingP{
+    padding-left: 0px;
     margin: 0px;
 }
