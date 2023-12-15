@@ -1,9 +1,4 @@
-li{
-    background-color: var(--Background_Shade);
-}
-
 a{
-    background-color: var(--Background_Shade);
     color: var(--Text);
     text-decoration: none;
     margin: 0px 10px;

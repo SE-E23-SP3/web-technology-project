@@ -5,7 +5,8 @@ use App\Http\Controllers\AuthController;
 
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
-
+use App\Http\Controllers\MovieInfoController;
+use App\Http\Controllers\addToWatchlistController;
 use App\Http\Controllers\UserProfileController;
 /*
 |--------------------------------------------------------------------------
@@ -74,9 +75,11 @@ Route::get('/health', function () {
     return "ok";
 });
 
-Route::get('/movieinfo/default', function () {
+Route::get('/movie/default', function () {
     return view('movies/movieinfo');
 })->name('Movie Info');
 
-Route::get('/movieinfo/{id}', [App\Http\Controllers\MovieInfo::class, 'movieInfo']);
-?>
+Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']) ->name('movie-id');
+
+Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');
+

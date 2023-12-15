@@ -18,15 +18,17 @@
 }
 
 .pic{
-    height:320px;
+    height:100% ;
     width: 100%;
     border-radius: 5px;
 }
 .info{
-    height: 280px;
+    min-height: 280px;
     padding-left: 10px;
+    padding-right: 10px;
     overflow-y: auto;
     overflow-wrap:break-word;
+    overflow-x: hidden;
 }
 button{
     background-color: rgb(143, 179, 255);
@@ -74,4 +76,38 @@ td{
     max-height:320px;
     width: 100%;
     border-radius: 5px;
+}
+body{
+    background-color: var(--Background);
+    color: var(--Text);
+    overflow-x: hidden; 
+}
+.actor{
+    padding: 5px;
+    margin: 5px;
+    height: 70px;
+    border-radius: 5px;
+    background-color: #121212;
+    overflow: hidden;
+    font-size: 14px;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+p{
+    margin-bottom: 10px;
+}
+.genre{
+    padding: 5px;
+    margin: 5px;
+    height: 25px;
+    width: fit-content;
+    border-radius: 10px;
+    background-color: #121212;   
+}
+.genreP{
+    font-size: 10px;
+    margin: 0px;
 }

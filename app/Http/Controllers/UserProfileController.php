@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class UserProfileController extends Controller
 {
@@ -17,21 +18,27 @@ class UserProfileController extends Controller
         }
 
         $ratedMovies = $user->ratings ?? [];
+        $watchlistMovies = DB::table('watchlist')
+            ->join('movies', 'watchlist.movie_id', '=', 'movies.id')
+            ->where('watchlist.user_id', $user->id)
+            ->select('movies.*')
+            ->get();
+
         $username = $user->username ?? 'Username';
         $memberSince = optional($user->created_at)->format('M d, Y') ?? Carbon::now()->format('M d, Y');
 
-        if (empty($ratedMovies)) {
+        if (empty($ratedMovies) && $watchlistMovies->isEmpty()) {
             return view('user-profile.user-profile', [
                 'ratedMovies' => [],
+                'watchlistMovies' => [],
                 'username' => $username,
                 'memberSince' => $memberSince,
             ]);
         }
 
-        $ratedMovies = $user->ratings;
-
         return view('user-profile.user-profile', [
             'ratedMovies' => $ratedMovies,
+            'watchlistMovies' => $watchlistMovies,
             'username' => $username,
             'memberSince' => $memberSince,
         ]);

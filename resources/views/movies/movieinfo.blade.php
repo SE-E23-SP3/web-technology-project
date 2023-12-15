@@ -3,14 +3,6 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <link rel="stylesheet" href="{{asset('css/movieinfo.css')}}">
-        
-        <style>
-            body{
-    background-color: var(--Background);
-    color: var(--Text);
-    overflow-x: hidden;
-}
-        </style>
     </x-slot:head>
 
     <body>
@@ -81,26 +73,16 @@
         
         <div class="container-fluid">
             <article class="row">
-                <section class="col-2 offset-1">
+                <section class="col-3 offset-1">
                     @isset($movie->poster_url)
                         <img src="{{$movie->poster_url}}" class="pic">  
                     @endisset
                 </section>
-                <section class="col-5">
+                <section class="col-7">
                     <img src="https://m.media-amazon.com/images/M/MV5BNGY0ZjA3MzAtYjIwOS00NTk5LThmMzEtNjI0MmU4MzQ1NmRiXkEyXkFqcGdeQWFybm8@._V1_QL75_UY281_CR0,0,500,281_.jpg"
                     class="pic">
                 </section>
-                <section class="col-3 box">
-                    <article class="row">
-                        <h3>Video Name</h3>
-                    </article>
-                    <article class="row">
-                        <section class="col align-self-center">
-                            <hr>
-                            <p>Description</p>
-                        </section>
-                    </article>
-                </section>
+
             </article>
         </div>
 
@@ -109,56 +91,83 @@
                 <p></p>
             </article>
             <article class="row">
-                <section class="col-7 offset-1">
+                <section class="col-10 offset-1">
                     <section class="col box info">
-                        <!--foreach($movie->genres as $genre)
-                        <p>{$genre->genre_name}</p>
-                        endforeach-->
-
-                        <!--Seems there is no inbetween table-->
-                    <p>MISSING TAGS</p>
+                    <article class="row">
+                        @foreach($movie->genres as $genre)
+                        <section class="genre">
+                            <p class="genreP">{{$genre->genre_name}}</p>
+                        </section>
+                        @endforeach
+                    </article>
+                    <hr>    
                     @isset($movie->description)
                     <p>{{$movie->description}}</p>
                     @endisset
                     <hr>
+                    
+                    <div class="buttonPos">
+                        <form action="{{ route('watchlist.add', $movie->id) }}" method="POST">
+                            @csrf
+                            <button type="submit">Add to watchlist</button>
+                        </form>
+                    </div>
+                    @error('error')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 </section>
             </section>
-                <section class="col-3 box info">
-                        <article class="row">
-                            <section class="col-4">
-                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="icon" style="width: 36px;">
-                                    <span>16</span></p>
+            </article>
+        </div>
+
+        <div class="container-fluid">
+            <article class="row">
+                <p></p>
+            </article>
+            <article class="row">
+                <section class="col-10 offset-1">
+                    <section class="col box info">
+                        <h3>Cast</h3>
+                        <article class="row flex">
+                            @foreach($movie->roles as $person)
+                            <section class="col-2 actor">
+                                <p>{{$person->first_name}} {{$person->last_name}}</p>
+                                <p>Role: {{$person->movie_cast->role}}</p>
                             </section>
-                            <section class="col-4 offset-3">
-                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="icon" style="width: 36px;">
-                                    <span>1556</span></p>
+                        @endforeach
+                        </article>
+                    <hr>
+                        <h3>Crew</h3>
+                        <article class="row flex">
+                            <section class="col-2 actor">
+                                <p>Bob Iversen Bobsen</p>
+                                <p>Role: SKr    </p>
+                            </section>
+                            <section class="col-2 actor">
+                                <p>1</p>
+                            </section>
+                            <section class="col-2 actor">
+                                <p>1</p>
+                            </section>
+                            <section class="col-2 actor">
+                                <p>1</p>
+                            </section> <section class="col-2 actor">
+                                <p>1</p>
+                            </section>
+                            <section class="col-2 actor">
+                                <p>1</p>
+                            </section>
+                            <section class="col-2 actor">
+                                <p>1</p>
+                            </section>
+                            <section class="col-2 actor">
+                                <p>1</p>
                             </section>
                         </article>
-                        <hr>
-                    <table>
-                        <tbody>
-                          <tr>
-                            <td>Seasons:</td>
-                            <td>1</td>
-                          </tr>
-                          <tr>
-                            <td>Total episodes:</td>
-                            <td>54</td>
-                          </tr>
-                          <tr>
-                            <td>Box:</td>
-                            <td>100$</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <article class="row">
-                        <div class="buttonPos">
-                            <button type="button">Add to watchlist</button>
-                        </div>
-                      </article>
-
                 </section>
+            </section>
             </article>
+            <p></p>
         </div>
 
         <!-- Modal -->

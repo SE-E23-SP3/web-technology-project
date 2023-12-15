@@ -45,18 +45,19 @@
           <p class="movies-header">Watchlisted Movies</p>
           <p class="movies-second-head">Recently added</p>
           <div class="movies-list">
-		  @foreach($ratedMovies as $index => $movie)
-    		@if($index < 10)
-        		<article class="movie">
-           			<a href="{{ route('movie.details', ['id' => $movie->id]) }}">
-                	<img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
-           			</a>
-            		<p class="movie-name">{{ $movie->title }}</p>
-        		</article>
-   			 @else
-        	@break
-   		 @endif
-		@endforeach
+          @foreach($watchlistMovies as $index => $movie)
+    @if($index < 10)
+        <article class="movie">
+            <a href="{{ route('movie-id', ['id' => $movie->id]) }}">
+                <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
+                <button class="remove-from-list-btn" onclick="">X</button>
+            </a>
+            <p class="movie-name">{{ $movie->title }}</p>
+        </article>
+    @else
+        @break
+    @endif
+@endforeach
           </div>
           <div>
             <a class="see-more" href="https://localhost:8443/wathclist">see watchlist...</a>

@@ -2,7 +2,6 @@ p{
     margin: 0;
 }
 
-
 .background{
     background-color: var(--Background);
 }
@@ -103,6 +102,7 @@ p{
     width: 100px;
     margin-right: 5px;
     display: inline-block;
+    padding-top: 5px;
 }
 .movie-pic{
     width: 100px;
@@ -114,14 +114,27 @@ p{
     box-shadow: 0 5px 15px rgba(0,0,0,0.5);
 }
 
+.remove-from-list-btn{
+    transform: translate(-90%, -380%);
+    -ms-transform: translate(-115%, -360%);
+    background-color: #990a0a;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 .movie-name,
 .movie-rating{
     color: black;
     text-align: center;
 }
 .movie-name{
-    font-size: 11px;  
+    font-size: 12px;  
     font-weight: 500;
+    margin-left: 12px;
 }
 .movie-rating{
     font-size: 10px;
