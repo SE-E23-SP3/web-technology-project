@@ -52,7 +52,15 @@ Route::controller(AccountController::class)
 ->middleware('auth')
 ->group(function() {
     Route::get('/', 'viewAccount')->name('account');
+    Route::get('debug', 'debug');
 
+    Route::prefix("submit")
+    ->group(function() {
+        Route::delete('delete', 'deleteUser');
+        Route::put('updateusername', 'updateUsername');
+        Route::put('updateemail', 'updateEmail');
+        Route::put('updatepassword', 'updatePassword');
+    });
 });
 
 

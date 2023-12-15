@@ -94,7 +94,7 @@ label{
     margin-top: 10px;
 }
 
-.change-password{   
+.change-password{
     padding-bottom: 60px;
 }
 
@@ -124,7 +124,7 @@ label{
 
 .log-out-btn{
     background-color: var(--Primary);
-    
+
     height: 45px;
     width: 90px;
 
@@ -159,4 +159,16 @@ label{
 
 button:active{
     opacity: 50%;
+}
+
+
+
+
+
+
+
+
+.horizontal-container {
+    display: flex;
+    gap: 15px;
 }

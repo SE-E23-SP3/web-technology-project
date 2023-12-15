@@ -84,3 +84,8 @@ input:disabled {
     color: gray;
     border-color: rgb(93, 93, 93) !important;
 }
+
+
+.ok-message {
+    color: rgb(0 234 41) !important;
+}

@@ -57,10 +57,10 @@ async function handleSubmissionError(error) {
 	switch (error.json.message) {
 		case "User: taken":
 			usernameField.insertError("Already taken!");
-			break;
+		break;
 		case "Email: taken":
 			emailField.insertError("Already taken!");
-			break;
+		break;
 		default:
 			throw error;
 	}
@@ -82,7 +82,7 @@ signUp.addEventListener("submit", event => {
 	submitButton.disabled = true;
 
 	prepareSignup(allFields).then(submitSignup).then(jsonResponse => {
-			window.location.href = getRedirectUrlFromParam(jsonResponse.url);
+		window.location.href = getRedirectUrlFromParam(jsonResponse.url);
 		}).catch(handleSubmissionError).catch(error => {
 			console.error(error.json);
 			formRestorer.save()
