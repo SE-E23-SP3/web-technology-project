@@ -6,7 +6,7 @@ use App\Http\Controllers\GenreController;
 
 <div class="container-fluid p-0">
     <nav class="navbar navbar-expand-lg navbar-colors">
-        <a class="navbar-brand a-style" href="{{ route('Welcome') }}">SMDB</a>
+        <a class="navbar-brand a-style" href="{{route('welcome')}}">SMDB</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -14,13 +14,16 @@ use App\Http\Controllers\GenreController;
         <div class="collapse navbar-collapse navbar-colors" id="navbarSupportedContent">
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="">
-                    <a class="" href="{{ route('Welcome') }}">Home</a>
+                    <a class="" href="{{route('welcome')}}">Home</a>
                 </li>
                 <li class="">
                     <a class="" href="{{ route('watchlist') }}">watchlist</a>
                 </li>
                 <li>
                     <a class="" href="{{ route('login') }}">Login</a>
+                </li>
+                <li>
+                    <a class="" href="{{route('signup')}}">Signup</a>
                 </li>
             </ul>
             <form class="d-flex">
@@ -34,10 +37,11 @@ use App\Http\Controllers\GenreController;
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#userModal">
             <img src="bpp.jpg" alt="Profile Picture" width="40" height="40">
         </button>
+
+        
     </nav>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="userModal" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -59,6 +63,7 @@ use App\Http\Controllers\GenreController;
             </div>
         </div>
     </div>
+<!-- Modal -->
 </div>
 
 <!-- Add styles for the modal -->
