@@ -73,3 +73,10 @@ Route::get('/top-rated', function () {
 Route::get('/health', function () {
     return "ok";
 });
+
+Route::get('/movieinfo/default', function () {
+    return view('movies/movieinfo');
+})->name('Movie Info');
+
+Route::get('/movieinfo/{id}', [App\Http\Controllers\MovieInfo::class, 'movieInfo']);
+?>
