@@ -31,13 +31,11 @@ class Navbar extends Component
         if (Auth::check()) {
             $navbar = array_merge($navbar, [
                 "Watchlist" => URL::to("/watchlist"),
-                "Account" => route('account'),
-                "Signout" => route('logout')
+                "Account" => route('account')
             ]);
         } else {
             $navbar = array_merge($navbar, [
-                "Login" => route('login'),
-                "Signup" => route('signup')
+                "Login" => route('login')
             ]);
         }
 

@@ -1,4 +1,4 @@
-h1{
+.page-titel{
     background-color: var(--Background_Shade);
     text-align: center;
     margin-bottom: 40px;
@@ -7,13 +7,13 @@ h1{
     font-size: 30px;
 }
 
-h2{
+.section-headers{
     background-color: var(--Accent);
     font-size: 20px;
     text-align: center;
 }
 
-input{
+.inputField{
     margin-bottom: 10px;
     border-radius: 10px;
 }
@@ -25,14 +25,9 @@ label,
     font-size: 15px;
 }
 
-h1,
-label{
-
-    display: block;
-}
-
 .background{
     background-color: var(--Background);
+    margin: 10px;
 }
 .content{
     background-color: var(--Background_Shade);
@@ -43,9 +38,7 @@ label{
     margin-right: auto;
 }
 
-.change-username,
-.change-password,
-.change-email{
+.change-articles{
     background-color: var(--Accent);
     width: 100%;
 
@@ -71,9 +64,7 @@ label{
     margin-right: auto;
 }
 
-.change-btn-usr,
-.change-btn-pwd,
-.change-btn-email{
+.change-btns{
     background-color: var(--Star_Color);
 
     height: 45px;
@@ -89,8 +80,7 @@ label{
     font-weight: 400;
 }
 
-.change-btn-usr,
-.change-btn-email{
+.change-btn-usr{
     margin-top: 10px;
 }
 
@@ -142,9 +132,7 @@ label{
     font-weight: 400;
 }
 
-.change-btn-usr:hover,
-.change-btn-pwd:hover,
-.change-btn-email:hover{
+.change-btns:hover{
     background-color: var(--Star_Color_Hover);
 }
 
@@ -161,14 +149,13 @@ button:active{
     opacity: 50%;
 }
 
-
-
-
-
-
-
-
 .horizontal-container {
     display: flex;
     gap: 15px;
+    align-items: center;
+}
+
+.change-btn-email{
+    margin-left: auto;
+    margin-right:0;
 }
