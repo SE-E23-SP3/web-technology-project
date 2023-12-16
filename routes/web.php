@@ -7,7 +7,7 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MovieInfoController;
 use App\Http\Controllers\addToWatchlistController;
-use App\Http\Controllers\rateMovieController;
+use App\Http\Controllers\RateMovieController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
