@@ -7,7 +7,7 @@ use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MovieInfoController;
 use App\Http\Controllers\addToWatchlistController;
-use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\rateMovieController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -58,16 +58,9 @@ Route::get('/secure', function() {
     return view('hello');
 })->middleware('auth');
 
-Route::get('/watchlist', function () {
-    return view('/user-profile-page/your-watchlist');
-})-> name("watchlist");
 
-Route::get('/user-profile', [UserProfileController::class, 'getUserRatedMovies'])
-    ->name('user-profile');
 
-Route::get('/top-rated', function () {
-    return view('/top-rated');
-}) -> name('top-rated');
+
 
 
 // A heallth check endpoint to verify that the service is up and running
@@ -79,7 +72,10 @@ Route::get('/movie/default', function () {
     return view('movies/movieinfo');
 })->name('Movie Info');
 
-Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']) ->name('movie-id');
+Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']);
 
 Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');
+
+Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name('movies.rate');
+
 
