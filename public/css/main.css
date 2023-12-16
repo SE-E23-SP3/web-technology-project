@@ -1,0 +1,27 @@
+*{
+    background-color: var(--Background);
+    color: var(--Text);
+}
+
+.bg{
+    background-color: var(--Background_Shade);
+}
+
+.trailer{
+    text-align: center;
+    font-size: 1rem;
+    color: var(--Text);
+    background-color: var(--Primary);
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+}
+
+.bg2{
+    background-color: var(--Primary);
+}
+
+.categoryImg{
+    width: 200px;
+    height: 200px;
+}

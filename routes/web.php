@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\CarouselController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\MovieinfoController;
+use App\Http\Controllers\addToWatchlistController;
+use App\Http\Controllers\rateMovieController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +19,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("Welcome");
 
 
 
@@ -43,9 +45,9 @@ Route::controller(AuthController::class)
 
     Route::any('logout', 'logout')->name('logout');
 });
+Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
 
-
-
+Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
 
 
 
@@ -66,9 +68,14 @@ Route::get('/health', function () {
     return "ok";
 });
 
-Route::get('/movieinfo/default', function () {
+Route::get('/movie/default', function () {
     return view('movies/movieinfo');
 })->name('Movie Info');
 
-Route::get('/movieinfo/{id}', [App\Http\Controllers\MovieInfo::class, 'movieInfo']);
-?>
+Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']);
+
+Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');
+
+Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name('movies.rate');
+
+

@@ -49,9 +49,17 @@ class User extends Authenticatable
             $this->ratings()->attach($movie->id, ['rating' => $rating]);
         }
     }
+    public function addMovieToWatchlist(Movie $movie) {
+        if ($movie instanceof Movie) {
+            $this->watchlistMovies()->attach($movie->id);
+        }
+    }
 
     public function ratings() {
         return $this->belongsToMany(Movie::class, 'movie_rating')->withPivot('rating')->as('movie_rating');
+    }
+    public function watchlistMovies() {
+        return $this->belongsToMany(Movie::class, 'watchlist')->as('watchlist');
     }
 }
 

@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
             CrewTypeSeeder::class,
             PersonSeeder::class,
             UserSeeder::class,
-            MovieSeeder::class
+            MovieSeeder::class,
+            WatchlistSeeder::class
         ]);
     }
 }

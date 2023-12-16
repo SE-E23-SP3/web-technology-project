@@ -3,17 +3,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
         <link rel="stylesheet" href="{{asset('css/movieinfo.css')}}">
-        
-        <style>
-            body{
-    background-color: var(--Background);
-    color: var(--Text);
-    overflow-x: hidden;
-}
-        </style>
     </x-slot:head>
 
-    <body>
+        <p></p>
         <div class="container-fluid">
             <article class="row">
                 <section class="col-3 offset-1">
@@ -44,14 +36,16 @@
                     <article class="row">
                         <section class="col-auto">
                             <img src="https://uxwing.com/wp-content/themes/uxwing/download/arts-graphic-shapes/star-symbol-icon.png"
-                            style="width: 30px;">
+                            style="width: 45px;">
                         </section>
                         <section class="col">
                             <article class="row">
-                                <p style="margin-bottom: 0px;">8.5/10</p>
+                                @isset($movie->ratings)
+                                <p class="ratingP">{{number_format($movie->ratings->avg('movie_rating.rating'), 1)}}/10</p>
+                                @endisset
                             </article>
                             <article class="row">
-                                <p>90K</p>
+                                <p class="ratingP">{{$movie->ratings->count() }}</p>
                             </article>
                         </section>
                     </article>
@@ -66,9 +60,9 @@
                                 <article class="row">
                                     <section class="col-auto">
                                         <img src="https://cdn-icons-png.flaticon.com/512/9784/9784192.png"
-                                        style="width: 30px;">
+                                        style="width: 45px;">
                                     </section>
-                                    <section class="col-auto">
+                                    <section class="col-auto ratingP">
                                         <h5 class="rate">Rate</h5>
                                     </section>
                                 </article>
@@ -81,26 +75,21 @@
         
         <div class="container-fluid">
             <article class="row">
-                <section class="col-2 offset-1">
+                <section class="col-3 offset-1">
                     @isset($movie->poster_url)
                         <img src="{{$movie->poster_url}}" class="pic">  
                     @endisset
                 </section>
-                <section class="col-5">
-                    <img src="https://m.media-amazon.com/images/M/MV5BNGY0ZjA3MzAtYjIwOS00NTk5LThmMzEtNjI0MmU4MzQ1NmRiXkEyXkFqcGdeQWFybm8@._V1_QL75_UY281_CR0,0,500,281_.jpg"
-                    class="pic">
+                <section class="col-7">
+                    @if($movie->trailers->first())
+                        <iframe class="trailer"
+                            src="{{ $movie->trailers->first()->video_url }}" allowfullscreen>
+                        </iframe>
+                        @else
+                            <p>No trailer available</p>
+                    @endif
                 </section>
-                <section class="col-3 box">
-                    <article class="row">
-                        <h3>Video Name</h3>
-                    </article>
-                    <article class="row">
-                        <section class="col align-self-center">
-                            <hr>
-                            <p>Description</p>
-                        </section>
-                    </article>
-                </section>
+
             </article>
         </div>
 
@@ -109,56 +98,65 @@
                 <p></p>
             </article>
             <article class="row">
-                <section class="col-7 offset-1">
+                <section class="col-10 offset-1">
                     <section class="col box info">
-                        <!--foreach($movie->genres as $genre)
-                        <p>{$genre->genre_name}</p>
-                        endforeach-->
-
-                        <!--Seems there is no inbetween table-->
-                    <p>MISSING TAGS</p>
+                    <article class="row">
+                        @foreach($movie->genres as $genre)
+                        <section class="genre">
+                            <p class="genreP">{{$genre->genre_name}}</p>
+                        </section>
+                        @endforeach
+                    </article>
+                    <hr>    
                     @isset($movie->description)
                     <p>{{$movie->description}}</p>
                     @endisset
                     <hr>
+                    
+                    <div class="buttonPos">
+                        <form action="{{ route('watchlist.add', $movie->id) }}" method="POST">
+                            @csrf
+                            <button type="submit">Add to watchlist</button>
+                        </form>
+                    </div>
+                    @error('error')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 </section>
             </section>
-                <section class="col-3 box info">
-                        <article class="row">
-                            <section class="col-4">
-                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="icon" style="width: 36px;">
-                                    <span>16</span></p>
-                            </section>
-                            <section class="col-4 offset-3">
-                                <p class="toppad"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Picture_icon_BLACK.svg/1200px-Picture_icon_BLACK.svg.png" class="icon" style="width: 36px;">
-                                    <span>1556</span></p>
-                            </section>
-                        </article>
-                        <hr>
-                    <table>
-                        <tbody>
-                          <tr>
-                            <td>Seasons:</td>
-                            <td>1</td>
-                          </tr>
-                          <tr>
-                            <td>Total episodes:</td>
-                            <td>54</td>
-                          </tr>
-                          <tr>
-                            <td>Box:</td>
-                            <td>100$</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                      <article class="row">
-                        <div class="buttonPos">
-                            <button type="button">Add to watchlist</button>
-                        </div>
-                      </article>
-
-                </section>
             </article>
+        </div>
+
+        <div class="container-fluid">
+            <article class="row">
+                <p></p>
+            </article>
+            <article class="row">
+                <section class="col-10 offset-1">
+                    <section class="col box info">
+                        <h3>Cast</h3>
+                        <article class="row flex">
+                            @foreach($movie->roles as $person)
+                            <section class="col-2 actor">
+                                <p>{{$person->first_name}} {{$person->last_name}}</p>
+                                <p>Role: {{$person->movie_cast->role}}</p>
+                            </section>
+                        @endforeach
+                        </article>
+                    <hr>
+                        <h3>Crew</h3>
+                        <article class="row flex">
+                            @foreach($movie->crew as $person)
+                                <section class="col-2 actor">
+                                    <p>{{$person->first_name}} {{$person->last_name}}</p>
+                                    <p>Crew type: {{$person->movie_crew->crew_type_id}}</p>
+                                </section>
+                            @endforeach
+                        </article>
+                </section>
+            </section>
+            </article>
+            <p></p>
         </div>
 
         <!-- Modal -->
@@ -169,48 +167,48 @@
         <h1 class="modal-title fs-5" id="ratingModalLabel">Rating</h1>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <form method="GET" id="rateForm">
+      <form id="rateForm" action="{{ route('movies.rate', $movie->id) }}" method="POST">
+        @csrf
         <div class="modal-body">
                 <fieldset>
                     <div>
-                        <input type="radio" id="1star" name="rating" value="1star" />
+                        <input type="radio" id="1star" name="rating" value="1" required/>
                         <label for="1star">1</label>
 
-                        <input type="radio" id="2star" name="rating" value="2star" />
+                        <input type="radio" id="2star" name="rating" value="2" required/>
                         <label for="2star">2</label>
 
-                        <input type="radio" id="3star" name="rating" value="3star" />
+                        <input type="radio" id="3star" name="rating" value="3" required/>
                         <label for="3star">3</label>
                         
-                        <input type="radio" id="4star" name="rating" value="4star" />
+                        <input type="radio" id="4star" name="rating" value="4" required/>
                         <label for="4star">4</label>
 
-                        <input type="radio" id="5star" name="rating" value="5star" />
+                        <input type="radio" id="5star" name="rating" value="5" required/>
                         <label for="5star">5</label>
 
-                        <input type="radio" id="6star" name="rating" value="6star" />
+                        <input type="radio" id="6star" name="rating" value="6" required/>
                         <label for="6star">6</label>
 
-                        <input type="radio" id="7star" name="rating" value="7star" />
+                        <input type="radio" id="7star" name="rating" value="7" required/>
                         <label for="7star">7</label>
                         
-                        <input type="radio" id="8star" name="rating" value="8star" />
+                        <input type="radio" id="8star" name="rating" value="8" required/>
                         <label for="8star">8</label>
 
-                        <input type="radio" id="9star" name="rating" value="9star" />
+                        <input type="radio" id="9star" name="rating" value="9" required/>
                         <label for="9star">9</label>
 
-                        <input type="radio" id="10star" name="rating" value="10star" />
+                        <input type="radio" id="10star" name="rating" value="10" required/>
                         <label for="10star">10</label>
                     </div>
                 </fieldset>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="rateForm" value="Rate"></button>
+                <button type="submit" form="rateForm" value="Rate">Rate</button>
             </div>
         </form>
     </div>
   </div>
 </div>
-    </body>
 </x-layouts.base>
