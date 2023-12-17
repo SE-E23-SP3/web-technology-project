@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MovieInfoController;
 use App\Http\Controllers\addToWatchlistController;
 use App\Http\Controllers\RateMovieController;
+use App\Http\Controllers\UserProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,10 +73,14 @@ Route::get('/movie/default', function () {
     return view('movies/movieinfo');
 })->name('Movie Info');
 
-Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']);
+Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']) ->name('movie-id');
 
 Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');
 
 Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name('movies.rate');
+
+Route::get('/user-profile', [UserProfileController::class, 'getUserRatedMovies'])->name('user-profile');
+
+
 
 
