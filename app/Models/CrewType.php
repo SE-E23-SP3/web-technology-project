@@ -14,9 +14,9 @@ class CrewType extends Model
     ];
 
     public function people() {
-        return $this->belongToMany(Person::class, 'person_movie_crew')->withPivot('movie_id')->as('movie_crew');
+        return $this->belongToMany(Person::class, 'movie_crew')->withPivot('movie_id')->as('movie_crew');
     }
     public function movies() {
-        return $this->belongToMany(Movie::class, 'person_movie_crew')->withPivot('person_id')->as('movie_crew');
+        return $this->belongToMany(Movie::class, 'movie_crew')->withPivot('person_id')->as('movie_crew');
     }
 }
