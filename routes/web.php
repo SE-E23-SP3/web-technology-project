@@ -44,7 +44,7 @@ Route::controller(AuthController::class)
 });
 Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
 
-Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
+//Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
 
 
 

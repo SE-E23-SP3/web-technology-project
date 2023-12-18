@@ -2,23 +2,17 @@
 
 namespace Tests\Feature;
 
-use Database\Seeders\MovieSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 
 class DatabaseTest extends TestCase
 {
-    use RefreshDatabase;
-
+    use RefreshDatabase;    
 public function testInstantiateModel(): void
 {
-    $tables = [
-        'movies',
-        'genres',
-        'users',
-        'trailers',
-    ];
 
     $this->seed();
     
@@ -26,7 +20,35 @@ public function testInstantiateModel(): void
     $this->assertDatabaseCount('genres', 20);
     $this->assertDatabaseCount('users', 10);
     $this->assertDatabaseCount('people', 50);
-    //$this->assertDatabaseCount('', 30);
-    //idk this
+    //MISSING REST
+}
+
+public function testInsertUser(): void
+{
+    $this->assertDatabaseMissing('users', [
+        'username' => 'TestUser',
+        'email' => 'TesterUser@example.com'
+    ]);
+
+    DB::table('users')->insert([
+        'username' => 'TestUser',
+        'email' => 'TesterUser@example.com',
+        'password' => Hash::make('asdfghjklæøasd')
+    ]);
+
+    $this->assertDatabaseHas('users', [
+        'username' => 'TestUser',
+        'email' => 'TesterUser@example.com'
+    ]);
+}
+
+public function testRemoveFromDatabase(): void
+{
+    DB::table('users')->where('username', '=', 'TestUser')->delete();
+
+    $this->assertDatabaseMissing('users', [
+        'username' => 'TestUser',
+        'email' => 'TesterUser@example.com'
+    ]);
 }
 }

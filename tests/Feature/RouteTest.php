@@ -1,9 +1,6 @@
 <?php
 
 namespace Tests\Feature;
-
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class RouteTest extends TestCase
@@ -26,5 +23,15 @@ class RouteTest extends TestCase
                 $this->assertTrue(true);
             }
         }
+        //ROUTE TIL ALLE
+        //TJEK AUTH ROUTES
+        //ROUTE KNAPPER
+
+        //DB VIRKER WATCHLIST
+        //DB VIRKER FAVORITES
+
+        //HTTP test user creation
+
+        //BROWSER TESTS (INTERACTION)
     }
 }
