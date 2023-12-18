@@ -34,6 +34,7 @@ class Movie extends Model
     }
     public function addRating(User $user, int $rating) {
         if ($user instanceof User && is_int($rating)) {
+            $this->ratings()->detach($user->id);
             $this->ratings()->attach($user->id, ['rating' => $rating]);
         }
     }

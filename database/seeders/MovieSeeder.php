@@ -35,7 +35,7 @@ class MovieSeeder extends Seeder
                 $person = Person::inRandomOrder()->first();
                 $movie->addRole($person, fake()->firstName());
             }
-            $movie->addTrailer('https://www.youtube.com/watch?v=KAOdjqyG37A');
+            $movie->addTrailer('https://www.youtube.com/embed/KAOdjqyG37A');
         });
     }
 }
