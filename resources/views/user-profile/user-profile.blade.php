@@ -15,7 +15,7 @@
 					<p class="username all-text">{{ $username }}</p>
 					<p class="member-date all-text">Member since: {{ $memberSince }}</p>
   				</article>
-						<a href="https://localhost:8443/account">
+						<a href="{{route('account')}}">
 								<button class="edit-profile-btn all-text">Edit profile</button>
 						</a>
 				</section>
@@ -37,7 +37,7 @@
                 @endforeach
           </div>
           <div>
-            <a  class="see-more all-text" href="https://localhost:8443/watchlist">see ratings...</a>
+            <a  class="see-more all-text" href="{{route('watchlist')}}">see ratings...</a>
           </div>
         </section>
 
@@ -60,7 +60,7 @@
 @endforeach
           </div>
           <div>
-            <a class="see-more all-text" href="https://localhost:8443/wathclist">see watchlist...</a>
+            <a class="see-more all-text" href="{{route('watchlist')}}">see watchlist...</a>
           </div>
         </section>
       </div>
