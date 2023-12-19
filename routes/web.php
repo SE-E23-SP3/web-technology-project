@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Middleware\NoAuthenticated;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +23,7 @@ use App\Http\Controllers\CategoryController;
 
 
 Route::controller(AuthController::class)
+->middleware(NoAuthenticated::class)
 ->group(function(){
     Route::prefix("signup")
     ->group(function(){
@@ -40,11 +43,25 @@ Route::controller(AuthController::class)
         Route::get('hello', 'hello');
     });
 
-    Route::any('logout', 'logout')->name('logout');
+    Route::any('logout', 'logout')->withoutMiddleware(NoAuthenticated::class)->name('logout');
 });
-Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
 
-Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
+
+Route::controller(AccountController::class)
+->prefix('account')
+->middleware('auth')
+->group(function() {
+    Route::get('/', 'viewAccount')->name('account');
+    Route::get('debug', 'debug');
+
+    Route::prefix("submit")
+    ->group(function() {
+        Route::delete('delete', 'deleteUser');
+        Route::put('updateusername', 'updateUsername');
+        Route::put('updateemail', 'updateEmail');
+        Route::put('updatepassword', 'updatePassword');
+    });
+});
 
 
 
@@ -54,6 +71,19 @@ Route::get('/hello', function () {
 Route::get('/secure', function() {
     return view('hello');
 })->middleware('auth');
+
+
+
+
+
+
+Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
+
+Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
+
+
+
+
 
 
 

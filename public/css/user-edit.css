@@ -1,0 +1,161 @@
+.page-titel{
+    background-color: var(--Background_Shade);
+    text-align: center;
+    margin-bottom: 40px;
+    padding-top: 10px;
+
+    font-size: 30px;
+}
+
+.section-headers{
+    background-color: var(--Accent);
+    font-size: 20px;
+    text-align: center;
+}
+
+.inputField{
+    margin-bottom: 10px;
+    border-radius: 10px;
+}
+
+label,
+.username-section,
+.password-inputfields{
+    background-color: var(--Accent);
+    font-size: 15px;
+}
+
+.background{
+    background-color: var(--Background);
+    margin: 10px;
+}
+.content{
+    background-color: var(--Background_Shade);
+    color: white;
+    width: 700px;
+    padding-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.change-articles{
+    background-color: var(--Accent);
+    width: 100%;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+
+    border-radius: 5px;
+
+    margin-bottom: 20px;
+}
+
+.username-section,
+.email-section{
+    border:none;
+    outline: none;
+    display: inline-block;
+}
+
+.username{
+    display: inline-block;
+    margin-right: auto;
+}
+
+.change-btns{
+    background-color: var(--Star_Color);
+
+    height: 45px;
+    width: 90px;
+
+    border-radius: 30px;
+    float: right;
+
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.change-btn-usr{
+    margin-top: 10px;
+}
+
+.change-password{
+    padding-bottom: 60px;
+}
+
+.password-inputfields{
+    background-color: var(--Accent);
+}
+
+
+.delete-btn{
+    background-color: #A60B0B;
+    font-size: 12px;
+    font-weight: 600;
+
+    height: 35px;
+    width: 80px;
+
+    line-height: 15px;
+
+    margin-top: 30px;
+    margin-left: 10px;
+
+    border-radius: 30px;
+    border: none;
+    outline: none;
+}
+
+
+.log-out-btn{
+    background-color: var(--Primary);
+
+    height: 45px;
+    width: 90px;
+
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+
+    border-radius: 30px;
+
+    display: block;
+    border: none;
+    outline: none;
+
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.change-btns:hover{
+    background-color: var(--Star_Color_Hover);
+}
+
+.delete-btn:hover{
+    background-color: #8a0a0a;
+}
+
+
+.log-out-btn:hover{
+    background-color: #7998db;
+}
+
+button:active{
+    opacity: 50%;
+}
+
+.horizontal-container {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.change-btn-email{
+    margin-left: auto;
+    margin-right:0;
+}
