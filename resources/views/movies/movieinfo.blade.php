@@ -68,11 +68,11 @@
         
         <div class="container-fluid">
             <article class="row">
-                <section class="col-3 offset-1">
-                    @isset($movie->poster_url)
-                        <img src="{{$movie->poster_url}}" class="pic">  
-                    @endisset
-                </section>
+                @isset($movie->poster_url)
+                    <section class="col-3 offset-1">
+                            <img src="{{$movie->poster_url}}" class="pic">  
+                    </section>
+                @endisset
                 <section class="col-7">
                     @if($movie->trailers->first() != NULL)
                         <iframe class="trailer"
