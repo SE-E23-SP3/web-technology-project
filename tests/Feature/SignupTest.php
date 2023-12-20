@@ -9,20 +9,19 @@ use Illuminate\Support\Facades\Hash;
 
 class SignupTest extends TestCase
 
-{
+{/*
     use RefreshDatabase;
     
-    /*public function testSignup()
+    public function testSignup()
     {
-        $this->withoutMiddleware();
-        $hashedPassword = Hash::make('asdfghjklæøasd');
+        //$hashedPassword = Hash::make('asdfghjklæøasd');
         $userData = [
             'username' => 'TestUser',
             'email' => 'TestUser@example.com',
-            'hashedPassword' => $hashedPassword
+            'password' => 'Skrrrbrrrrr124'
         ];
     
-        $response = $this->post('/signup/submit', $userData);
+        $response = $this->postJson('/signup/submit', $userData);
     
         $response->assertStatus(202);
         $this->assertDatabaseHas('users', [

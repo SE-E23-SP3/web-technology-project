@@ -24,14 +24,9 @@ class RouteTest extends TestCase
             }
         }
         //ROUTE TIL ALLE
-        //TJEK AUTH ROUTES
-        //ROUTE KNAPPER
+        //TJEK AUTH ROUTES (Måske login hvis man er logget ind)
+        //BROWSER TESTS (INTERACTION)(SEE IF MOVIE NAME IS THE SAME AS DATABASE) (VIGTIGT)
 
-        //DB VIRKER WATCHLIST
-        //DB VIRKER FAVORITES
-
-        //HTTP test user creation
-
-        //BROWSER TESTS (INTERACTION)
+        //Skriv om preformence er lort derfor ingen preformence test
     }
 }
