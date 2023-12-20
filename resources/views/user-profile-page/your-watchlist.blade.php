@@ -3,9 +3,9 @@
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/watchlist.css') }}">
         <script defer src="{{ asset('js/watchlist.js') }}"></script>
-            
-        <!-- js for testing -->
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
+        
+        
 
     </x-slot:head>
 

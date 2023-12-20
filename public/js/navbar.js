@@ -1,3 +1,4 @@
+
 //Function for select account type
 
     function selectAccountType(selectedUser) {
@@ -29,7 +30,7 @@
     });
 
     function updateContentBasedOnAccount(selectedUser) {
-        // Define the array of kid-friendly genres
+        // Kid-friendly genres
         var kidGenres = ['Comedy', 'Family', 'Animation', 'Adventure'];
     
         // Definition of kid-friendly ratings

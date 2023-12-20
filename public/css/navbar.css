@@ -1,23 +1,75 @@
-li{
+.navbar-list {
+    background-color: var(--Background_Shade);
+    display: flex;
+    align-items: center;
+}
+
+.navbar-con {
     background-color: var(--Background_Shade);
 }
 
-a{
+.a-fix {
     background-color: var(--Background_Shade);
     color: var(--Text);
     text-decoration: none;
-    margin: 0px 10px;
+    margin: 0px 20px;
 }
 
-a:hover{
-    color: var(--Text);
+.a-fix:hover {
+    color: var(--Text_Dim);
 }
 
-.navbar-colors{
+.navbar-colors {
     background-color: var(--Background_Shade);
-    
+    padding-bottom: 3px;
+    padding-top: 3px;
 }
 
-.nav-form{
+.active-site {
+    color: var(--Primary);
+}
+
+.searchbar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    max-width: 600px;
+    padding: 0;
+    gap: 10px;
+}
+
+.logo {
     background-color: var(--Background_Shade);
+    width: 100px;
+}
+
+.navbar-brand {
+    margin-left: 50px;
+    margin-right: auto;
+    padding: 0;
+}
+
+.container-fluid {
+    padding-top: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--Background_Shade);
+}
+
+.account-icon {
+    cursor: pointer;
+    text-align: center;
+    width: 100px; 
+}
+
+.account-icon img {
+    max-width: 100%; 
+    margin-bottom: 0.5rem;
 }

@@ -16,6 +16,14 @@ class JsonResponseGenerator {
         ], $httpCode);
     }
 
+    public static function ok(?String $message = NULL): JsonResponse {
+        return self::generic($message, Response::HTTP_OK);
+    }
+
+    public static function accepted(?String $message = NULL): JsonResponse {
+        return self::generic($message, Response::HTTP_ACCEPTED);
+    }
+
     public static function badRequest(?String $message = NULL): JsonResponse {
         return self::generic($message, Response::HTTP_BAD_REQUEST);
     }
@@ -23,7 +31,6 @@ class JsonResponseGenerator {
     public static function unauthorized(?String $message = NULL): JsonResponse {
         return self::generic($message, Response::HTTP_UNAUTHORIZED);
     }
-
 
     public static function notFound(?String $message = NULL): JsonResponse {
         return self::generic($message, Response::HTTP_NOT_FOUND);
