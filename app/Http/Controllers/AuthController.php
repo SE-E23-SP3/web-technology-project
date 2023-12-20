@@ -25,7 +25,7 @@ class AuthController extends Controller {
     private static function generateSucessResponse(Request $request): JsonResponse {
         // https://laraveldaily.com/post/auth-after-registration-redirect-to-previous-intended-page
         return new JsonResponse([
-            'url' => $request->session()->pull('url.intended', URL::to(self::SUCCESS_URL)),
+            'url' => URL::to(self::SUCCESS_URL),
             'message' => "ok"
         ], Response::HTTP_ACCEPTED);
     }
