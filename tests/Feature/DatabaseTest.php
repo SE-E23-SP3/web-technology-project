@@ -46,7 +46,7 @@ public function testInsert_User(): void
     ]);
 }
 
-public function testRemoveFromDatabase(): void
+public function testRemove_From_Database(): void
 {
     //Delete user from database
     DB::table('users')->where('username', '=', 'TestUser')->delete();
