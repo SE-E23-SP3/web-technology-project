@@ -1,23 +1,66 @@
-li{
+.navbar-list{
+    background-color: var(--Background_Shade);
+}
+.navbar-con {
     background-color: var(--Background_Shade);
 }
 
-a{
+.a-fix {
     background-color: var(--Background_Shade);
     color: var(--Text);
     text-decoration: none;
     margin: 0px 10px;
 }
 
-a:hover{
-    color: var(--Text);
+.a-fix:hover {
+    color: var(--Text_Dim);
 }
 
-.navbar-colors{
+.navbar-colors {
     background-color: var(--Background_Shade);
-    
+    padding-bottom: 3px;
+    padding-top: 3px;
 }
 
-.nav-form{
+.active-site {
+    color: var(--Primary);
+}
+
+.searchbar {
+    flex-grow: 1; 
+    height: 35px;
+    width: 600px;
+    padding: 0;
+    max-width: none;
+}
+
+.logo{
     background-color: var(--Background_Shade);
+    width: 100px;
+}
+
+.navbar-brand{
+    margin-left: 50px;
+    margin-right: 21%;
+    padding: 0;
+}
+
+.container-fluid{
+    padding-top: 20px;
+}
+
+.navbar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.d-flex {
+    background-color: var(--Background_Shade);
+    align-items: center;
+    width: 600px;
+}
+
+.navbar-nav{
+    margin-left: auto;
+    margin-right: 50px;
 }

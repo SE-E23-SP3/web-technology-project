@@ -17,24 +17,12 @@ const passwordRepeatField = new InputValidator(InputValidator.patterns.password,
 
 const submitButton = document.getElementById("submitButton");
 
-const allFields = {
+const allFields = new FieldsContainer({
 	usernameField: usernameField,
 	emailField: emailField,
 	passwordField: passwordField,
 	passwordRepeatField: passwordRepeatField,
-	check: function() {
-		return Object.values(this).every(e => {
-			if (!(e instanceof InputValidator)) return true;
-			return e.check();
-		});
-	},
-	disable: function(val) {
-		return Object.values(this).forEach(e => {
-			if (!(e instanceof InputValidator)) return true;
-			return e.disabled = val;
-		});
-	}
-}
+});
 
 
 
@@ -42,11 +30,11 @@ const allFields = {
 
 
 async function prepareSignup(fieldsObject) {
-	let hashedPasswordPromise = hashPasswordWithEmail(fieldsObject.passwordField.value, fieldsObject.emailField.value, 600000);
+	let hashedPasswordPromise = hashPasswordWithEmail(fieldsObject.fields.passwordField.value, fieldsObject.fields.emailField.value, 600000);
 	return {
-		username: fieldsObject.usernameField.value,
+		username: fieldsObject.fields.usernameField.value,
 		hashedPassword: await hashedPasswordPromise,
-		email: fieldsObject.emailField.value
+		email: fieldsObject.fields.emailField.value
 	}
 }
 
@@ -69,10 +57,10 @@ async function handleSubmissionError(error) {
 	switch (error.json.message) {
 		case "User: taken":
 			usernameField.insertError("Already taken!");
-			break;
+		break;
 		case "Email: taken":
 			emailField.insertError("Already taken!");
-			break;
+		break;
 		default:
 			throw error;
 	}
@@ -94,7 +82,7 @@ signUp.addEventListener("submit", event => {
 	submitButton.disabled = true;
 
 	prepareSignup(allFields).then(submitSignup).then(jsonResponse => {
-			window.location.href = getRedirectUrlFromParam(jsonResponse.url);
+		window.location.href = getRedirectUrlFromParam(jsonResponse.url);
 		}).catch(handleSubmissionError).catch(error => {
 			console.error(error.json);
 			formRestorer.save()

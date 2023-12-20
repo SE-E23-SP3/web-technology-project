@@ -10,10 +10,10 @@ passwordField.useOKBorder = false;
 
 
 async function prepareLogin(fieldsObject) {
-	let hashedPasswordPromise = hashPasswordWithEmail(fieldsObject.passwordField.value, fieldsObject.emailField.value, 600000);
+	let hashedPasswordPromise = hashPasswordWithEmail(fieldsObject.fields.passwordField.value, fieldsObject.fields.emailField.value, 600000);
 	return {
 		hashedPassword: await hashedPasswordPromise,
-		email: fieldsObject.emailField.value
+		email: fieldsObject.fields.emailField.value
 	}
 }
 
@@ -23,22 +23,10 @@ async function submitSignup(credentials) {
 }
 
 
-const allFields = {
+const allFields = new FieldsContainer({
 	emailField: emailField,
 	passwordField: passwordField,
-	check: function() {
-		return Object.values(this).every(e => {
-			if (!(e instanceof InputValidator)) return true;
-			return e.check();
-		});
-	},
-	disable: function(val) {
-		return Object.values(this).forEach(e => {
-			if (!(e instanceof InputValidator)) return true;
-			return e.disabled = val;
-		});
-	}
-}
+});
 
 
 
