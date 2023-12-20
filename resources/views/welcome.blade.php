@@ -10,6 +10,7 @@
     </x-slot:head>
 
     <main class="container-fluid">
+
         <article class="row align-items-center Carousel bg mt-5">
             <section class="col-1 offset-2 bg">
                 <a href="#" class="btn Prev-btn">
@@ -19,7 +20,7 @@
             <section class="col-4 p-0 bg">
                 <img id="Carousel-img" class="posterimg" src="" alt="" />
             </section>
-            <section class="col-2 text-center bg">
+            <section class="col-2 text-center bg text-witdh">
                 <h3 id="Carousel-title" class="Movie-heading bg"></h3>
                 <p id="Carousel-info" class="Movie-info bg"></p>
             </section>
@@ -51,5 +52,8 @@
                 @endforeach
             @endisset
         </div>
-    </main> 
+    </main>
+
+    <script defer src="{{ asset('js/carousel.js') }}" type="text/javascript"></script>
+
 </x-layouts.base>

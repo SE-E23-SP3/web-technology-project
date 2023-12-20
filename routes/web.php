@@ -77,7 +77,8 @@ Route::get('/secure', function() {
 
 
 
-Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
+Route::get('/', [CategoryController::class, 'movieCategory'])
+->name('welcome');
 
 Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
 

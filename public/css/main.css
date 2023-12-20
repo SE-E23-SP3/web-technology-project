@@ -33,3 +33,43 @@
     width: 180px;
     height: 260px;  
 }
+
+.Carousel{
+    height: 40vh;
+}
+
+.Movie-heading{
+    color: var(--Text);
+}
+.Movie-info{
+    color: var(--Text)
+}
+
+.i-style{
+    color: var(--Text);
+    background-color: var(--Secondary);
+    border: 1rem solid var(--Secondary);
+    border-radius: 15%;
+}
+.posterimg{
+    width: 300px;
+    height: 200px;
+}
+
+.Movie-heading{
+    color: var(--Text);
+}
+.Movie-info{
+    color: var(--Text)
+}
+
+.i-style{
+    color: var(--Text);
+    background-color: var(--Secondary);
+    border: 1rem solid var(--Secondary);
+    border-radius: 15%;
+}
+
+.text-witdh{
+    width: 400px;
+}

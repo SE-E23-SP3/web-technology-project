@@ -1,21 +1,19 @@
-(function() {
-    const carouselImage = document.querySelector("#Carousel-img");
-    const carouselTitle = document.querySelector("#Carousel-title");
-    const carouselInfo = document.querySelector("#Carousel-info");
-    const buttons = document.querySelectorAll(".btn");
 
-    let index = 0;
+const carouselImage = document.querySelector("#Carousel-img");
+const carouselTitle = document.querySelector("#Carousel-title");
+const carouselInfo = document.querySelector("#Carousel-info");
+const buttons = document.querySelectorAll(".btn");
 
-    const items = [];
+let index = 0;
 
-    function CarouselItem(img, title, text){
-        this.img = img;
-        this.title = title;
-        this.text = text;
+const items = [];
 
-    }
+function CarouselItem(img, title, text){
+    this.img = img;
+    this.title = title;
+    this.text = text;
 
-
+}
 
 fetch('/api/movies')
     .then(response => response.json())
@@ -86,26 +84,25 @@ fetch('/api/movies')
             }
 
         });
-    })
+    });
 
-    var movie_info = document.getElementsByClassName("Movie-info")
+var movie_info = document.getElementsByClassName("Movie-info");
 
-    // Iterate through each paragraph
-    for (var i = 0; i < movie_info.length; i++) {
-        var movieinfo = movie_info[i];
-        
-        // Get the text content of the paragraph
-        var text = movieinfo.textContent;
+// Iterate through each paragraph
+for (var i = 0; i < movie_info.length; i++) {
+    var movieinfo = movie_info[i];
     
-        // Check if the text is longer than 15 characters
-        if (text.length > 200) {
-            // Truncate the text to the first 15 characters
-            var shortText = text.substring(0, 200) + "...";
-    
-            // Set the truncated text back to the paragraph
-            movieinfo.textContent = shortText;
-        }
+    // Get the text content of the paragraph
+    var text = movieinfo.textContent;
+
+    // Check if the text is longer than 15 characters
+    if (text.length > 200) {
+        // Truncate the text to the first 15 characters
+        var shortText = text.substring(0, 200) + "...";
+
+        // Set the truncated text back to the paragraph
+        movieinfo.textContent = shortText;
     }
-})();
+};
 
 
