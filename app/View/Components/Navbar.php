@@ -31,7 +31,7 @@ class Navbar extends Component
         if (Auth::check()) {
             $navbar = array_merge($navbar, [
                 "Watchlist" => URL::to("/watchlist"),
-                "Account" => route('user-profile')
+                "Profile" => route('user-profile')
             ]);
         } else {
             $navbar = array_merge($navbar, [

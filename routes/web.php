@@ -111,7 +111,9 @@ Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name(
 
 Route::get('/user-profile', [UserProfileController::class, 'getUserRatedMovies'])->name('user-profile');
 
-Route::get('watchlist', function(){return View('user-profile-page/your-watchlist');})->name('watchlist');
+Route::get('/watchlist', [UserProfileController::class, 'getWatchlistedMovies'])->name('watchlist');
+
+Route::get('/ratings', [UserProfileController::class, 'getRatedMovies'])->name('ratings');
 
 
 

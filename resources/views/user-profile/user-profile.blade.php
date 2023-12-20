@@ -23,7 +23,8 @@
           	<p class="movies-header all-text">Rated Movies</p>
          	<p class="movies-second-head all-text">Recent ratings</p>
          	<div class="movies-list">
-         	@foreach($ratedMovies as $movie)
+         	@foreach($ratedMovies as $index => $movie)
+           @if($index < 10)
                     <article class="movie">
                       <a href="{{ route('movie-id', ['id' => $movie->id]) }}">
                             <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
@@ -34,10 +35,13 @@
                             <i class="fa-solid fa-star star" style="color: #e7ba1e;"></i>
                         </p>
                     </article>
+                    @else
+                   @break
+                @endif
                 @endforeach
           </div>
           <div>
-            <a  class="see-more all-text" href="{{route('watchlist')}}">see ratings...</a>
+            <a  class="see-more all-text" href="{{route('ratings')}}">see ratings...</a>
           </div>
         </section>
 
@@ -45,19 +49,19 @@
           <p class="movies-header all-text">Watchlisted Movies</p>
           <p class="movies-second-head all-text">Recently added</p>
           <div class="movies-list">
-          @foreach($watchlistMovies as $index => $movie)
+    @foreach($watchlistMovies as $index => $movie)
     @if($index < 10)
-    <article class="movie" data-movie-id="{{ $movie->id }}">
-      <a href="{{ route('movie-id', ['id' => $movie->id]) }}">
-          <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
-      </a>
-      <!--<button class="remove-from-list-btn" onclick="removeMovie(this)">X</button>-->
-      <p class="movie-name all-text">{{ $movie->title }}</p>
-  </article>
-    @else
-        @break
-    @endif
-@endforeach
+          <article class="movie" data-movie-id="{{ $movie->id }}">
+            <a href="{{ route('movie-id', ['id' => $movie->id]) }}">
+                <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
+            </a>
+            <!--<button class="remove-from-list-btn" onclick="removeMovie(this)">X</button>-->
+            <p class="movie-name all-text">{{ $movie->title }}</p>
+        </article>
+          @else
+              @break
+          @endif
+      @endforeach
           </div>
           <div>
             <a class="see-more all-text" href="{{route('watchlist')}}">see watchlist...</a>
