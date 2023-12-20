@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\CookieController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,11 +32,10 @@ Route::get('/hello', function () {
 });
 
 
-
-
-
-
 // A heallth check endpoint to verify that the service is up and running
 Route::get('/health', function () {
     return "ok";
 });
+
+
+Route::post('/accept-cookies', [CookieController::class, 'acceptCookies']);
