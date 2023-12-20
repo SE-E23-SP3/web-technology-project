@@ -1,6 +1,6 @@
 <x-layouts.base title="Frontpage">
     <x-slot:head>
-        <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}">        
 
         <!--Font awesome icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -10,7 +10,7 @@
     </x-slot:head>
 
     <main class="container-fluid">
-            <article class="row align-items-center Carousel bg mt-5">
+        <article class="row align-items-center Carousel bg mt-5">
             <section class="col-1 offset-2 bg">
                 <a href="#" class="btn Prev-btn">
                     <i class="fas fa-chevron-left i-style"></i>
@@ -29,6 +29,7 @@
                 </a>
             </section>
         </article>
+
         <div class="container">
             @isset($genres)
                 @foreach($genres as $genre)
