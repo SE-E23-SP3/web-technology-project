@@ -175,7 +175,6 @@ class InputValidator {
 	}
 
 	okBorder() {
-		if (!this.useOKBorder) return;
 		this.classList.add(InputValidator.OK_BORDER_CLASS);
 	}
 
@@ -211,7 +210,7 @@ class InputValidator {
 			return false;
 		}
 
-		this.okBorder();
+		if (this.useOKBorder) this.okBorder();
 		return true;
 	}
 

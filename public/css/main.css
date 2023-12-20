@@ -3,8 +3,21 @@
     color: var(--Text);
 }
 
+.movie-link{
+    text-decoration: none;
+    background-color: var(--Background_Shade);
+}
+
 .bg{
     background-color: var(--Background_Shade);
+    width: auto;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
 }
 
 .trailer{
@@ -22,6 +35,6 @@
 }
 
 .categoryImg{
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 260px;  
 }

@@ -21,14 +21,10 @@ stderr() {
 }
 
 if [ ! -e ".env" ]; then
-	stderr "copying to .env"
-	cp -p .env.example .env
-
-	stderr "Generating DB_PASSWORD"
-	sed -i "s|^DB_PASSWORD=.*|DB_PASSWORD=$(cat /dev/random | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c 32)|g" .env
-	stderr "Generating application key"
-	php artisan key:generate
-	stderr
+	stderr "Missing env file!"
+	stderr "Run develmode.sh script"
+	stderr "To auto generate .env file"
+	exit 1
 fi
 
 
