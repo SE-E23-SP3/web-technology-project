@@ -94,6 +94,15 @@ body{
     overflow: hidden;
     font-size: 14px;
 }
+.crew{
+    padding: 5px;
+    margin: 5px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #121212;
+    overflow: hidden;
+    font-size: 14px;
+}
 .flex{
     display: flex;
     flex-wrap: wrap;

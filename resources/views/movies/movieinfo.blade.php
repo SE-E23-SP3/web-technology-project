@@ -9,17 +9,13 @@
             <article class="row">
                 <section class="col-3 offset-1">
                     <article class="row">
-                        @isset($movie->title)
                         <h1>{{$movie->title}}</h1>
-                        @endisset
                         <article class="row">
                             <section class="col-auto">
                                 <p>Movie</p>
                             </section>
                             <section class="col-auto">
-                                @isset($movie->release_date)
                                 <p>{{$movie->release_date}}</p>
-                                @endisset
                             </section>
                             <section class="col-auto">
                                 <p>02h 43m</p>
@@ -39,9 +35,7 @@
                         </section>
                         <section class="col">
                             <article class="row">
-                                @isset($movie->ratings)
                                 <p class="ratingP">{{number_format($movie->ratings->avg('movie_rating.rating'), 1)}}/10</p>
-                                @endisset
                             </article>
                             <article class="row">
                                 <p class="ratingP">{{$movie->ratings->count() }}</p>
@@ -74,13 +68,13 @@
         
         <div class="container-fluid">
             <article class="row">
-                <section class="col-3 offset-1">
-                    @isset($movie->poster_url)
-                        <img src="{{$movie->poster_url}}" class="pic">  
-                    @endisset
-                </section>
+                @isset($movie->poster_url)
+                    <section class="col-3 offset-1">
+                            <img src="{{$movie->poster_url}}" class="pic">  
+                    </section>
+                @endisset
                 <section class="col-7">
-                    @if($movie->trailers->first())
+                    @if($movie->trailers->first() != NULL)
                         <iframe class="trailer"
                             src="{{ $movie->trailers->first()->video_url }}" allowfullscreen>
                         </iframe>
@@ -107,9 +101,7 @@
                         @endforeach
                     </article>
                     <hr>    
-                    @isset($movie->description)
                     <p>{{$movie->description}}</p>
-                    @endisset
                     <hr>
                     
                     <div class="buttonPos">
@@ -119,8 +111,8 @@
                         </form>
                     </div>
                     @error('error')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </section>
             </section>
         <div class="container-fluid">
