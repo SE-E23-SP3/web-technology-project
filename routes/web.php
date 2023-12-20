@@ -70,7 +70,7 @@ Route::get('/health', function () {
 
 Route::get('/movie/default', function () {
     return view('movies/movieinfo');
-})->name('Movie Info');
+})->name('MovieInfo');
 
 Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']);
 

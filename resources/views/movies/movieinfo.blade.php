@@ -1,4 +1,4 @@
-<x-layouts.base title="movieinfo">
+<x-layouts.base title="Movie Page">
     <x-slot:head>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="{{asset('css/app.css')}}">
@@ -45,7 +45,9 @@
                                 @endisset
                             </article>
                             <article class="row">
+                                @isset($movie->ratings)
                                 <p class="ratingP">{{$movie->ratings->count() }}</p>
+                                @endisset
                             </article>
                         </section>
                     </article>
@@ -81,6 +83,7 @@
                     @endisset
                 </section>
                 <section class="col-7">
+                    @isset($movie->trailers)
                     @if($movie->trailers->first())
                         <iframe class="trailer"
                             src="{{ $movie->trailers->first()->video_url }}" allowfullscreen>
@@ -88,6 +91,7 @@
                         @else
                             <p>No trailer available</p>
                     @endif
+                    @endisset
                 </section>
 
             </article>
@@ -101,11 +105,13 @@
                 <section class="col-10 offset-1">
                     <section class="col box info">
                     <article class="row">
+                        @isset($movie->genres)
                         @foreach($movie->genres as $genre)
                         <section class="genre">
                             <p class="genreP">{{$genre->genre_name}}</p>
                         </section>
                         @endforeach
+                        @endisset
                     </article>
                     <hr>    
                     @isset($movie->description)
@@ -147,9 +153,10 @@
                         <h3>Crew</h3>
                         <article class="row flex">
                             @foreach($movie->crew as $person)
-                                <section class="col-2 actor">
+                                <section class="col-2 crew">
                                     <p>{{$person->first_name}} {{$person->last_name}}</p>
-                                    <p>Crew type: {{$person->movie_crew->crew_type_id}}</p>
+                                    <p>Crew types:</p>
+                                    <p>{{$crewTypes->find($person->movie_crew->crew_type_id)->type}}</p>
                                 </section>
                             @endforeach
                         </article>
