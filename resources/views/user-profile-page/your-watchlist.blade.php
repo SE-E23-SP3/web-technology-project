@@ -30,37 +30,44 @@
             </div>
 
             <!-- Movie list -->
-            <!-- The DB wont work with mac, so made some mock data underneath -->
-            <!-- I've tried running the same branch on a friends computer, where the data from the db would load, but it wont on mac-->
-            <!-- The mock data is also used for testing the sorting -->
             
-            <ul>
-                @isset($movies)
-                    @empty (!$movies)
-                        @foreach ($movies as $movie)
-                            <li>
-                                <div class="movie">
-                                    <img src="{{ $movie->poster_url }}" alt="Movie Poster">
-                                    <div class="movie-details">
-                                        <div class="movie-rank">Rank: {{ $movie->rank }}</div>
-                                        <div class="movie-name">
-                                            <a href="{{ $movie->url }}">{{ $movie->title }}</a>
-                                        </div>
-                                        <div class="info-separator"></div>
-                                        <!-- Add more movie details here -->
-                                    </div>
-                                </div>
-                            </li>
-                        @endforeach
-                    @else
-                        <li>No movies available</li>
-                    @endempty
-                @endisset
+            <ul style="list-style-type: none;">
+    @isset($movies)
+        @empty (!$movies)
+            @foreach ($movies as $movie)
+                <li>
+                    <div class="movie">
+                        <img src="{{ $movie->poster_url }}" alt="Movie Poster">
+                        <div class="movie-details">
+                            <div class="movie-rank">Rank: {{ $movie->id }}</div> <!-- Rank -->
+                            <div class="movie-name">
+                                <a href="{{ $movie->url }}">{{ $movie->title }}</a>
+                            </div>
+                            <div class="info-separator"></div>
+                            <div class="movie-info">
+                                <span>{{ $movie->mpa_rating }}</span> <!-- Rating -->
+                                <span> | </span>
+                                <span>{{ $movie->genre_movie }}</span> <!-- Genre -->
+                                <span> | </span>
+                                <span> Description: {{ $movie->description }}</span> <!-- Description --> 
+                                <span> | </span>
+                                <span> Duration: {{ $movie->duration }}</span> <!-- Duration -->
+                                <span> | </span>
+                                <span> Release date: {{$movie->release_date}}</span> <!-- Release date -->
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            @endforeach
+        @else
+            <li>No movies available</li>
+        @endempty
+    @endisset
 </ul>
             
+            <!-- Old mock data, used for showing a "pretty" watchlist and how it would look 
 
-
-            <!-- Mock data -->
+            
             <div class="movie">
                 <img src="https://api.kino.dk/sites/kino.dk/files/styles/isg_focal_point_356_534/public/2023-10/napoleonplakat.webp?h=7881f276&itok=lqXjeOP6"
                     alt="Movie Poster">
@@ -246,13 +253,13 @@
                     <div class="movie-name"><a href="https://example.com/Paw_patrol_2">Paw Patrol 2 - Super Movie</a></div>
                     <div class="info-separator"></div>
                     <div class="movie-info">
-                        <span>2023</span>
-                        <span> | </span>
-                        <span>1h 27m</span>
-                        <span> | </span>
                         <span>G</span>
                         <span> | </span>
                         <span>Genre: Animation</span>
+                        <span> | </span>
+                        <span>2023</span>
+                        <span> | </span>
+                        <span>1h 27m</span>
                     </div>
                     <div class="actor-list">
                         <span>Pelle Falk Krusbæk</span>
@@ -273,11 +280,14 @@
                 </div>
             </div>
 
-            <!-- Add more movies as needed -->
+            
         </div>
-
+    -->
+        </div>
 
 
     </body>
 
 </x-layouts.base>
+
+
