@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class DatabaseTest extends TestCase
 {
     use RefreshDatabase;    
-public function testInstantiateModel(): void
+public function testInstantiate_Model(): void
 {
     //Seed database
     $this->seed();
@@ -24,7 +24,7 @@ public function testInstantiateModel(): void
     //MISSING REST
 }
 
-public function testInsertUser(): void
+public function testInsert_User(): void
 {
     //Assert that the user is not in the database
     $this->assertDatabaseMissing('users', [

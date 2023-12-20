@@ -5,7 +5,7 @@ use Tests\TestCase;
 
 class RouteTest extends TestCase
 {
-    public function testRoutes()
+    public function testRoutes_Accessible()
     {
         $appURL = env('APP_URL');
         $urls = [
@@ -24,8 +24,9 @@ class RouteTest extends TestCase
             }
         }
         //ROUTE TIL ALLE
-        //TJEK AUTH ROUTES (Måske login hvis man er logget ind)
         //BROWSER TESTS (INTERACTION)(SEE IF MOVIE NAME IS THE SAME AS DATABASE) (VIGTIGT)
+        //TJEK AUTH ROUTES (Måske login hvis man er logget ind)
+        //Tjek EDIT PROFILE PAGE 
 
         //Skriv om preformence er lort derfor ingen preformence test
     }

@@ -11,7 +11,7 @@ class RatingTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUserCanRateMovie()
+    public function testUser_Can_Rate_Movie()
     {
         //Create an instance of user and movie
         $user = User::factory()->create();
@@ -33,7 +33,7 @@ class RatingTest extends TestCase
         ]);
     }
 
-    public function testGuestCantRateMovie()
+    public function testGuest_Cant_Rate_Movie()
     {
         //Create an instance of movie
         $movie = Movie::factory()->create();

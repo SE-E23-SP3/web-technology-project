@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 class WatchlistTest extends TestCase
 {
     use RefreshDatabase;    
-    public function testUserCanAddMovieToWatchlist()
+    public function testUser_Can_Add_Movie_To_Watchlist()
     {
         // Creating an instance of user and movie
         $user = User::factory()->create();
@@ -34,7 +34,7 @@ class WatchlistTest extends TestCase
         $this->assertDatabaseCount('watchlist', 1);
     }
 
-    public function testUserCanRemoveMovieWatchlist()
+    public function testUser_Can_Remove_Movie_From_Watchlist()
     {
         // Creating an instance of user and movie and adding the movie to the watchlist
         $user = User::factory()->create();
@@ -55,7 +55,7 @@ class WatchlistTest extends TestCase
         ]);
     }    
 
-    public function testGuestCantAddMovieToWatchlist()
+    public function testGuest_Cant_Add_Movie_To_Watchlist()
     {
         // Creating an instance of user and a movie
         $movie = Movie::factory()->create();
