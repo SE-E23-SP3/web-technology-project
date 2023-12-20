@@ -8,6 +8,7 @@ use App\Core\PasswordTools;
         <script defer src="{{ asset('js/input-validator.js') }}" type="text/javascript"></script>
         <script defer src="{{ asset('js/error-container.js') }}" type="text/javascript"></script>
         <script defer src="{{ asset('js/form-utils.js') }}" type="text/javascript"></script>
+        <script defer src="{{ asset('js/fieldscontainer.js') }}" type="text/javascript"></script>
         <meta name="client-hash-site-constant" content="{{ PasswordTools::getClientSiteConstant() }}">
         {{ $head ?? null }}
     </x-slot:head>
