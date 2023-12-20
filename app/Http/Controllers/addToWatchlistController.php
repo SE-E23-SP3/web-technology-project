@@ -14,7 +14,7 @@ class addToWatchlistController extends Controller
 public function addMovieToWatchlist(Request $request, Movie $movie) {
     $user = auth()->user();
 
-    if ($user) {
+    if ($user != NULL) {
         $user->addMovieToWatchlist($movie);
         return redirect()->back()->with('message', 'Movie added to watchlist!');
     } else {

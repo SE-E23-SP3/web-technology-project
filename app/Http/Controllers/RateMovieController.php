@@ -15,7 +15,7 @@ public function rate(Request $request, Movie $movie)
 {
     $rating = $request->input('rating');
     $user = auth()->user();
-    if ($user) {
+    if ($user != NULL) {
 
         $movie->addRating($user, $rating);
 

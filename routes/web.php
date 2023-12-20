@@ -98,14 +98,10 @@ Route::get('/health', function () {
     return "ok";
 });
 
-Route::get('/movie/default', function () {
-    return view('movies/movieinfo');
-})->name('MovieInfo');
-
 Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']);
 
 Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');
 
-Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name('movies.rate');
+Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name('movies.rate')->middleware('auth');
 
 
