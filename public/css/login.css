@@ -66,6 +66,10 @@ html{
     background-color: var(--Text_Dim);
 }
 
+.asteriks{
+    color: red;
+}
+
 .error-border {
     border-color: red !important;
 }

@@ -1,181 +1,71 @@
-<x-layouts.base>
+<x-layouts.base title="Profile">
   <x-slot:head>
     <link rel="stylesheet" href="{{asset('css/user-profile.css')}}">
     <!--Font awesome icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="https://kit.fontawesome.com/c52cf1851a.js" crossorigin="anonymous"></script>
+    <script defer src="{{asset('js/user-profile.js')}}"> </script>
   </x-slot:head>
-
-  <body>
+  
     <div class="background">
-      <div class="content">
-        <div class="user-info">
-          <img class="profile-picture" src="bpp.jpg" />
-          <div class="profile-name-and-date">
-            <p class="username">Username</p>
-            <p class="member-date">Member since: MM:DD:YYYY</p>
+      	<div class="content">
+      	<section class="user-info">
+    		<img class="profile-picture" src="bpp.jpg" />
+				<article class="profile-name-and-date">
+					<p class="username all-text">{{ $username }}</p>
+					<p class="member-date all-text">Member since: {{ $memberSince }}</p>
+  				</article>
+						<a href="{{route('account')}}">
+								<button class="edit-profile-btn all-text">Edit profile</button>
+						</a>
+				</section>
+        <section class="movies-list-section">
+          	<p class="movies-header all-text">Rated Movies</p>
+         	<p class="movies-second-head all-text">Recent ratings</p>
+         	<div class="movies-list">
+         	@foreach($ratedMovies as $index => $movie)
+           @if($index < 10)
+                    <article class="movie">
+                      <a href="{{ route('movie-id', ['id' => $movie->id]) }}">
+                            <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
+                        </a>
+                        <p class="movie-name all-text">{{ $movie->title }}</p>
+                        <p class="movie-rating all-text">
+                            {{ $movie->rating }}/10
+                            <i class="fa-solid fa-star star" style="color: #e7ba1e;"></i>
+                        </p>
+                    </article>
+                    @else
+                   @break
+                @endif
+                @endforeach
           </div>
-        </div>
-        <section class="rated-movies-section">
-          <p class="movies-header">Rated Movies</p>
-          <p class="movies-second-head">Recent ratings</p>
-          <div class="movies-list">
-          <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="{{ asset('THE_DOGGO_MOVIE.png') }}"> </a>
-              <p class="movie-name">The Doggo Movie</p>
-              <p class="movie-rating">
-                12/10
-                <i class="fa-solid fa-star star" style="color: #e7ba1e;"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie1</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star" style="color: #e7ba1e;"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie2</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie3</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie4</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie5</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie6</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie7</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie7</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie7</p>
-              <p class="movie-rating">
-                6.9/10
-                <i class="fa-solid fa-star star"></i>
-              </p>
-            </div>
-          </div>
-          <div class="see-more">
-            <a href="http://localhost:8000/login">see ratings...</a>
+          <div>
+            <a  class="see-more all-text" href="{{route('ratings')}}">see ratings...</a>
           </div>
         </section>
 
-        <section class="watchlist-movies-section">
-          <p class="movies-header">Watchlisted Movies</p>
-          <p class="movies-second-head">Recently added</p>
+        <section class="movies-list-section">
+          <p class="movies-header all-text">Watchlisted Movies</p>
+          <p class="movies-second-head all-text">Recently added</p>
           <div class="movies-list">
-          <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="{{ asset('THE_DOGGO_MOVIE.png') }}"> </a>
-              <p class="movie-name">The Doggo Movie</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie1</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie2</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie3</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie4</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie5</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie6</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie7</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie7</p>
-            </div>
-            <div class="movie">
-             <a href="http://localhost:8000/login"> <img class="movie-pic" src="https://picsum.photos/id/237/536/354"> </a>
-              <p class="movie-name">The dog movie7</p>
-            </div>
+    @foreach($watchlistMovies as $index => $movie)
+    @if($index < 10)
+          <article class="movie" data-movie-id="{{ $movie->id }}">
+            <a href="{{ route('movie-id', ['id' => $movie->id]) }}">
+                <img class="movie-pic" src="{{ asset($movie->poster_url) }}" alt="{{ $movie->title }}">
+            </a>
+            <!--<button class="remove-from-list-btn" onclick="removeMovie(this)">X</button>-->
+            <p class="movie-name all-text">{{ $movie->title }}</p>
+        </article>
+          @else
+              @break
+          @endif
+      @endforeach
           </div>
-          <div class="see-more">
-            <a href="http://localhost:8000/login">see watchlist...</a>
+          <div>
+            <a class="see-more all-text" href="{{route('watchlist')}}">see watchlist...</a>
           </div>
         </section>
       </div>
-
-<script>
-var movietitels = document.getElementsByClassName("movie-name");
-
-// Iterate through each paragraph
-for (var i = 0; i < movietitels.length; i++) {
-    var movietitel = movietitels[i];
-    
-    // Get the text content of the paragraph
-    var text = movietitel.textContent;
-
-    // Check if the text is longer than 15 characters
-    if (text.length > 15) {
-        // Truncate the text to the first 15 characters
-        var shortText = text.substring(0, 15) + "...";
-
-        // Set the truncated text back to the paragraph
-        movietitel.textContent = shortText;
-    }
-}
-</script>
-  </body>
 </x-layouts.base>

@@ -1,9 +1,6 @@
-.navbar-list {
+.navbar-list{
     background-color: var(--Background_Shade);
-    display: flex;
-    align-items: center;
 }
-
 .navbar-con {
     background-color: var(--Background_Shade);
 }
@@ -12,7 +9,7 @@
     background-color: var(--Background_Shade);
     color: var(--Text);
     text-decoration: none;
-    margin: 0px 20px;
+    margin: 10px;
 }
 
 .a-fix:hover {
@@ -30,43 +27,47 @@
 }
 
 .searchbar {
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-grow: 1; 
     height: 35px;
-    max-width: 600px;
+    width: 600px;
     padding: 0;
-    gap: 10px;
+    max-width: none;
 }
 
-.logo {
+.logo{
     background-color: var(--Background_Shade);
     width: 100px;
 }
 
-.navbar-brand {
+.navbar-brand{
     margin-left: 50px;
-    margin-right: auto;
+    margin-right: 21%;
     padding: 0;
 }
 
-.container-fluid {
+.container-fluid{
     padding-top: 20px;
 }
 
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: var(--Background_Shade);
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
+.d-flex {
+    background-color: var(--Background_Shade);
+    align-items: center;
+    width: 600px;
+}
+
+.navbar-nav{
+    margin-left: auto;
+    margin-right: 50px;
+}
 .account-icon {
     cursor: pointer;
-    text-align: center;
     width: 100px; 
+    text-align: center;
 }
 
 .account-icon img {
