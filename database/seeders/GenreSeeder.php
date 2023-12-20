@@ -1,18 +1,19 @@
 <?php
-
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
 use Illuminate\Database\Seeder;
 use App\Models\Genre;
 
 class GenreSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        Genre::factory()->count(20)->create();
+        $genreNames = ['Action', 'Drama', 'Comedy', 'Horror', 'Romantic', 'Rom-Com', 'Fantasy', 'Sci-fi'];
+
+        foreach ($genreNames as $genreName) {
+            Genre::create(['genre_name' => $genreName]);
+        }
     }
 }

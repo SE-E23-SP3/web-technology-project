@@ -1,13 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CarouselController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Middleware\NoAuthenticated;
 use App\Http\Controllers\MovieInfoController;
 use App\Http\Controllers\addToWatchlistController;
 use App\Http\Controllers\RateMovieController;
+use App\Http\Controllers\UserProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +27,7 @@ use App\Http\Controllers\RateMovieController;
 
 
 Route::controller(AuthController::class)
+->middleware(NoAuthenticated::class)
 ->group(function(){
     Route::prefix("signup")
     ->group(function(){
@@ -43,11 +47,25 @@ Route::controller(AuthController::class)
         Route::get('hello', 'hello');
     });
 
-    Route::any('logout', 'logout')->name('logout');
+    Route::any('logout', 'logout')->withoutMiddleware(NoAuthenticated::class)->name('logout');
 });
-Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
 
-//Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
+
+Route::controller(AccountController::class)
+->prefix('account')
+->middleware('auth')
+->group(function() {
+    Route::get('/', 'viewAccount')->name('account');
+    Route::get('debug', 'debug');
+
+    Route::prefix("submit")
+    ->group(function() {
+        Route::delete('delete', 'deleteUser');
+        Route::put('updateusername', 'updateUsername');
+        Route::put('updateemail', 'updateEmail');
+        Route::put('updatepassword', 'updatePassword');
+    });
+});
 
 
 
@@ -63,6 +81,19 @@ Route::get('/secure', function() {
 
 
 
+Route::get('/', [CategoryController::class, 'movieCategory'])->name('welcome');
+
+Route::get('/api/movies', [CarouselController::class, 'getMovieInfo']);
+
+
+
+
+
+
+
+
+
+
 // A heallth check endpoint to verify that the service is up and running
 Route::get('/health', function () {
     return "ok";
@@ -72,10 +103,18 @@ Route::get('/movie/default', function () {
     return view('movies/movieinfo');
 })->name('Movie Info');
 
-Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']);
+Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']) ->name('movie-id');
 
 Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');
 
-Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name('movies.rate');
+Route::post('/movies/{movie}/rate', [rateMovieController::class, 'rate'])->name('movies.rate')->middleware('auth');
+
+Route::get('/user-profile', [UserProfileController::class, 'getUserRatedMovies'])->name('user-profile');
+
+Route::get('/watchlist', [UserProfileController::class, 'getWatchlistedMovies'])->name('watchlist');
+
+Route::get('/ratings', [UserProfileController::class, 'getRatedMovies'])->name('ratings');
+
+
 
 
