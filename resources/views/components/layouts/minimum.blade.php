@@ -11,6 +11,8 @@
     </head>
     <body>
         {{ $slot }}
-        <x-cookie-consent.cookie/>
+        @if (!Cookie::has('acceptedCookies'))
+            <x-cookie-consent.cookie/>
+        @endif
     </body>
 </html>

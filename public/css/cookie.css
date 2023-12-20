@@ -1,3 +1,30 @@
+/*
+    if anybody sees this, 
+    I just wanted to say that something 
+    is prohibiting for styling the way that
+    I want to, this is why the naming and 
+    the excessive amount of classes is used.
+*/
+
+/*for slider to work*/
+.slider {
+    overflow: hidden;
+    width: 700px;
+}
+
+.slides {
+    display: flex;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.slides > div {
+    flex-shrink: 0;
+    width: 700px;
+    padding: 30px;
+}
+
+/* general */
 .cookie-backgrounds {
     position: absolute;
     width: 100%;
@@ -10,29 +37,51 @@
 }
 .cookie-contain {
     background-color: var(--Background);
-    padding: 30px;
     border: 1px solid var(--Accent);
     border-radius: 16px;
 }
-.cookie-contain h1, .cookie-contain p, .cookie-contain button {
-    background-color: transparent;
-    border: none;
+
+.cookie-consent-info, .cookie-customize-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
 }
-.cookie-contain button{
+.buttons {
+    display: flex;
+    gap: 5px;
+}
+
+/* buttons */
+.button {
+    text-decoration: none;
+    padding: 8px 20px;
+    color: var(--Text);
+}
+.cookie-button {
     border-radius: 5px;
     padding: 5px 20px;
 }
-.cookie-contain button:hover{
+.cookie-button:hover {
     background-color: var(--Accent);
     filter: saturate(50%);
 }
-#customize-cookies-button {
-    
+
+.button-primary {
+    background-color: var(--Accent);
 }
-#essential-cookies-button {
+.button-seconday {
     border: 1px solid var(--Accent);
     padding: 4px 20px;
 }
-#all-cookies-button {
-    background-color: var(--Accent);
+
+.back-link {
+    color: var(--Accent);
+    font-weight: bold;
+}
+/* settings */
+
+.cookie-setting {
+    display: flex;
+    justify-content: space-between;
 }
