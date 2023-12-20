@@ -115,9 +115,6 @@
                     @enderror
                 </section>
             </section>
-            </article>
-        </div>
-
         <div class="container-fluid">
             <article class="row">
                 <p></p>
@@ -138,14 +135,19 @@
                         <h3>Crew</h3>
                         <article class="row flex">
                             @foreach($movie->crew as $person)
-                                <section class="col-2 actor">
+                                <section class="col-2 crew">
                                     <p>{{$person->first_name}} {{$person->last_name}}</p>
-                                    <p>Crew type: {{$person->movie_crew->crew_type_id}}</p>
+                                    <p>Crew types:</p>
+                                    <p>{{$crewTypes->find($person->movie_crew->crew_type_id)->type}}</p>
                                 </section>
                             @endforeach
                         </article>
                 </section>
             </section>
+            </article>
+            <p></p>
+        </div>
+
             </article>
             <p></p>
         </div>

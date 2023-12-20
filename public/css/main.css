@@ -3,6 +3,11 @@
     color: var(--Text);
 }
 
+.movie-link{
+    text-decoration: none;
+    background-color: var(--Background_Shade);
+}
+
 .bg{
     background-color: var(--Background_Shade);
     width: auto;

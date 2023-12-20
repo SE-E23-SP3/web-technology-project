@@ -24,7 +24,7 @@
             <div class="label-center div-mar">Repeat password<strong class="error-message">*</strong></div>
             <input class="inputField" id="passwordRepeatField" type="password" name="passwordRepeat" autocomplete="new-password" required />
         </div>
-        <p>Fields marked with * are required</p>
+        <p>Fields marked with <span class="asteriks">*</span> are required</p>
         <button id="submitButton" type="submit" class="SigninBtn login-btns">Create Account</button>
     </form>
 </div>
