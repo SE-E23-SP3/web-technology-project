@@ -1,57 +1,104 @@
-
-*{
-    background-color: var(--Background);
-    color: var(--Text);
-    font-family: sans-serif;
+.formElement,
+.seperator{
+    height: 80px;
 }
 
-h1{
-    font-size: xx-large;
+.log-sign-label{
+    color: var(--Text);
 }
 
 input{
-    border-radius: 5px;
-    background-color: white;
-    color: black;
-
+    padding: 4px;
 }
 
-input:focus{
-    outline: none;
+.sign-up{
+    width: 400px;
 }
 
-button{
+.log-sign-container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+    height: 100%;
     color: var(--Text);
-    border: none;
+
     text-align: center;
+
+    margin-top: 3%;
 }
 
-button:hover{
-    cursor: pointer;
+body,
+html{
+    background-color: var(--Background);
+    height: 90%;
+    margin: 0;
 }
 
-.Center-container{
-    position: relative;
+.titel{
+    font-size: 40px;
+    font-weight: 600;
+    margin-bottom: 30px;
 }
 
-.Center{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%)
+.label-center{
+    text-align: left;
+}
+
+.div-mar{
+    margin-left: 26%;
+}
+
+.login-btns,
+.login-input{
+    border-radius: 5px;
+}
+
+.login-btns{
+    color: var(--Text);
 }
 
 .SigninBtn{
     background-color: var(--Primary);
-    border-radius: 5px;
-    
-
 }
 
 .newAccBtn{
     background-color: var(--Text_Dim);
-    border-radius: 5px;
-
 }
 
+.error-border {
+    border-color: red !important;
+}
+
+.ok-border {
+    border-color: rgb(0 234 41) !important;
+}
+
+.error-message {
+    color: red;
+}
+
+.error-border, .ok-border {
+    border-style: solid;
+    border-width: 3px;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.error-container {
+    text-align: center;
+}
+
+
+input:disabled {
+    color: gray;
+    border-color: rgb(93, 93, 93) !important;
+}
+
+
+.ok-message {
+    color: rgb(0 234 41) !important;
+}

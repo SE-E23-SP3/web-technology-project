@@ -5,27 +5,15 @@
 
 .bg{
     background-color: var(--Background_Shade);
+    width: auto;
 }
 
-.Carousel{
-    height: 40vh;
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
 }
-
-.Movie-heading{
-    color: var(--Text);
-}
-.Movie-info{
-    color: var(--Text)
-}
-
-.i-style{
-    color: var(--Text);
-    background-color: var(--Secondary);
-    border: 1rem solid var(--Secondary);
-    border-radius: 15%;
-}
-
-
 
 .trailer{
     text-align: center;
@@ -41,12 +29,7 @@
     background-color: var(--Primary);
 }
 
-.posterimg{
-    width: 300px;
-    height: 200px;
-}
-
 .categoryImg{
-    width: 200px;
-    height: 200px;
+    width: 180px;
+    height: 260px;  
 }
