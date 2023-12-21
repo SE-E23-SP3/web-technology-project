@@ -22,6 +22,9 @@
         $('#userModal').modal('hide');
     }
 
+    
+    
+
 
     
     $(document).ready(function() {
@@ -30,30 +33,102 @@
     });
 
     function updateContentBasedOnAccount(selectedUser) {
-        // Kid-friendly genres
-        var kidGenres = ['Comedy', 'Family', 'Animation', 'Adventure'];
-    
-        // Definition of kid-friendly ratings
+        var kidGenres = ['Comedy', 'Adventure', 'Action', 'Fantasy'];
         var kidRatings = ['G', 'PG'];
+
+        // Filter movies on home page
+
+        $(document).ready(function() {
+            // Iterate through each movie section
+            $(".movie-link").each(function() {
+                const $movieSection = $(this);
+                const mpaRating = $movieSection.find("span").last().text().trim();
     
-        // Filter movies based on the selected account
-        $('.movie').each(function() {
-            var genreText = $(this).find('.movie-info').text();
-            var ratingText = $(this).find('.movie-info').text();
+                // Compare MPA rating to "G," "PG," or "PG-13" and hide the movie if it's not one of these ratings
+                if (mpaRating !== "G" && mpaRating !== "PG" && mpaRating !== "PG-13") {
+                    $movieSection.closest(".col-2").hide();
+                }
+            });
+        });
+
+        
+
+
+
+
+        $(document).ready(function() {
+            // Function to check if a movie should be hidden based on its genre IDs
+                        
+            //This is used to remember which genre is which since i cant seem to get into the db and see myself
+            // Action id = 1
+            // Drama id = 2
+            // Comedy id = 3
+            // Horror id = 4
+            //Romantic id = 5
+            //Rom-Com id = 6
+            //Fantasy id = 7
+            //Sci-Fi id = 8
+
+            //Standard Horror and Drama are not allowed
+            function shouldHideMovie(genreIds) {
+                return genreIds.includes(2) || genreIds.includes(4);
+            }
+
+            // Iterate through each movie section
+            $(".movie-link").each(function() {
+                const $movieSection = $(this);
+                const genreIds = $movieSection.find("span").map(function() {
+                    return parseInt($(this).text());
+                }).get();
+                if(selectedUser === 'subaccount2') {
+
+                if (shouldHideMovie(genreIds)) {
+                    $movieSection.closest(".col-2").hide();
+                }
+            } else {
+                $movieSection.closest(".col-2").show(); }
+            });
+        });
+
+        
+    
+        // Filter movies on watchlist
+        $('.movie').each(function () {
+            var genreText = $(this).find('.movie-details span:nth-child(2)').text();
+            var ratingText = $(this).find('.movie-details span:nth-child(4)').text().trim();
+    
             var isKidFriendlyGenre = kidGenres.some(genre => genreText.includes(genre));
             var isKidFriendlyRating = kidRatings.some(rating => ratingText.includes(rating));
-            var isPG13Rating = ratingText.includes('PG-13'); // PG-13 bypassed, so needed to make this hard-coded
     
-            if (selectedUser === 'subaccount2' && (!isKidFriendlyRating || isPG13Rating)) {
-                $(this).hide(); // Hide non-kid-friendly or PG-13 movies
+            if (selectedUser === 'subaccount2' && (!isKidFriendlyRating || !isKidFriendlyGenre)) {
+                $(this).hide();
             } else {
-                $(this).show(); // Show all movies for main account or kid-friendly movies for subaccount2
+                $(this).show();
             }
         });
+    
+        // Hide inappropriate genres (h4)
+        hideInappropriateGenresForSubaccount(selectedUser, kidGenres);
     }
 
-    // On document ready, set the content based on the stored account selection
-    $(document).ready(function() {
-        var selectedAccount = localStorage.getItem('selectedAccount') || 'main';
-        updateContentBasedOnAccount(selectedAccount);
-    });
+function hideInappropriateGenresForSubaccount(selectedUser, allowedGenres) {
+    if (selectedUser === 'subaccount2') {
+        $('article.row.my-2').each(function () {
+            var genreName = $(this).find('h4').text();
+            if (!allowedGenres.includes(genreName)) {
+                $(this).hide();
+            }
+        });
+    } else {
+        $('article.row.my-2').show();
+    }
+}
+
+// On document ready
+$(document).ready(function() {
+    var selectedAccount = localStorage.getItem('selectedAccount') || 'main';
+    selectAccountType(selectedAccount);
+    updateContentBasedOnAccount(selectedAccount);
+});
+
+

@@ -2,19 +2,13 @@
     <x-slot:head>
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link rel="stylesheet" href="{{ asset('css/watchlist.css') }}">
-        <script defer src="{{ asset('js/watchlist.js') }}"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
-        
-        
-
+        <script defer src="{{asset('js/watchlist.js')}}"> </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </x-slot:head>
 
-    <body>
         <header>
             <h1>Your Watchlist</h1>
         </header>
-
-        
 
         <div class="movie-container">
     @php
@@ -51,5 +45,3 @@
 </div>
 
 </x-layouts.base>
-
-

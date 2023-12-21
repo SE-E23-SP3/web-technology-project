@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script defer src="https://kit.fontawesome.com/c52cf1851a.js" crossorigin="anonymous"></script>
     <script defer src="{{asset('js/user-profile.js')}}"> </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </x-slot:head>
   
     <div class="background">
