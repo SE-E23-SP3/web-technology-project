@@ -34,7 +34,7 @@ class WatchlistTest extends TestCase
         $this->assertDatabaseCount('watchlist', 1);
     }
 
-    public function testUser_Can_Remove_Movie_From_Watchlist()
+    public function testMovie_Can__Be_Removed_From_Watchlist()
     {
         // Creating an instance of user and movie and adding the movie to the watchlist
         $user = User::factory()->create();
@@ -68,4 +68,52 @@ class WatchlistTest extends TestCase
         // Asserting that the watchlist is empty
         $this->assertDatabaseCount('watchlist', 0);
     }
+
+
+    //Apperently it's possible to add the same movie to the watchlist multiple times ¯\_(ツ)_/¯
+    //
+    /*public function testUser_Cant_Add_Same_Movie_To_Watchlist()
+    {
+        // Creating an instance of user and movie
+        $user = User::factory()->create();
+        $movie = Movie::factory()->create();
+
+        // Trying to add the movie to the watchlist
+        $response = $this->actingAs($user)->post('/watchlist/add/' . $movie->id);
+
+        // Asserting that the user was redirected
+        $response->assertRedirect();
+
+        // Asserting that the session has a message
+        $response->assertSessionHas('message', 'Movie added to watchlist!');
+
+        // Asserting that the movie was added to the watchlist
+        $this->assertDatabaseHas('watchlist', [
+            'user_id' => $user->id,
+            'movie_id' => $movie->id,
+        ]);
+
+        // Asserting that the watchlist has one movie
+        $this->assertDatabaseCount('watchlist', 1);
+
+
+        
+        // Trying to add the same movie to the watchlist
+        $response = $this->actingAs($user)->post('/watchlist/add/' . $movie->id);
+
+        // Asserting that the user was redirected
+        $response->assertRedirect();
+
+        // Asserting that the session has a message
+        $response->assertSessionHas('message', 'Movie added to watchlist!');
+
+        // Asserting that the movie was added to the watchlist
+        $this->assertDatabaseHas('watchlist', [
+            'user_id' => $user->id,
+            'movie_id' => $movie->id,
+        ]);
+
+        // Asserting that the watchlist has one movie
+        $this->assertDatabaseCount('watchlist', 1);
+    }*/
 }

@@ -99,10 +99,6 @@ Route::get('/health', function () {
     return "ok";
 });
 
-Route::get('/movie/default', function () {
-    return view('movies/movieinfo');
-})->name('Movie Info');
-
 Route::get('/movie/{id}', [MovieInfoController::class, 'movieInfo']) ->name('movie-id');
 
 Route::post('/watchlist/add/{movie}', [addToWatchlistController::class, 'addMovieToWatchlist'])->name('watchlist.add')->middleware('auth');

@@ -8,9 +8,6 @@ use Tests\DuskTestCase;
 
 class BrowserTest extends DuskTestCase
 {
-    /**
-     * A Dusk test example.
-     */
     public function testExample(): void
     {
         $this->browse(function (Browser $browser) {

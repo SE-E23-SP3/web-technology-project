@@ -2,32 +2,93 @@
 
 namespace Tests\Feature;
 use Tests\TestCase;
+use App\Models\Movie;
+use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Http\Response;
 
 class RouteTest extends TestCase
 {
+    use RefreshDatabase;
+    
     public function testRoutes_Accessible()
     {
+        //Create instance of movie and user
+        $movie = Movie::factory()->create();
+        $user = User::factory()->create();
+
         $appURL = env('APP_URL');
-        $urls = [
+        //List of routes that should be accessible without authentication
+        $unauth_urls = [
+            '/health',
             '/',
             '/login',
             '/signup',
+            '/movie/'. $movie->id,
+        ];
+        //List of routes that shouldn't be accessible without authentication
+        $auth_urls = [
+            '/account',
+            '/user-profile',
+            '/logout',
+            '/watchlist',
+            '/ratings',
         ];
 
-        foreach ($urls as $url) {
+        //Loop through the routes that should be accessible without authentication
+        foreach ($unauth_urls as $url) {
             $response = $this->get($url);
-            if((int)$response->status() !== 200){
-                echo $appURL . $url . ' ---(FAILED)---';
+            if((int)$response->status() !== Response::HTTP_OK){
+                echo $appURL . $url . ' (FAILED)';
+                echo $response->status();
                 $this->assertTrue(false);
             } else {
                 $this->assertTrue(true);
             }
         }
-        //ROUTE TIL ALLE
+
+        //Loop through the routes that shouldn't be accessible without authentication
+
+        foreach ($auth_urls as $url) {
+            $response = $this->actingAs($user)->get($url);
+            if((int)$response->status() !== Response::HTTP_OK &&
+            $response->status() !== Response::HTTP_FOUND){
+                echo $appURL . $url . ' (FAILED)';
+                echo $response->status();
+                $this->assertTrue(false);
+            } else {
+                $this->assertTrue(true);
+            }
+        }
+    }
+
+    public function testGuest_Cant_Access_Auth_Routes()
+    {
+        $appURL = env('APP_URL');
+
+        //List of routes that shouldn't be accessible without authentication
+        $auth_urls = [
+            '/account',
+            '/user-profile',
+            '/logout',
+            '/watchlist',
+            '/ratings',
+        ];
+
+        //Loop through the routes that should be accessible without authentication
+        foreach ($auth_urls as $url) {
+            $response = $this->get($url);
+            if((int)$response->status() !== Response::HTTP_OK){
+                $this->assertTrue(true);
+            } else {
+                echo $appURL . $url . ' (FAILED)';
+                echo $response->status();
+                $this->assertTrue(false);
+            }
+        }
+    }
         //BROWSER TESTS (INTERACTION)(SEE IF MOVIE NAME IS THE SAME AS DATABASE) (VIGTIGT)
-        //TJEK AUTH ROUTES (Måske login hvis man er logget ind)
         //Tjek EDIT PROFILE PAGE 
 
         //Skriv om preformence er lort derfor ingen preformence test
-    }
 }

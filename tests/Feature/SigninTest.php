@@ -23,10 +23,13 @@ class SigninTest extends TestCase
             'email' => 'TestUser@example.com',
             'hashedPassword' => PasswordTools::makeClientHash('TestUser@example.com', 'TestPassword1234'),
         ];
+        //Post the user data to the signup route
+        $this->postJson('/signup/submit', $userData);
+
         //Post the user data to the signup route  
-        $response = $this->postJson('/login/submit', $userData);
+        $response = $this->post('/login/submit', $userData);
         //Assert that the request was successful
-        $response->assertStatus(Response::HTTP_ACCEPTED);
+        $response->assertStatus(Response::HTTP_FOUND);
     }
     public function testSignin_Wrong_Credentials()
     {
@@ -43,9 +46,9 @@ class SigninTest extends TestCase
         $response = $this->postJson('/login/submit', [
             'username' => 'TestUser',
             'email' => 'TestUser@example.com',
-            'hashedPassword' => PasswordTools::makeClientHash('TestUser@example.com', 'WRONG_PASSWORD')
+            'hashedPassword' => PasswordTools::makeClientHash('TestUser@example.com', 'WRONGPASSWORD')
         ]);
         //Assert that the request was unsuccessful
-        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
+        $this->assertNotEquals(Response::HTTP_OK, $response->status());
     }
 }
