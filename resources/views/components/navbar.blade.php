@@ -41,17 +41,17 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <div class="modal-body d-flex justify-content-around">
+            <div class="modal-body justify-content-around">
                 <!-- Icon for Main User -->
                 <div class="account-icon" data-account-type="main" onclick="selectAccountType('main')">
                     <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png" alt="Main User Icon" class="img-fluid">
-                    <p style="color:black;">Main User</p>
+                    <p>Main User</p>
                 </div>
 
                 <!-- Icon for Child User -->
                 <div class="account-icon" data-account-type="child" onclick="selectAccountType('subaccount2')">
                     <img src="bpp.jpg" alt="Child User Icon" class="img-fluid">
-                    <p style="color:black;">Child User</p>
+                    <p>Child User</p>
                 </div>
             </div>
         </div>

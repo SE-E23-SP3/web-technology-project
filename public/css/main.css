@@ -1,7 +1,10 @@
 *{
-    background-color: var(--Background);
-    color: var(--Text);
+    color: var(--Text_Dim);
 }
+body {
+    background-color: var(--Background);
+}
+
 
 .movie-link{
     text-decoration: none;

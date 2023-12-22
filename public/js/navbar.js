@@ -2,7 +2,7 @@
 //Function for select account type
 
     function selectAccountType(selectedUser) {
-        // Save the selected user type in local storage
+        
         localStorage.setItem('selectedAccount', selectedUser);
 
         // Change the profile picture based on the selected user
@@ -11,7 +11,7 @@
             profilePic.src = 'https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png'; // Main user icon
             profilePic.alt = 'Main User Icon';
         } else {
-            profilePic.src = 'bpp.jpg'; // Child user
+            profilePic.src = 'bpp.jpg'; // Child user icon
             profilePic.alt = 'Child User Icon';
         }
 
@@ -29,27 +29,29 @@
     
     $(document).ready(function() {
         var selectedAccount = localStorage.getItem('selectedAccount') || 'main';
-        selectAccountType(selectedAccount); // This updates the profile picture on page load
+        selectAccountType(selectedAccount); 
     });
 
     function updateContentBasedOnAccount(selectedUser) {
-        var kidGenres = ['Comedy', 'Adventure', 'Action', 'Fantasy'];
-        var kidRatings = ['G', 'PG'];
+        var kidGenres = ['Comedy', 'Adventure', 'Action', 'Fantasy',"Sci-fi","Rom-Com","Romantic"];
+        //Hold øje med om det virker igen, den er lidt funky med pg-13 på
+        var kidRatings = ['G', 'PG', 'PG-13'];
 
-        // Filter movies on home page
 
+        // Filter rating on home page
         $(document).ready(function() {
-            // Iterate through each movie section
+        //Iterate through each movie section
             $(".movie-link").each(function() {
                 const $movieSection = $(this);
                 const mpaRating = $movieSection.find("span").last().text().trim();
-    
-                // Compare MPA rating to "G," "PG," or "PG-13" and hide the movie if it's not one of these ratings
-                if (mpaRating !== "G" && mpaRating !== "PG" && mpaRating !== "PG-13") {
-                    $movieSection.closest(".col-2").hide();
-                }
+                        
+                    //Compare MPA rating to "G," "PG," or "PG-13" and hide the movie if it's not one of these ratings
+                    if (mpaRating !== "G" && mpaRating !== "PG" && mpaRating !== "PG-13") {
+                        $movieSection.closest(".col-2").hide();
+                    }
             });
         });
+        
 
         
 
@@ -69,7 +71,8 @@
             //Fantasy id = 7
             //Sci-Fi id = 8
 
-            //Standard Horror and Drama are not allowed
+            //Standard is Horror and Drama are not allowed
+            // I allowed Rom-Com and Romantic since alot of movies (especially kids movies) have a romantic subplot
             function shouldHideMovie(genreIds) {
                 return genreIds.includes(2) || genreIds.includes(4);
             }

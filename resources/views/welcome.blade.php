@@ -1,20 +1,13 @@
 <x-layouts.base title="Frontpage">
     <x-slot:head>
         <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+        <script src="{{ asset('js/navbar.js') }}"></script>
+        
         <!--Font awesome icons -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script defer src="https://kit.fontawesome.com/c52cf1851a.js" crossorigin="anonymous"></script>
         <script defer src="{{ asset('js/shorten-text.js') }}" type="text/javascript"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        
-        
-    
-
-        
-
-
-        
-        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> 
     </x-slot:head>
     
     
@@ -31,8 +24,8 @@
                                 <a href="{{ route('movie-id', ['id' => $movie->id]) }}" class="movie-link">
                                     <img src="{{ $movie->poster_url }}" alt="{{ $movie->title }}" class="m-2 categoryImg" />
                                     <h6 class="bg mx-2 movie-name">{{ $movie->title }}</h6>
-                                    @foreach($movie->genres as $movieGenre) <!-- Assuming $movie->genres returns all genres -->
-                                        <span class=>{{ $movieGenre->id }}</span> <!-- Display genre name -->
+                                    @foreach($movie->genres as $movieGenre) 
+                                        <span class=>{{ $movieGenre->id }}</span> 
                                         
                                     @endforeach
                                     
@@ -48,6 +41,4 @@
     </div>
     
 </main>
-
-    
 </x-layouts.base>
