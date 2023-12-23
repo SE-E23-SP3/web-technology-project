@@ -19,9 +19,9 @@ abstract class DuskTestCase extends BaseTestCase
      */
     public static function prepare(): void
     {
-        if (! static::runningInSail()) {
+        
             static::startChromeDriver();
-        }
+        
     }
 
     /**
@@ -29,21 +29,18 @@ abstract class DuskTestCase extends BaseTestCase
      */
     protected function driver(): RemoteWebDriver
     {
-        $options = (new ChromeOptions)->addArguments(collect([
-            $this->shouldStartMaximized() ? '--start-maximized' : '--window-size=1920,1080',
-        ])->unless($this->hasHeadlessDisabled(), function (Collection $items) {
-            return $items->merge([
-                '--disable-gpu',
-                '--headless=new',
-            ]);
-        })->all());
+        $options = (new ChromeOptions)->addArguments([
+            '--disable-gpu',
+            '--no-sandbox',
+            '--ignore-ssl-errors',
+            '--whitelisted-ips=""',
+            '--ignore-certificate-errors'
+        ]);
 
-        return RemoteWebDriver::create(
-            $_ENV['DUSK_DRIVER_URL'] ?? 'http://localhost:9515',
-            DesiredCapabilities::chrome()->setCapability(
-                ChromeOptions::CAPABILITY, $options
-            )
-        );
+    return RemoteWebDriver::create(
+        'http://selenium:4444/wd/hub', DesiredCapabilities::chrome()->setCapability(
+        ChromeOptions::CAPABILITY, $options
+    ));
     }
 
     /**

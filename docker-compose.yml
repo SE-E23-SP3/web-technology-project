@@ -1,5 +1,15 @@
 version: "3.8"
 services:
+  selenium:
+    image: selenium/standalone-chrome:3.11.0-antimony
+    depends_on:
+      - php
+    links:
+      - php:backend.test
+    volumes:
+      - /dev/shm:/dev/shm
+    networks:
+      - backend
   php:
     image: "composer-psql"
     build: "./composer-psql"
