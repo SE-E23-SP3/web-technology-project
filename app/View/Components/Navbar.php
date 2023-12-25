@@ -30,12 +30,14 @@ class Navbar extends Component
 
         if (Auth::check()) {
             $navbar = array_merge($navbar, [
+                "Top-Charts" => route('top-charts'),
                 "Watchlist" => URL::to("/watchlist"),
                 "Profile" => route('user-profile'),
                 "Logout" => route('logout')
             ]);
         } else {
             $navbar = array_merge($navbar, [
+                "Top 100" => route('top-charts'),
                 "Login" => route('login')
             ]);
         }

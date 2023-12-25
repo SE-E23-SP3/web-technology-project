@@ -17,9 +17,16 @@ class MovieSeeder extends Seeder
      */
     public function run(): void
     {
-        Movie::factory()->count(30)->create()->each(function ($movie) {
-            for ($i = 0; $i < random_int(2, 6); $i++) {
-                $genre = Genre::inRandomOrder()->first();
+        //Changed it so it makes 300 movies instead
+        Movie::factory()->count(300)->create()->each(function ($movie) {
+            $selectedGenres = [];
+            //Adds two different genres to the movies
+            for ($i = 0; $i < 2; $i++) {
+                $genre = Genre::whereNotIn('id', $selectedGenres)->inRandomOrder()->first();
+                if (!$genre) {
+                    break;
+                }
+                $selectedGenres[] = $genre->id;
                 $movie->addGenre($genre);
             }
             for ($i = 0; $i < random_int(5, 20); $i++) {

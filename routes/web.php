@@ -11,6 +11,7 @@ use App\Http\Controllers\MovieInfoController;
 use App\Http\Controllers\addToWatchlistController;
 use App\Http\Controllers\RateMovieController;
 use App\Http\Controllers\UserProfileController;
+use App\Http\Controllers\TopRatedMoviesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,5 +117,4 @@ Route::get('/watchlist', [UserProfileController::class, 'getWatchlistedMovies'])
 Route::get('/ratings', [UserProfileController::class, 'getRatedMovies'])->name('ratings');
 
 
-
-
+Route::get('/top-charts/{order?}/{selectedGenre?}', [TopRatedMoviesController::class, 'topByRating'])->name('top-charts');

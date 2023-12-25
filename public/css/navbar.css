@@ -9,7 +9,8 @@
     background-color: var(--Background_Shade);
     color: var(--Text);
     text-decoration: none;
-    margin: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .a-fix:hover {

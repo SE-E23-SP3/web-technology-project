@@ -20,7 +20,7 @@ class MovieFactory extends Factory
         return [
             'title' => fake()->unique()->sentence(2),
             'description' => fake()->paragraph(true),
-            'duration' => fake()->words(1, true),
+            'duration' => fake()->numberBetween(30, 240),
             'release_date' => fake()->Date(),
             'poster_url' => fake()->unique()->imageUrl(640, 480, 'animals', true),
             'mpa_rating' => MPARating::values()[random_int(0,4)]

@@ -18,6 +18,10 @@ class Movie extends Model
         'mpa_rating'
     ];
 
+    protected $casts = [
+        'release_date' => 'date',
+    ];
+
     public function addGenre(Genre $genre) {
         if ($genre instanceof Genre) {
             $this->genres()->attach($genre->id);
