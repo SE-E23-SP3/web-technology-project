@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace App\Core;
 
 use JsonSerializable;
@@ -24,17 +26,17 @@ enum InputType implements JsonSerializable {
 
     public static function isValidClientHashedPasswordFormat(String $hashedPassword): Bool {
         $pattern = "/^[A-Za-z0-9+\/]{43}\=$/";
-        return preg_match($pattern, $hashedPassword);
+        return preg_match($pattern, $hashedPassword) === 1;
     }
 
     public static function isValidEmailFormat(String $email): Bool {
         $pattern = "/^\b[A-Za-z0-9._%+-]{1,90}@[A-Za-z0-9.-]{1,90}\.[A-Za-z]{2,20}\b ?$/";
-        return preg_match($pattern, $email);
+        return preg_match($pattern, $email) === 1;
     }
 
     public static function isValidUsernameFormat(String $username): Bool {
         $pattern = "/^[A-Za-z0-9_-]{4,20}$/";
-        return preg_match($pattern, $username);
+        return preg_match($pattern, $username) === 1;
     }
 
     public function jsonSerialize(): String {
