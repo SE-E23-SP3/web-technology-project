@@ -5,12 +5,14 @@ namespace App\Core;
 
 use Illuminate\Support\Facades\Log;
 
-use app\Enums\HotpAlgorithms;
+use App\Enums\HotpAlgorithms;
+use App\Enums\HotpDigits;
 
 class Hotp {
     public const BYTE_SIZE= 8;
     public const COUNTER_SIZE = 8;
     public const DEFAULT_ALGORITHM = HotpAlgorithms::SHA1;
+    public const DEFAULT_DIGITS_LENGTH = HotpDigits::SIX;
     public const PACK_FORMAT = 'C*';
     public const BYTE_MASK = 0b11111111; //0xff
     public const LOWER_HALF_BYTE_MASK = 0b1111; //0xf
@@ -66,9 +68,9 @@ class Hotp {
         return ($hmacResult[$index] & $byteMask) << $byteShift;
     }
 
-    private static function getHotpDigits(int $p, int $length = 6): string {
-        $digits = $p % (10 ** $length);
-        return str_pad(strval($digits), $length, '0', STR_PAD_LEFT);
+    private static function getHotpDigits(int $p, HotpDigits $length = self::DEFAULT_DIGITS_LENGTH): string {
+        $digits = $p % (10 ** $length->value);
+        return str_pad(strval($digits), $length->value, '0', STR_PAD_LEFT);
     }
 
     public static function hmac(string $data, string $key, HotpAlgorithms $algo = self::DEFAULT_ALGORITHM): string {
@@ -76,10 +78,10 @@ class Hotp {
     }
 
 
-    public static function calculate(string $secret, int $counter, HotpAlgorithms $algo = self::DEFAULT_ALGORITHM): string {
+    public static function calculate(string $secret, int $counter, HotpDigits $length = self::DEFAULT_DIGITS_LENGTH, HotpAlgorithms $algo = self::DEFAULT_ALGORITHM): string {
         $counterKey = self::intToByteString($counter);
         $hmacResult = self::hmac($counterKey, $secret, $algo);
         $hmacResultArray = self::byteStringToByteArray($hmacResult);
-        return self::getHotpDigits(self::dt($hmacResultArray));
+        return self::getHotpDigits(self::dt($hmacResultArray), $length);
     }
 }
