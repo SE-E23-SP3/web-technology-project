@@ -18,7 +18,7 @@
                                 <p>{{$movie->release_date}}</p>
                             </section>
                             <section class="col-auto">
-                                <p>02h 43m</p>
+                                <p>{{$movie->duration}}</p>
                             </section>
                         </article>
                     </article>
@@ -49,7 +49,7 @@
                     </article>
                     <article class="row">
                         <section class="col-auto">
-                            <button class="rateButton" data-bs-toggle="modal" data-bs-target="#ratingModal">
+                            <button id="rate" class="rateButton" data-bs-toggle="modal" data-bs-target="#ratingModal">
                                 <article class="row">
                                     <section class="col-auto">
                                         <img src="https://cdn-icons-png.flaticon.com/512/9784/9784192.png"
@@ -107,7 +107,7 @@
                     <div class="buttonPos">
                         <form action="{{ route('watchlist.add', $movie->id) }}" method="POST">
                             @csrf
-                            <button type="submit">Add to watchlist</button>
+                            <button id="addToWatchlist" type="submit">Add to watchlist</button>
                         </form>
                     </div>
                     @error('error')
@@ -198,7 +198,7 @@
                 </fieldset>
             </div>
             <div class="modal-footer">
-                <button type="submit" form="rateForm" value="Rate">Rate</button>
+                <button id="submitRate" type="submit" form="rateForm" value="Rate">Rate</button>
             </div>
         </form>
     </div>

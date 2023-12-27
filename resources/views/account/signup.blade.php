@@ -7,7 +7,7 @@
 <div class="log-sign-container">
     <h1 class="titel">Create new Account</h1>
 
-    <form class="sign-up" id="signUp" autocomplete="on" action="" method="post">
+    <form class="sign-up" id="signUp" autocomplete="on" action="/signup/submit" method="post">
         <div class="formElement">
             <div class="label-center div-mar">Username<strong class="error-message">*</strong></div>
             <input class="inputField" id="usernameField" type="text" name="username" autocomplete="name" title="Choose a username"  autofocus required />

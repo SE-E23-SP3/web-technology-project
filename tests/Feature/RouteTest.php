@@ -47,7 +47,7 @@ class RouteTest extends TestCase
             }
         }
 
-        //Loop through the routes that shouldn't be accessible without authentication
+        //Loop through the routes that shouldn't be accessible without authentication as a logged in user
 
         foreach ($auth_urls as $url) {
             $response = $this->actingAs($user)->get($url);
@@ -75,7 +75,7 @@ class RouteTest extends TestCase
             '/ratings',
         ];
 
-        //Loop through the routes that should be accessible without authentication
+        //Loop through the routes that shouldn't be accessible without authentication
         foreach ($auth_urls as $url) {
             $response = $this->get($url);
             if((int)$response->status() !== Response::HTTP_OK){
@@ -87,8 +87,4 @@ class RouteTest extends TestCase
             }
         }
     }
-        //BROWSER TESTS (INTERACTION)(SEE IF MOVIE NAME IS THE SAME AS DATABASE) (VIGTIGT)
-        //Tjek EDIT PROFILE PAGE 
-
-        //Skriv om preformence er lort derfor ingen preformence test
 }
