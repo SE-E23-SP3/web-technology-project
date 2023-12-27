@@ -62,6 +62,7 @@ Route::controller(AccountController::class)
     Route::prefix("submit")
     ->group(function() {
         Route::delete('delete', 'deleteUser');
+        Route::delete('deletetfa', 'deletetfa');
         Route::put('updateusername', 'updateUsername');
         Route::put('updateemail', 'updateEmail');
         Route::put('updatepassword', 'updatePassword');

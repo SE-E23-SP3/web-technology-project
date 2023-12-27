@@ -51,7 +51,20 @@
 			</article>
 			<article class="add-totp change-articles">
 				<h2 class="section-headers">Two Factor Authentication</h2>
-				<h3 id="tfaSuccessMessageContainer" class="@if(Auth::user()->totp === NULL) hidden @endif ok-message">Two Factor Enabled :)</h3>
+				<div id="tfaSuccessMessageContainer" class="@if(Auth::user()->totp === NULL) hidden @endif">
+					<h3 class="ok-message">Two Factor Enabled :)</h3>
+					<div class="horizontal-container">
+						<div class="formElement horizontal-element">
+							<div class="">Password<strong class="error-message"></strong></div>
+							<input class="inputField" id="deleteTfaPasswordField" type="password" name="password" autocomplete="" required />
+						</div>
+						<div class="formElement horizontal-element">
+							<div class="">Two Factor code<strong class="error-message"></strong></div>
+							<input class="inputField" id="deleteTfaCodeField" maxlength="6" type="text" name="tfa" autocomplete="" required />
+						</div>
+					</div>
+					<button class="change-btns" id="deleteTfa">Disable Two Factor</button>
+				</div>
 				<div class="hidden horizontal-container" id="tfaContainer">
 					<div class="qrcode" id="qrCodeTfa"></div>
 					<div class="horizontal-element">

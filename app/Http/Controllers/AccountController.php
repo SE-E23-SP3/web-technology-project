@@ -176,4 +176,37 @@ class AccountController extends Controller {
 
         return JsonResponseGenerator::accepted();
     }
+
+
+
+    public function deletetfa(Request $request): JsonResponse {
+        $user = Auth::user();
+		$password = $request->input('password', '');
+		$totpVerificationCode = $request->input('totpVerificationCode', '');
+
+        if ($user->totp === NULL) {
+            return JsonResponseGenerator::badRequest("Totp: already deleted");
+        }
+
+        if (!InputType::isValidClientHashedPasswordFormat($password)) {
+            return JsonResponseGenerator::badRequest();
+        }
+
+        if (!Hash::check($password, $user->password)) {
+            return JsonResponseGenerator::unauthorized();
+        }
+
+        $totp = $user->totp;
+
+        if (!$totp->validate($totpVerificationCode)) {
+            $res = JsonResponseGenerator::badRequest("Totp: invalid verification code");
+            return $res;
+        }
+
+        DB::transaction(function() use ($totp){
+            $totp->delete();
+        });
+
+        return JsonResponseGenerator::accepted();
+    }
 }

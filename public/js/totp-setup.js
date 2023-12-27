@@ -106,3 +106,71 @@ async function handleEnableTfaError(error) {
 tfaEnableBtn.addEventListener("click", e => {
 	enableTfa(enableTfaFieldContainer).catch(handleEnableTfaError).catch(handleFatalError);
 });
+
+
+
+const tfaDeleteBtn = document.getElementById("deleteTfa");
+const deleteTfaPasswordField = new InputValidator(InputValidator.patterns.generic, document.getElementById("deleteTfaPasswordField"));
+deleteTfaPasswordField.useOKBorder = false;
+
+const deleteTfaCodeField = new InputValidator(InputValidator.patterns.totpCode, document.getElementById("deleteTfaCodeField"));
+deleteTfaCodeField.useOKBorder = false;
+
+const deleteTfaFieldContainer = new FieldsContainer({
+	tfaCodeField: deleteTfaCodeField,
+	passwordField: deleteTfaPasswordField
+});
+
+
+async function deleteTfa(fields) {
+	console.log(fields.check());
+	if (!fields.check()) return false;
+
+	fields.disable(true);
+	tfaDeleteBtn.disabled = true;
+
+	let hashedPassword = await hashPasswordWithEmail(fields.fields.passwordField.value, originalEmail, 600000);
+
+
+	let response = await makeJSONDeleteRequest(BASE_SUBMIT_PATH + "deletetfa", {
+		password: hashedPassword,
+		totpVerificationCode: fields.fields.tfaCodeField.value
+	});
+
+	document.getElementById("tfaSuccessMessageContainer").classList.add(ErrorContainerUtil.HIDDEN_CLASS);
+	setupTwoFactorBtn.classList.remove(ErrorContainerUtil.HIDDEN_CLASS);
+	enableTfaFieldContainer.disable(false);
+	enableTfaFieldContainer.fields.passwordField.value = "";
+	enableTfaFieldContainer.fields.tfaCodeField.value = "";
+	tfaEnableBtn.disabled = false;
+	deleteTfaFieldContainer.disable(false);
+	tfaDeleteBtn.disabled = false;
+	fields.fields.passwordField.value = "";
+	fields.fields.tfaCodeField.value = "";
+}
+
+async function handleDeleteTfaError(error) {
+	deleteTfaFieldContainer.disable(false);
+	tfaDeleteBtn.disabled = false;
+	if (error.httpStatus == 401) {
+		deleteTfaPasswordField.insertError("Invalid password");
+		return false;
+	}
+
+	if (error.json.message == "Totp: invalid verification code") {
+		deleteTfaCodeField.insertError("Invalid code");
+		return false;
+	}
+
+
+	if (error.json.message == "Totp: already deleted") {
+		deleteTfaCodeField.insertError("Two factor authentication is already deleted!");
+		return false;
+	}
+
+	throw error;
+}
+
+tfaDeleteBtn.addEventListener("click", e => {
+	deleteTfa(deleteTfaFieldContainer).catch(handleDeleteTfaError).catch(handleFatalError);
+});
