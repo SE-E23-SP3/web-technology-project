@@ -56,6 +56,10 @@ class AuthController extends Controller {
             return JsonResponseGenerator::unauthorized();
         }
 
+        if ($user->totp !== NULL) {
+            $request->session()->flash('totp_user_auth_attempt', $user);
+            return JsonResponseGenerator::unauthorized("totp: required");
+        }
 
         Auth::login($user, $remember = true);
 
@@ -68,6 +72,27 @@ class AuthController extends Controller {
     }
 
 
+    public function submitTotp(Request $request): JsonResponse {
+        if (!$request->session()->has('totp_user_auth_attempt')) {
+            return JsonResponseGenerator::badRequest();
+        }
+
+        $user = $request->session()->get('totp_user_auth_attempt');
+
+        if ($user->totp === NULL) {
+            return JsonResponseGenerator::badRequest();
+        }
+
+		$totpVerificationCode = $request->input('totpVerificationCode', '');
+
+        if ($user->totp->validate($totpVerificationCode)) {
+            Auth::login($user, $remember = true);
+            return self::generateSucessResponse($request);
+        } else {
+            $request->session()->keep(['totp_user_auth_attempt']);
+            return JsonResponseGenerator::unauthorized();
+        }
+    }
 
 
     public function viewSignup(): View {

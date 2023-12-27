@@ -43,6 +43,7 @@ Route::controller(AuthController::class)
         Route::get('/', 'viewLogin')->name("login");
 
         Route::post('submit', 'submitLogin');
+        Route::post('submitTotp', 'submitTotp');
 
         Route::get('hello', 'hello');
     });

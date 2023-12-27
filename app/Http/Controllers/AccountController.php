@@ -176,7 +176,4 @@ class AccountController extends Controller {
 
         return JsonResponseGenerator::accepted();
     }
-
-
-
 }

@@ -1,6 +1,8 @@
 "use strict";
 const login = document.getElementById("login");
 const submitButton = document.getElementById("submitButton");
+const totpForm = document.getElementById("totpForm");
+const BASE_SUBMIT_PATH = "/login/";
 
 
 const emailField = new InputValidator(InputValidator.patterns.email, document.getElementById("emailField"));
@@ -18,7 +20,7 @@ async function prepareLogin(fieldsObject) {
 }
 
 async function submitSignup(credentials) {
-	const url = "/login/submit";
+	const url = BASE_SUBMIT_PATH + "submit";
 	return await makeJSONPostRequest(url, credentials);
 }
 
@@ -37,6 +39,12 @@ async function handleSubmissionError(error) {
 	if (error.json == undefined) throw error;
 
 	if (error.httpStatus == 401) {
+		if (error.json.message = "totp: required") {
+			login.classList.add(ErrorContainerUtil.HIDDEN_CLASS);
+			totpForm.classList.remove(ErrorContainerUtil.HIDDEN_CLASS);
+			return false;
+		}
+
 		passwordField.insertError("Invalid password or email");
 	} else {
 		throw error;

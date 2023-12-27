@@ -1,9 +1,5 @@
 "use strict";
 
-function handleFatalError(error) {
-	errorContainerUtil.displayError();
-	console.error(error.json ?? error);
-}
 
 const BASE_SUBMIT_PATH = "/account/submit/";
 const OK_MESSAGE_CLASS = "ok-message";

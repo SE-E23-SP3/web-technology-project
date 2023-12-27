@@ -32,3 +32,10 @@ document.getElementById("pageRefreshBtn").addEventListener('click', (e) => {
 });
 
 const errorContainerUtil = new ErrorContainerUtil();
+
+
+
+function handleFatalError(error) {
+	errorContainerUtil.displayError();
+	console.error(error.json ?? error);
+}
