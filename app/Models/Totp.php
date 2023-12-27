@@ -67,15 +67,22 @@ class Totp extends Model {
 
 
 
-    public function validate(string $input) {
+    public function validate(string $input): bool {
         $currentTimeStep = self::getTimeStep(time(), $this->interval, $this->start_time);
-        $secret = Crypt::decryptString($this->encrypted_secret);
         foreach ([$currentTimeStep - 1, $currentTimeStep, $currentTimeStep + 1] as $timeStep) {
-            if (self::calculate($secret, $timeStep, $this->interval, $this->length, $this->algo) === $input) {
+            if ($this->get($timeStep) === $input) {
                 return true;
             }
         }
         return false;
+    }
+
+    public function get(?int $timeStep = NULL): string {
+        if ($timeStep === NULL) {
+            $timeStep = self::getTimeStep(time(), $this->interval, $this->start_time);
+        }
+        $secret = base64_decode(Crypt::decryptString($this->encrypted_secret));
+        return self::calculate($secret, $timeStep, $this->interval, $this->length, $this->algo);
     }
 
 

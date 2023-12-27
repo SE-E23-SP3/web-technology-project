@@ -14,14 +14,19 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
 
 use App\Core\PasswordTools;
 use App\Core\InputType;
 use App\Core\JsonResponseGenerator;
+use App\Core\Hotp;
+
+use App\Enums\HotpAlgorithms;
 
 use App\Http\Controllers\AuthController;
 
 use App\Models\User;
+use App\Models\Totp;
 
 
 class AccountController extends Controller {
@@ -138,5 +143,40 @@ class AccountController extends Controller {
         $body["test"] = "Hello world";
         return response()->json($body);
     }
+
+
+    public function enabletfa(Request $request): JsonResponse {
+        $user = Auth::user();
+		$password = $request->input('password', '');
+		$totpSecret = $request->input('totpSecret', '');
+		$totpVerificationCode = $request->input('totpVerificationCode', '');
+
+        if ($user->totp !== NULL) {
+            return JsonResponseGenerator::badRequest("Totp: already set");
+        }
+
+        if (!(InputType::isValidClientHashedPasswordFormat($password) && InputType::isValidTotpSecret($totpSecret))) {
+            return JsonResponseGenerator::badRequest();
+        }
+
+        if (!Hash::check($password, $user->password)) {
+            return JsonResponseGenerator::unauthorized();
+        }
+
+        $totp = new Totp(["encrypted_secret" => Crypt::encryptString($totpSecret)]);
+        $totp->user()->associate($user);
+
+        if (!$totp->validate($totpVerificationCode)) {
+            $res = JsonResponseGenerator::badRequest("Totp: invalid verification code");
+            $totp->discardChanges();
+            return $res;
+        }
+
+        $totp->save();
+
+        return JsonResponseGenerator::accepted();
+    }
+
+
 
 }

@@ -64,6 +64,7 @@ Route::controller(AccountController::class)
         Route::put('updateusername', 'updateUsername');
         Route::put('updateemail', 'updateEmail');
         Route::put('updatepassword', 'updatePassword');
+        Route::put('enabletfa', 'enabletfa');
     });
 });
 

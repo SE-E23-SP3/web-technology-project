@@ -2,6 +2,7 @@
 	<x-slot:head>
 		<link rel="stylesheet" href="{{ asset('css/user-edit.css') }}">
         <script defer src="{{ asset('js/account.js') }}" type="text/javascript"></script>
+        <script defer src="{{ asset('js/totp-setup.js') }}" type="text/javascript"></script>
 	</x-slot:head>
 	<div class="background">
 		<section class="content">
@@ -25,7 +26,7 @@
 					</div>
 					<div class="formElement horizontal-element">
 						<div class="">Password<strong class="error-message"></strong></div>
-						<input class="inputField" id="emailPasswordField" type="password" name="password" autocomplete="new-password" required />
+						<input class="inputField" id="emailPasswordField" type="password" name="password" autocomplete="" required />
 					</div>
 					<button class="change-btn-email change-btns" id="saveEmailButton">Save E-mail</button>
 				</section>
@@ -35,7 +36,7 @@
 				<section class="password-inputfields">
 					<div class="formElement">
 						<div class="">Current password<strong class="error-message"></strong></div>
-						<input class="inputField" id="oldPasswordField" type="password" name="password" autocomplete="new-password" required />
+						<input class="inputField" id="oldPasswordField" type="password" name="password" autocomplete="" required />
 					</div>
 					<div class="formElement">
 						<div class="">New password<strong class="error-message"></strong></div>
@@ -47,6 +48,25 @@
 					</div>
 				</section>
 				<button class="change-btn-pwd change-btns" id="savePasswordButton">Save Password</button>
+			</article>
+			<article class="add-totp change-articles">
+				<h2 class="section-headers">Two Factor Authentication</h2>
+				<h3 id="tfaSuccessMessageContainer" class="@if(Auth::user()->totp === NULL) hidden @endif ok-message">Two Factor Enabled :)</h3>
+				<div class="hidden horizontal-container" id="tfaContainer">
+					<div class="qrcode" id="qrCodeTfa"></div>
+					<div class="horizontal-element">
+						<div class="formElement">
+							<div class="">Password<strong class="error-message"></strong></div>
+							<input class="inputField" id="tfaPasswordField" type="password" name="password" autocomplete="" required />
+						</div>
+						<div class="formElement">
+							<div class="">Two Factor code<strong class="error-message"></strong></div>
+							<input class="inputField" id="tfaCodeField" maxlength="6" type="text" name="tfa" autocomplete="" required />
+						</div>
+					</div>
+					<button class="change-btns" id="saveTfa">Enable Two Factor</button>
+				</div>
+				<button class="@isset(Auth::user()->totp) hidden @endif" id="setupTwoFactorBtn">Setup Two Factor</button>
 			</article>
 			<button class="log-out-btn" id="logoutButton">Log out</button>
 			<button class="delete-btn" id="deleteButton">Delete Account</button>

@@ -38,6 +38,12 @@ class InputValidator {
 				"max": 4,
 				"invalidCharMessage": "Invalid zip code"
 			},
+			"totpCode": {
+				"pattern": /^\d{6}$/,
+				"min": 6,
+				"max": 6,
+				"invalidCharMessage": "Invalid TOTP code"
+			},
 			"email": {
 				"pattern": /^\b[A-Za-z0-9._%+-]{1,90}@[A-Za-z0-9.-]{1,90}\.[A-Za-z]{2,20}\b ?$/,
 				"min": 1,

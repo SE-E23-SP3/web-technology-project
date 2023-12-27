@@ -12,12 +12,14 @@ enum InputType implements JsonSerializable {
     case ClientHashedPassword;
     case Email;
     case Username;
+    case TotpSecret;
     case Other;
 
     public static function interpretType(?String $input): self {
         if ($input === NULL) return self::Null;
         if ($input === "") return self::Empty;
         if (self::isValidClientHashedPasswordFormat($input)) return self::ClientHashedPassword;
+        if (self::isValidTotpSecret($input)) return self::ClientHashedPassword;
         if (self::isValidEmailFormat($input)) return self::Email;
         if (self::isValidUsernameFormat($input)) return self::Username;
         return self::Other;
@@ -37,6 +39,11 @@ enum InputType implements JsonSerializable {
     public static function isValidUsernameFormat(String $username): Bool {
         $pattern = "/^[A-Za-z0-9_-]{4,20}$/";
         return preg_match($pattern, $username) === 1;
+    }
+
+    public static function isValidTotpSecret(String $totpSecret): Bool {
+        $pattern = "/^[A-Za-z0-9+\/]{27}\=$/";
+        return preg_match($pattern, $totpSecret) === 1;
     }
 
     public function jsonSerialize(): String {
