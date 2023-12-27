@@ -1,7 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Core;
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Crypt;
@@ -11,7 +16,10 @@ use App\Core\Hotp;
 use App\Enums\HotpAlgorithms;
 use App\Enums\HotpDigits;
 
-class Totp {
+use App\Models\User;
+
+
+class Totp extends Model {
     public const INTERVAL = 30;
     public const START_TIME = 0;
 
@@ -31,28 +39,47 @@ class Totp {
     }
 
 
-    private string $encryptedSecret;
-    private int $interval;
-    private int $startTime;
-    private HotpDigits $length;
-    private HotpAlgorithms $algo;
+    protected $fillable = [
+        'encrypted_secret'
+    ];
 
-    public function __construct(string $encryptedSecret, int $interval = self::INTERVAL, int $startTime = self::START_TIME, HotpDigits $length = Hotp::DEFAULT_DIGITS_LENGTH, HotpAlgorithms $algo = Hotp::DEFAULT_ALGORITHM) {
-        $this->encryptedSecret = $encryptedSecret;
-        $this->interval = $interval;
-        $this->startTime = $startTime;
-        $this->length = $length;
-        $this->algo = $algo;
-    }
+    protected $casts = [
+        "length" => 'App\Enums\HotpDigits',
+        "algo" => 'App\Enums\HotpAlgorithms'
+    ];
+
+
+    protected $attributes = [
+        'interval' => self::INTERVAL,
+        'start_time' => self::START_TIME,
+        'length' => Hotp::DEFAULT_DIGITS_LENGTH,
+        'algo' => Hotp::DEFAULT_ALGORITHM
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'encrypted_secret'
+    ];
+
+
 
     public function validate(string $input) {
-        $currentTimeStep = self::getTimeStep(time(), $this->interval, $this->startTime);
-        $secret = Crypt::decryptString($this->encryptedSecret);
+        $currentTimeStep = self::getTimeStep(time(), $this->interval, $this->start_time);
+        $secret = Crypt::decryptString($this->encrypted_secret);
         foreach ([$currentTimeStep - 1, $currentTimeStep, $currentTimeStep + 1] as $timeStep) {
             if (self::calculate($secret, $timeStep, $this->interval, $this->length, $this->algo) === $input) {
                 return true;
             }
         }
         return false;
+    }
+
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
     }
 }
