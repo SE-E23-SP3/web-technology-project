@@ -1,5 +1,20 @@
 # web-technology-project
 
+## Two Factor Authentication Extension
+This is an extension for our web technology project, which improves on the security significantly by
+implementing Time based two factor authentication, known as TOTP.  
+The implementation is written completely from scratch.  
+This is however not ideal for production environments, but has rather been a
+great learning experience.
+
+### Resources
+This extension would not have been possible without the following sources:
+- [davidshimjs/qrcodejs](https://github.com/davidshimjs/qrcodejs/)
+- [Google authenticator Uri Format wiki](https://github.com/google/google-authenticator/wiki/Key-Uri-Format)
+- [RFC 4226 - HTOP based OTP](https://datatracker.ietf.org/doc/html/rfc4226)
+- [RFC 6238 - TOTP based OTP](https://datatracker.ietf.org/doc/html/rfc6238)
+- [Generating 2FA One-Time Passwords in JS Using Web Crypto API](https://dev.to/al_khovansky/generating-2fa-one-time-passwords-in-js-using-web-crypto-api-1hfo)
+- [jakobo/hotp-php](https://github.com/jakobo/hotp-php/)
 
 
 ## How to execute
