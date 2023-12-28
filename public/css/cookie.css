@@ -26,7 +26,7 @@
 
 /* general */
 .cookie-backgrounds {
-    position: absolute;
+    position: fixed;
     width: 100%;
     height: 100%;
     display: flex;
@@ -59,10 +59,14 @@
     color: var(--Text);
 }
 .cookie-button {
+    color: var(--Text);
+    background-color: transparent;
+    border: none;
     border-radius: 5px;
     padding: 5px 20px;
 }
 .cookie-button:hover {
+    color: var(--Text);
     background-color: var(--Accent);
     filter: saturate(50%);
 }

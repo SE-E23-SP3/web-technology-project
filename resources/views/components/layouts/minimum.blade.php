@@ -9,9 +9,9 @@
         <link rel="stylesheet" type="text/css" href="{{asset('css/cookie.css')}}" />
     </head>
     <body>
-        {{ $slot }}
         @if (!Cookie::has('acceptedCookies'))
             <x-cookie-consent.cookie/>
         @endif
+        {{ $slot }}
     </body>
 </html>
