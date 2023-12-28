@@ -1,0 +1,129 @@
+*{
+    --Text: #fff;
+    --Background: #000;
+    --Background_Shade: #1e1e1e ;
+    --Primary: #8FB3FF;
+    --Accent: #462888;
+    --Secondary: #DDC3EA;
+    --Text_Dim: #c6c6c6;   
+}
+.container-fluid{
+    padding-left: 0%;
+    padding-right: 0%;
+}
+
+.box{
+    background-color: #1e1e1e;
+    border-radius: 5px;
+}
+
+.pic{
+    height:100% ;
+    width: 100%;
+    border-radius: 5px;
+}
+.trailer{
+    height: 450px;
+    width: 100%;
+    border-radius: 5px;
+}
+.info{
+    min-height: 280px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-wrap:break-word;
+    overflow-x: hidden;
+}
+button{
+    background-color: rgb(143, 179, 255);
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.buttonPos{
+    text-align: center;
+}
+.rate{
+    color: var(--Accent);
+    padding-top: 10px;
+}
+.rateButton{
+    background-color: #000;
+    color: var(--Accent);
+    padding: 0px;
+    font-size: x-large;
+}
+table{
+    margin-bottom: 5%;
+}
+td{
+    padding-right: 100px;
+}
+.toppad{
+    padding-top: 5px;
+}
+.modal-header{
+    background-color: #1e1e1e;
+}
+.modal-body{
+    background-color: #1e1e1e;
+}
+.modal-footer{
+    background-color: #1e1e1e;
+}
+.icon{
+    max-height:320px;
+    width: 100%;
+    border-radius: 5px;
+}
+body{
+    background-color: var(--Background);
+    color: var(--Text);
+    overflow-x: hidden; 
+}
+.actor{
+    padding: 5px;
+    margin: 5px;
+    height: 70px;
+    border-radius: 5px;
+    background-color: #121212;
+    overflow: hidden;
+    font-size: 14px;
+}
+.crew{
+    padding: 5px;
+    margin: 5px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #121212;
+    overflow: hidden;
+    font-size: 14px;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+p{
+    margin-bottom: 10px;
+}
+.genre{
+    padding: 5px;
+    margin: 5px;
+    height: 25px;
+    width: fit-content;
+    border-radius: 10px;
+    background-color: #121212;   
+}
+.genreP{
+    font-size: 10px;
+    margin: 0px;
+}
+.ratingP{
+    padding-left: 0px;
+    margin: 0px;
+}

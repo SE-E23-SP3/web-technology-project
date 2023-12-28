@@ -1,26 +1,25 @@
-<x-layouts.base title="Login">
+<x-layouts.login-base title="Login">
     <x-slot:head>
-        <link rel="stylesheet" href="{{asset('css/login.css')}}">
+        <script defer src="{{ asset('js/login.js') }}" type="text/javascript"></script>
     </x-slot:head>
 
-    <div class="container-center">
-        <article class="Center">
-            <section>
-                <h1>Log in</h1>
-                <form method="GET" action="{{route('Welcome')}}">
-                    @csrf
-                    <label>Email:</label> <br />
-                    <input id="email" name="email" type="email"> <br />
-                    <label>Password:</label> <br />
-                    <input id="password" name="password" type="password"> <br /><br />
-                    <button type="submit" class="SigninBtn">Sign in</button>
-                </form>
-                <br />
-                <form method="GET" action="{{route('signup')}}">
-                    @csrf
-                    <button type="submit" class="newAccBtn" >New Account</button>
-                </form>
-            </section>
-        </article>
+
+<div class="log-sign-container">
+    <h1 class="titel text">Log in</h1>
+    <form class="login-form" id="login" method="POST" action="" disabled>
+        <div class="label-center">
+            <div class="seperator">
+        <label>Email:</label> <br />
+        <input class="login-input" id="emailField" name="email" type="email"> <br />
+        </div>
+        <div class="seperator">
+        <label>Password:</label> <br />
+        <input class="login-input" id="passwordField" name="password" type="password"> <br /><br />
+        </div>    
     </div>
-</x-layouts.base>
+        <button id="submitButton" type="submit" class="SigninBtn login-btns">Sign in</button>
+    </form>
+    <br/>
+    <a id="signupBtn" href="{{route('signup')}}"><button class="newAccBtn login-btns" >New Account</button></a>
+</div>
+</x-layouts.login-base>

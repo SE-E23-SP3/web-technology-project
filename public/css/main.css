@@ -1,0 +1,40 @@
+*{
+    background-color: var(--Background);
+    color: var(--Text);
+}
+
+.movie-link{
+    text-decoration: none;
+    background-color: var(--Background_Shade);
+}
+
+.bg{
+    background-color: var(--Background_Shade);
+    width: auto;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    justify-content: center;
+}
+
+.trailer{
+    text-align: center;
+    font-size: 1rem;
+    color: var(--Text);
+    background-color: var(--Primary);
+    width: 100px;
+    border: none;
+    border-radius: 10px;
+}
+
+.bg2{
+    background-color: var(--Primary);
+}
+
+.categoryImg{
+    width: 180px;
+    height: 260px;  
+}

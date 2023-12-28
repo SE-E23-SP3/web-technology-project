@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('trailers', function (Blueprint $table) {
             $table->id();// id is automatically incremented and acts as a primary key
+            $table->foreignId('movie_id');
             $table->string('video_url');
             $table->timestamps();// creates created_at & updated_at TIMESTAMP
         });

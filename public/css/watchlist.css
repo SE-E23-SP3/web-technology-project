@@ -1,0 +1,92 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--Background_Shade);
+    color: var(--Text);
+}
+
+header {
+    background-color: var(--Background);
+    color: var(--Primary);
+    text-align: center;
+    padding: 1em;
+}
+
+.movie-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--Background);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sort-dropdown {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.movie {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--Background_Shade);
+}
+
+.movie img {
+    max-width: 120px;
+    height: 180px;
+    margin-right: 20px;
+}
+
+.movie-details {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.movie-name {
+font-weight: bold;
+font-size: 1.2em;
+margin-bottom: 5px;
+}
+
+.movie-name a {
+text-decoration: none;
+color: var(--Secondary);
+position: relative;
+transition: color 0.3s ease;
+}
+
+.movie-name a:hover {
+color: var(--Accent);
+}
+
+.movie-info {
+    color: var(--Text_Dim);
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.info-separator {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid var(--Background_Shade);
+}
+
+.actor-list,
+.description-text {
+    color: var(--Text_Dim);
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+.movie-rank {
+    color: var(--Accent);
+    font-size: 1.2em;
+}
+
+.sort-dropdown select {
+    padding: 8px;
+    font-size: 1em;
+}
