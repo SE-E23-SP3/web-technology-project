@@ -34,7 +34,6 @@
 
     function updateContentBasedOnAccount(selectedUser) {
         var kidGenres = ['Comedy', 'Adventure', 'Action', 'Fantasy',"Sci-fi","Rom-Com","Romantic"];
-        //Hold øje med om det virker igen, den er lidt funky med pg-13 på
         var kidRatings = ['G', 'PG', 'PG-13'];
 
 
@@ -71,7 +70,7 @@
             //Fantasy id = 7
             //Sci-Fi id = 8
 
-            //Standard is Horror and Drama are not allowed
+            //Standard is Horror and Drama are not allowed (2 and 4)
             // I allowed Rom-Com and Romantic since alot of movies (especially kids movies) have a romantic subplot
             function shouldHideMovie(genreIds) {
                 return genreIds.includes(2) || genreIds.includes(4);
